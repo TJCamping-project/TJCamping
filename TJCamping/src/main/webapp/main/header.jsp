@@ -70,7 +70,7 @@
                         
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                            &nbsp;&nbsp;&nbsp;레시피&맛집&nbsp;&nbsp;&nbsp;</a>
+                            &nbsp;&nbsp;&nbsp;레시피 & 맛집&nbsp;&nbsp;&nbsp;</a>
                             <div class="dropdown-menu m-0">
                                 <a href="#" class="dropdown-item">레시피 목록</a>
                                 <a href="#" class="dropdown-item">맛집 목록</a>
