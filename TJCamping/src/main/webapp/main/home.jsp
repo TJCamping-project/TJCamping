@@ -33,7 +33,7 @@
 				</div>
 				<div class="carousel-item">
 					<img src="../img/carousel-1.jpg" class="img-fluid" alt="Image">
-					<div class="carousel-caption">
+					<div class="carousel-caption">i
 						<div class="p-3" style="max-width: 900px;">
 							<h4 class="text-white text-uppercase fw-bold mb-4"
 								style="letter-spacing: 3px;">Explore The World</h4>
