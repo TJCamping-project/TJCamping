@@ -1,10 +1,84 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title> 
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('#logBtn').on('click',function(){
+		let id=$('#id').val()
+		if(id.trim()==="")
+		{
+			$('#id').focus()
+			return
+		}
+		let pwd=$('#pwd').val()
+		if(pwd.trim()==="")
+		{
+			$('#pwd').focus()
+			return
+		}
+		
+		$.ajax({
+			type:'post',
+			url:'../member/login.do',
+			// ?id=aaa&pwd=1234
+			data:{"id":id,"pwd":pwd},
+			success:function(result)
+			{
+				// 정상 수행 => status : 200
+				// NOID / NOPWD / OK
+				if(result==='NOID')
+				{
+					alert("아이디가 존재하지 않습니다!!")
+					$('#id').val("")
+					$('#pwd').val("")
+					$('#id').focus()
+				}
+				else if(result==='NOPWD')
+				{
+					alert("비밀번호가 틀립니다!!")
+					$('#pwd').val("")
+					$('#pwd').focus()
+				}
+				else
+				{
+					location.href="../main/main.do"
+				}
+			},
+			error:function(request,status,error)
+			{
+				console.log("code:"+request.status)
+				// 404 , 500 
+				console.log("message:"+request.responseText)
+				console.log("error:"+error)
+			}
+		})
+	})
+	$('#logoutBtn').click(function(){
+		$.ajax({
+			type:'post',
+			url:'../member/logout.do',
+			success:function(result)
+			{
+				location.href="../main/main.do"
+			},
+			error:function(request,status,error)
+			{
+				console.log("code:"+request.status)
+				// 404 , 500 
+				console.log("message:"+request.responseText)
+				console.log("error:"+error)
+			}
+			
+		})
+	})
+})
+</script>
 </head>
 <body>
  <div class="container-fluid" style="background-color: rgb(37, 103, 75); padding: 0 20px; display: none; display: block;">
@@ -21,23 +95,30 @@
                 </div>
                 <div class="col-lg-8 text-center text-lg-end">
                     <div class="d-inline-flex align-items-center" style="height: 45px;">
-                 <!--  <c:if test="${sessionScope.id==null }">-->
+                   <c:if test="${sessionScope.id==null }">
 				      <ul class="inline">
 				        <li style="display: inline-block;"><input size="15" style="margin-top:17px" type="text" id="id" class="input-sm" placeholder="아이디"></li>
 				        <li style="display: inline-block;"><input size="15" type="password" id="pwd" class="input-sm" placeholder="비밀 번호"></li>
 				        <li style="display: inline-block;"><input type="button" id="logBtn" class="btn btn-sm btn-primary" value="로그인">&nbsp;&nbsp;</li>
 				      </ul>
-			  <!-- 	</c:if> -->
-			  <!-- 	<c:if test="${sessionScope.id!=null }">
+			   	</c:if> 
+			   	<c:if test="${sessionScope.id!=null }">
 				      <ul class="inline">
 				      	<li style="display: inline-block;">${sessionScope.name }(${sessionScope.admin=='y'?"관리자":"일반 사용자" })님 로그인되었습니다</li>
 				        <li style="display: inline-block;"><input type="button" id="logoutBtn" class="btn-sm btn-success" value="로그아웃">&nbsp;&nbsp;</li>
 				      </ul>
 			    	</c:if> -->
-                <!-- <a href="../login/login.do"><small class="me-3 text-light"><i class="fa fa-sign-in-alt me-2"></i>로그인</small></a> -->
+                 <a href="../login/login.do"><small class="me-3 text-light"><i class="fa fa-sign-in-alt me-2"></i>로그인</small></a> 
                         <a href="../member/join.do"><small class="me-3 text-light"><i class="fa fa-user me-2"></i>회원가입</small></a>
                         <a href="#"><small class="me-3 text-light"><i class="fa fa-user me-2"></i>고객센터</small></a>
+                        <c:if test="${sessionScope.id!=null }">
+       			<c:if test="${sessionScope.admin=='n' }">
                         <a href="#"><small class="me-3 text-light"><i class="fa fa-user me-2"></i>마이페이지</small></a>
+                        </c:if>
+       			<c:if test="${sessionScope.admin=='y' }">
+                        <a href="#"><small class="me-3 text-light"><i class="fa fa-user me-2"></i>관리자페이지</small></a>
+                        </c:if>
+       			</c:if>
                     </div>
                 </div>
             </div>
