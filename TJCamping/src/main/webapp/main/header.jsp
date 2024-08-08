@@ -25,7 +25,7 @@
 				      <ul class="inline">
 				        <li style="display: inline-block;"><input size="15" style="margin-top:17px" type="text" id="id" class="input-sm" placeholder="아이디"></li>
 				        <li style="display: inline-block;"><input size="15" type="password" id="pwd" class="input-sm" placeholder="비밀 번호"></li>
-				        <li style="display: inline-block;"><input type="button" id="logBtn" class="btn-sm btn-danger" value="로그인">&nbsp;&nbsp;</li>
+				        <li style="display: inline-block;"><input type="button" id="logBtn" class="btn btn-sm btn-primary" value="로그인">&nbsp;&nbsp;</li>
 				      </ul>
 			  <!-- 	</c:if> -->
 			  <!-- 	<c:if test="${sessionScope.id!=null }">
@@ -35,7 +35,7 @@
 				      </ul>
 			    	</c:if> -->
                 <!-- <a href="../login/login.do"><small class="me-3 text-light"><i class="fa fa-sign-in-alt me-2"></i>로그인</small></a> -->
-                        <a href="../login/join.do"><small class="me-3 text-light"><i class="fa fa-user me-2"></i>회원가입</small></a>
+                        <a href="../member/join.do"><small class="me-3 text-light"><i class="fa fa-user me-2"></i>회원가입</small></a>
                         <a href="#"><small class="me-3 text-light"><i class="fa fa-user me-2"></i>고객센터</small></a>
                         <a href="#"><small class="me-3 text-light"><i class="fa fa-user me-2"></i>마이페이지</small></a>
                     </div>
