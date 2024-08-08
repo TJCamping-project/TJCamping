@@ -105,7 +105,7 @@
 					style="background: linear-gradient(rgba(255, 255, 255, .8), rgba(255, 255, 255, .8));">
 					<h5 class="section-about-title"></h5>
 					<h1 class="mb-4">
-						Welcome to <span class="text-primary">TJ camping!</span>
+						Welcome to <span class="text-primary">TJ Camping!</span>
 					</h1>
 					<p class="mb-4">
 						TJ캠핑은 캠핑에 관련된 모든 서비스를 제공하는 전문 캠핑 플랫폼입니다.<br>
