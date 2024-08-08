@@ -22,7 +22,7 @@
                 <div class="col-lg-4 text-center text-lg-end">
                     <div class="d-inline-flex align-items-center" style="height: 45px;">
                     	<a href="#"><small class="me-3 text-light"><i class="fa fa-sign-in-alt me-2"></i>로그인</small></a>
-                        <a href="#"><small class="me-3 text-light"><i class="fa fa-user me-2"></i>회원가입</small></a>
+                        <a href="../login/join.do"><small class="me-3 text-light"><i class="fa fa-user me-2"></i>회원가입</small></a>
                         <a href="#"><small class="me-3 text-light"><i class="fa fa-user me-2"></i>고객센터</small></a>
                         <a href="#"><small class="me-3 text-light"><i class="fa fa-user me-2"></i>마이페이지</small></a>
                     </div>
@@ -43,13 +43,13 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto py-0">
-                        <a href="#" class="nav-item nav-link active">&nbsp;&nbsp;&nbsp;홈&nbsp;&nbsp;&nbsp;</a>
+                        <a href="../main/main.do" class="nav-item nav-link active">&nbsp;&nbsp;&nbsp;홈&nbsp;&nbsp;&nbsp;</a>
                         
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                             &nbsp;&nbsp;&nbsp;캠핑장&nbsp;&nbsp;&nbsp;</a>
                             <div class="dropdown-menu m-0">
-                                <a href="#" class="dropdown-item">캠핑장 목록</a>
+                                <a href="../camp/list.do" class="dropdown-item">캠핑장 목록</a>
                                 <a href="#" class="dropdown-item">지역별 캠핑장</a>
                                 <a href="#" class="dropdown-item">With Pet 캠핑장</a>
                                 <a href="#" class="dropdown-item">근처 맛집</a>
@@ -70,7 +70,7 @@
                         
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                            &nbsp;&nbsp;&nbsp;레시피 & 맛집&nbsp;&nbsp;&nbsp;</a>
+                            &nbsp;&nbsp;&nbsp;레시피&맛집&nbsp;&nbsp;&nbsp;</a>
                             <div class="dropdown-menu m-0">
                                 <a href="#" class="dropdown-item">레시피 목록</a>
                                 <a href="#" class="dropdown-item">맛집 목록</a>
