@@ -107,7 +107,7 @@ $(function(){
 				      	<li style="display: inline-block;">${sessionScope.name }(${sessionScope.admin=='y'?"관리자":"일반 사용자" })님 로그인되었습니다</li>
 				        <li style="display: inline-block;"><input type="button" id="logoutBtn" class="btn-sm btn-success" value="로그아웃">&nbsp;&nbsp;</li>
 				      </ul>
-			    	</c:if> -->
+			    	</c:if> 
                  <a href="../login/login.do"><small class="me-3 text-light"><i class="fa fa-sign-in-alt me-2"></i>로그인</small></a> 
                         <a href="../member/join.do"><small class="me-3 text-light"><i class="fa fa-user me-2"></i>회원가입</small></a>
                         <a href="#"><small class="me-3 text-light"><i class="fa fa-user me-2"></i>고객센터</small></a>
