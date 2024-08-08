@@ -97,25 +97,25 @@ $(function(){
                     <div class="d-inline-flex align-items-center" style="height: 45px;">
                    <c:if test="${sessionScope.id==null }">
 				      <ul class="inline">
-				        <li style="display: inline-block;"><input size="15" style="margin-top:17px" type="text" id="id" class="input-sm" placeholder="아이디"></li>
+				        <li style="display: inline-block;"><input size="15" style="margin-top:25px" type="text" id="id" class="input-sm" placeholder="아이디"></li>
 				        <li style="display: inline-block;"><input size="15" type="password" id="pwd" class="input-sm" placeholder="비밀 번호"></li>
 				        <li style="display: inline-block;"><input type="button" id="logBtn" class="btn btn-sm btn-primary" value="로그인">&nbsp;&nbsp;</li>
 				      </ul>
 			   	</c:if> 
 			   	<c:if test="${sessionScope.id!=null }">
 				      <ul class="inline">
-				      	<li style="display: inline-block;">${sessionScope.name }(${sessionScope.admin=='y'?"관리자":"일반 사용자" })님 로그인되었습니다</li>
-				        <li style="display: inline-block;"><input type="button" id="logoutBtn" class="btn-sm btn-success" value="로그아웃">&nbsp;&nbsp;</li>
+				      	<li style="display: inline-block; margin-top:25px">${sessionScope.name }(${sessionScope.admin=='y'?"관리자":"일반 사용자" })님 로그인되었습니다</li>
+				        <li style="display: inline-block; margin-top:25px"><input type="button" id="logoutBtn" class="btn-sm btn-success" value="로그아웃">&nbsp;&nbsp;</li>
 				      </ul>
 			    	</c:if> 
-                        <a href="../member/join.do"><small class="me-3 text-light"><i class="fa fa-user me-2"></i>회원가입</small></a>
-                        <a href="#"><small class="me-3 text-light"><i class="fa fa-user me-2"></i>고객센터</small></a>
+                        <a href="../member/join.do"><small class="me-3 text-light"><i class="fa fa-user me-2" style="margin-top:13px"></i>회원가입</small></a>
+                        <a href="#"><small class="me-3 text-light"><i class="fa fa-user me-2" style="margin-top:13px"></i>고객센터</small></a>
                         <c:if test="${sessionScope.id!=null }">
        			<c:if test="${sessionScope.admin=='n' }">
-                        <a href="#"><small class="me-3 text-light"><i class="fa fa-user me-2"></i>마이페이지</small></a>
+                        <a href="#"><small class="me-3 text-light"><i class="fa fa-user me-2" style="margin-top:13px"></i>마이페이지</small></a>
                         </c:if>
        			<c:if test="${sessionScope.admin=='y' }">
-                        <a href="#"><small class="me-3 text-light"><i class="fa fa-user me-2"></i>관리자페이지</small></a>
+                        <a href="#"><small class="me-3 text-light"><i class="fa fa-user me-2" style="margin-top:13px"></i>관리자페이지</small></a>
                         </c:if>
        			</c:if>
                     </div>
