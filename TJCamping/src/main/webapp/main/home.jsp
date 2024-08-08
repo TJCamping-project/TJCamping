@@ -79,7 +79,7 @@
 	 <div class="container-fluid search-bar position-relative"
 		style="top: -50%; transform: translateY(-50%);">
 		<div class="container">
-			<div class="position-relative rounded-pill w-100 mx-auto p-4" style="background: rgba(19, 53, 123, 0.8);">
+			<div class="position-relative rounded-pill w-100 mx-auto p-4" style="background: rgba(37, 103, 75,0.8);">
 				<input
 					class="form-control border-0 rounded-pill w-100 py-3 ps-4 pe-5"
 					type="text" placeholder="지역명">
