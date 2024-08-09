@@ -26,4 +26,4 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM project_databoard
 		WHERE no=#{no}
 	</select>
-</mapper>
+</mapper> 
