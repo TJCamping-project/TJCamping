@@ -34,7 +34,7 @@ $(function(){
 				// NOID / NOPWD / OK
 				if(result==='NOID')
 				{
-					alert("아이디가 존재하지 않습니다!!") 
+					alert("아이디가 존재하지 않습니다!!")
 					$('#id').val("")
 					$('#pwd').val("")
 					$('#id').focus()
@@ -108,7 +108,7 @@ $(function(){
 				        <li style="display: inline-block; margin-top:25px"><input type="button" id="logoutBtn" class="btn-sm btn-success" value="로그아웃">&nbsp;&nbsp;</li>
 				      </ul>
 			    	</c:if>
-			    	<c:if test="${sessionScope.id==null }"> 
+			    	<c:if test="${sessionScope.id==null }">
                         <a href="../member/join.do"><small class="me-3 text-light"><i class="fa fa-user me-2" style="margin-top:13px"></i>회원가입</small></a>
                     </c:if>
                         <a href="#"><small class="me-3 text-light"><i class="fa fa-user me-2" style="margin-top:13px"></i>고객센터</small></a>
