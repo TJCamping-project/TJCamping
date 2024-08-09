@@ -5,8 +5,13 @@ import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
+import lombok.Data;
+
 import java.io.*;
 
-public class Board_CampVO {
-	
+@Data
+public class BoardVO {
+	private int no, hit, imgsize;
+	private String name, subject, content,pwd, dbday, imgname, type;
+	private Date regdate;
 }
