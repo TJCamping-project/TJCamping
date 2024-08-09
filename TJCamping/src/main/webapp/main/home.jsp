@@ -93,11 +93,11 @@
 
 
 	<!-- About Start -->
-	<div class="container-fluid about py-5">
+	<div class="container-fluid about py-5 style="margin-left: 75px;">
 		<div class="container py-5">
 			<div class="row g-5 align-items-center">
 				<div class="col-lg-5">
-					<div class="h-100" style="border: 10px solid;">
+					<div class="h-100" style="border: 10px solid rgb(37, 103, 75);">
 						<img src="../img/about-img.jpg" class="img-fluid w-100 h-100" alt="">
 					</div>
 				</div>
