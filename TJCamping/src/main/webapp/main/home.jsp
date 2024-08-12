@@ -207,7 +207,7 @@
 									<div class="national-content">
 										<div class="national-info">
 											<h3 class="text-white text-uppercase mb-2">캠핑장 예약 </h3>
-											<a href="#" class="btn-hover text-white">바로가기 <i
+											<a href="../camp/list.do" class="btn-hover text-white">바로가기 <i
 												class="fa fa-arrow-right ms-2"></i></a>
 										</div>
 									</div>
