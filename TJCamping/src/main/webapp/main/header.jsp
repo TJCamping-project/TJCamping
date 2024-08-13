@@ -155,11 +155,11 @@ $(function(){
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                             &nbsp;&nbsp;&nbsp;캠핑용품&nbsp;&nbsp;&nbsp;</a>
                             <div class="dropdown-menu m-0">
-                                <a href="#" class="dropdown-item">캠핑용품 목록</a>
-                                <a href="#" class="dropdown-item">브랜드별 캠핑용품</a>
-                                <a href="#" class="dropdown-item">베스트 상품 캠핑용품</a>
-                                <a href="#" class="dropdown-item">신상품 캠핑용품</a>
-                                <a href="#" class="dropdown-item">세일 상품 캠핑용품</a>
+                                <a href="../campgoods/list.do" class="dropdown-item">전체상품</a>
+                                <a href="../campgoods/list.do?gno=2" class="dropdown-item">브랜드별 상품</a>
+                                <a href="../campgoods/list.do?gno=3" class="dropdown-item">베스트상품</a>
+                                <a href="../campgoods/list.do?gno=4" class="dropdown-item">신상품</a>
+                                <a href="../campgoods/list.do?gno=5" class="dropdown-item">세일상품</a>
                             </div>
                         </div>
                         

@@ -10,6 +10,7 @@
 	<typeAlias type="com.sist.vo.CampVO" alias="CampVO"/>
 	<typeAlias type="com.sist.vo.MemberVO" alias="MemberVO"/>
 	<typeAlias type="com.sist.vo.MemberVO" alias="Board_CampVO"/>
+	<typeAlias type="com.sist.vo.CampGoodsVO" alias="CampGoodsVO"/>
 	</typeAliases>
 	<environments default="development">
 	<!-- environments : 환경 설정 관련 -->
@@ -30,5 +31,6 @@
 		<mapper resource="com/sist/mapper/member-mapper.xml"/>
 		<mapper resource="com/sist/mapper/board_camp-mapper.xml"/>
 		<mapper resource="com/sist/mapper/board_goods-mapper.xml"/>
+		<mapper resource="com/sist/mapper/campgoods-mapper.xml"/>
 	</mappers>
 </configuration>
