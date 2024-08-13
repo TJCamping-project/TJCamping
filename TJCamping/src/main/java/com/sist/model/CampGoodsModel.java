@@ -9,7 +9,7 @@ import com.sist.dao.*;
 import com.sist.vo.*;
 public class CampGoodsModel {
 	private String[] tables={"","CAMP_GOODS_ALL","CAMP_GOODS_BRAND","CAMP_GOODS_BEST","CAMP_GOODS_NEW","CAMP_GOODS_SPECIAL"};
-	private String[] titles= {"","전체 상품","브랜드별 상품","베스트 상품","신상품","특가 상품"};
+	private String[] titles= {"","전체 상품","브랜드별 상품","베스트 상품","신상품","세일 상품"};
 	@RequestMapping("campgoods/list.do")
 	public String campgoods_list(HttpServletRequest request, HttpServletResponse response) {
 		String gno=request.getParameter("gno");
