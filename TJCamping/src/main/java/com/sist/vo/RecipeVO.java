@@ -11,5 +11,5 @@ CHEF	VARCHAR2(1000 BYTE)
 @Data
 public class RecipeVO {
    private int no, hit;
-   private String poster,title, chef;
+   private String poster,title, chef, info3;
 }

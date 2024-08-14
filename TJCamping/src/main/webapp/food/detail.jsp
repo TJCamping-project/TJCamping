@@ -45,8 +45,8 @@
 <script src="../lib/lightbox/js/lightbox.min.js"></script>
 <script type="text/javascript"></script>
 <style>
-.bg-breadcrumb {
-   background-image: url('camp_food.jpg');
+ .bg-breadcrumb {
+   background-image: url('blank.jpg');
    background-size: cover; /* 이미지가 요소를 덮도록 설정 */
    background-position: center; /* 이미지가 중앙에 위치하도록 설정 */
 }
@@ -258,6 +258,15 @@ function replyList(cno)
 </script>
 </head>
 <body>
+	<!-- Header Start -->
+	<div class="container-fluid bg-breadcrumb">
+		<div class="container text-center py-5" style="max-width: 900px;">
+			<h3 class="text-black display-3 mb-4">${vo.name }</h3>
+			<ol class="breadcrumb justify-content-center mb-0">
+			</ol>
+		</div>
+	</div>
+	<!-- Header End -->
    <div class="wrapper row3">
       <main class="container clear">
          <h2 class="sectiontitle">상세보기</h2>
@@ -334,7 +343,7 @@ function replyList(cno)
          <div id="map" style="width: 100%; height: 350px;"></div>
 
          <script type="text/javascript"
-            src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9965c727d3306713c47391be682e4be9&libraries=services"></script>
+            src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7090f2fb67ce830f5f8818fafd3fddbb&libraries=services"></script>
          <script>
       var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
           mapOption = {

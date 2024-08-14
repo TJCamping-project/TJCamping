@@ -7,9 +7,9 @@
   </select>
   <!-- 맛집 목록 출력 -->
   <select id="recipeListData" resultType="RecipeVO" parameterType="hashmap">
-    SELECT no,title,poster, chef, num
-    FROM (SELECT no,title,poster, chef, rownum as num 
-    FROM (SELECT no,title,poster, chef
+    SELECT no,title,poster, chef, info3, num
+    FROM (SELECT no,title,poster, chef, info3, rownum as num 
+    FROM (SELECT no,title,poster, chef, info3
     FROM recipe))
     WHERE num BETWEEN #{start} AND #{end}
   </select>
@@ -24,7 +24,7 @@
   </update>
  
   <select id="recipeDetailData" resultType="RecipeVO" parameterType="int">
-    SELECT no,title,poster,chef
+    SELECT no,title,poster,chef, info3
     FROM recipe
     WHERE no=#{no}
   </select>
