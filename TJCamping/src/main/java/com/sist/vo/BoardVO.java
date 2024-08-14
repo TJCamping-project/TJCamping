@@ -11,7 +11,7 @@ import java.io.*;
 
 @Data
 public class BoardVO {
-	private int no, hit, imgsize;
-	private String name, subject, content,pwd, dbday, imgname, type;
+	private int no, hit, imgsize, type;
+	private String name, subject, content,pwd, dbday, imgname ;
 	private Date regdate;
 }
