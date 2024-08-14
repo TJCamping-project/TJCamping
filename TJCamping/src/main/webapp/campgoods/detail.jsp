@@ -44,7 +44,19 @@
 <script src="../lib/waypoints/waypoints.min.js"></script>
 <script src="../lib/owlcarousel/owl.carousel.min.js"></script>
 <script src="../lib/lightbox/js/lightbox.min.js"></script>
-<script type="text/javascript"></script>
+<script type="text/javascript">
+ 
+</script>
+<style>
+.bg-breadcrumb {
+   background-image: url('campgoods_list.jpg');
+   background-size: cover; /* 이미지가 요소를 덮도록 설정 */
+   background-position: center; /* 이미지가 중앙에 위치하도록 설정 */
+}
+.wrapper {
+        margin-top: 25px; /* 헤더와 본문 사이에 여백 추가 */
+    }
+</style>
 </head>
 <body>
 <!-- Header Start -->
@@ -58,7 +70,7 @@
    <!-- Header End -->
   <div class="wrapper row3">
     <main class="container clear"> 
-	 <h2 class="sectiontitle">상세보기</h2>
+	 <!-- <h2 class="sectiontitle">상세보기</h2>-->
 	  <table class="table">
        <tr>
         <td width="30%" class="text-center" rowspan="6">
@@ -69,24 +81,41 @@
         </td>
        </tr>
        <tr>
-        <td class="text-right" style="color:gray" width="5%">상품명</td>
-        <td width="65%">${vo.name }</td>
-       </tr>
-       <tr>
-        <td class="text-right" style="color:gray" width="5%">브랜드</td>
+        <td class="text-right" style="color:gray" width="5%">제조사</td>
         <td width="65%">${vo.brand }</td>
-       </tr>
-       <tr>
-        <td class="text-right" style="color:gray" width="5%">주소</td>
-        <td width="65%">${vo.address }</td>
        </tr>
        <tr>
         <td class="text-right" style="color:gray" width="5%">제조국</td>
         <td width="65%">${vo.origin }</td>
        </tr>
        <tr>
+        <td class="text-right" style="color:gray" width="5%">소비자가</td>
+        <td width="65%">${vo.saleprice }</td>
+       </tr>
+       <tr>
+        <td class="text-right" style="color:gray" width="5%">판매가</td>
+        <td width="65%">${vo.price }</td>
+       </tr>
+       <tr>
         <td class="text-right" style="color:gray" width="15%">배송비</td>
-        <td width="65%">${vo.delivery }</td>
+        <td width="65%">${vo.delivery }원</td>
+       </tr>
+       <tr>
+         <td colspan="3" class="text-right">
+          <c:if test="${sessionScope.id!=null }">
+           <a href="#" class="btn btn-xs btn-success">좋아요</a>
+           <c:if test="${check==false }">
+            <input type=button class="btn btn-xs btn-warning" value="찜하기"
+             id="jjimBtn" data-cno="${vo.fno }">
+          </c:if>
+          <c:if test="${check==true }">
+           <span class="btn btn-xs btn-info">찜하기</span>
+          </c:if>
+           <a href="#" class="btn btn-xs btn-info">예약하기</a>
+          </c:if>
+          <input type="button" class="btn btn-xs btn-danger" value="목록"
+           onclick="javascript:history.back()">
+         </td>
        </tr>
       </table>
 	</main>
