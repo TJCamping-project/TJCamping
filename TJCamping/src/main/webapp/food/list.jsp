@@ -106,24 +106,24 @@ main {
 							</div>
 
 							<div class="row">
-								<c:forEach var="vo" items="${fList }" varStatus="s">
+								<c:forEach var="flvo" items="${fList }" varStatus="s">
 									<div class="col-lg-3 col-md-6 col-sm-12">
 										<div class="packages-item">
 											<div class="packages-img">
-												<img src="http://menupan.com${vo.poster}"
-													class="img-fluid w-100 rounded-top" alt="${vo.name}">
+												<img src="http://menupan.com${flvo.poster}"
+													class="img-fluid w-100 rounded-top" alt="${flvo.name}">
 												<div
 													class="packages-info d-flex border border-start-0 border-end-0 position-absolute"
 													style="width: 100%; bottom: 0; left: 0; z-index: 5;">
-													<a href="../food/detail_before.do?fno=${vo.fno}&type=1"
+													<a href="../food/detail_before.do?fno=${flvo.fno}&type=1"
 														class="text-white flex-fill text-center border-end py-2 text-decoration-none"><i
 														class="text-white fa fa-map-marker-alt me-2"></i>저장하기</a>
 												</div>
-												<div class="text-center packages-price py-2 px-4">★${vo.score }</div> <!-- 매퍼에서 연결해야함~ -->
+												<div class="text-center packages-price py-2 px-4">★${flvo.score }</div> <!-- 매퍼에서 연결해야함~ -->
 											</div>
 											<div class="packages-content bg-light">
 												<div class="p-4 pb-0">
-													<h5 class="mb-0 text-center">${vo.name}</h5>
+													<h5 class="mb-0 text-center">${flvo.name}</h5>
 													<p class="mb-4"></p>
 												</div>
 											</div>
