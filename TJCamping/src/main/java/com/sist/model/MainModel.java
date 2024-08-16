@@ -27,13 +27,16 @@ public class MainModel {
 		List<FoodVO> hitList = FoodDAO.foodHitTopData();
 		List<FoodVO> likeList = FoodDAO.foodLikeTopData();
 		List<FoodVO> jjimList = FoodDAO.foodJjimTopData();
+		List<CampGoodsVO> gList=CampGoodsDAO.campGoodsJjimTopData();
 		
 		request.setAttribute("cookieList", cookieList);
 		request.setAttribute("hitList", hitList);
 		request.setAttribute("likeList", likeList);
 		request.setAttribute("jjimList", jjimList);
+		request.setAttribute("gList", gList);
 		
 		request.setAttribute("main_jsp", "../main/home.jsp");
 		return "../main/main.jsp";
 	}
+	
 }
