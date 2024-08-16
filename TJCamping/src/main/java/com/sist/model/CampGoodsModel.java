@@ -1,8 +1,10 @@
 package com.sist.model;
+import java.io.PrintWriter;
 import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.sist.controller.RequestMapping;
 import com.sist.dao.*;
@@ -48,7 +50,7 @@ public class CampGoodsModel {
 	}
 	@RequestMapping("campgoods/detail.do")
 	public String campgoods_detail(HttpServletRequest request, HttpServletResponse response) {
-		String gno=request.getParameter("gno"); 
+		String gno=request.getParameter("gno");
 		String cno=request.getParameter("cno");
 		Map map=new HashMap();
 		map.put("cno", cno);
@@ -57,8 +59,28 @@ public class CampGoodsModel {
 		String price2=vo.getPrice();
 		price2=price2.replaceAll("[^0-9]", "");
 		vo.setPrice2(Integer.parseInt(price2));
+		
+		/*boolean bCheck=false;
+		HttpSession session=request.getSession();
+		String id=(String)session.getAttribute("id");
+		if(id!=null) {
+			Map map=new HashMap();
+			map.put("cno", gno);
+			map.put("type1", type1);
+			map.put("id", id);
+			int count=CampGoodsDAO.campGoodsJjimCheck(map);
+			if(count==1)
+				bCheck=true;
+			else
+				bCheck=false;
+			
+			request.setAttribute("check", bCheck);
+		}*/
+		
 		request.setAttribute("vo", vo);
 		request.setAttribute("main_jsp", "../campgoods/detail.jsp");
 		return "../main/main.jsp";
 	}
+	
+	
 }

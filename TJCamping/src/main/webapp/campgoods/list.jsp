@@ -44,7 +44,8 @@
 <script src="../lib/waypoints/waypoints.min.js"></script>
 <script src="../lib/owlcarousel/owl.carousel.min.js"></script>
 <script src="../lib/lightbox/js/lightbox.min.js"></script>
-<script type="text/javascript"></script>
+<script type="text/javascript">
+</script>
 <style>
 .bg-breadcrumb {
    background-image: url('campgoods_list.jpg');
@@ -71,7 +72,7 @@ main {
 
 .packages-img {
     width: 100%;
-    height: 200px; /* 모든 이미지 틀의 높이를 동일하게 설정 */
+    height: 300px; /* 모든 이미지 틀의 높이를 동일하게 설정 */
     overflow: hidden; /* 넘치는 부분을 숨김 */
     border-top-left-radius: 10px; /* 상단 모서리를 둥글게 설정 */
     border-top-right-radius: 10px; /* 상단 모서리를 둥글게 설정 */
@@ -93,8 +94,13 @@ main {
     font-size: 14px;
 }
 
+.packages-price {
+    font-size: 16px; /* 가격 폰트 크기 증가 */
+    font-weight: bold; /* 가격 텍스트를 더 두껍게 */
+}
+
 .packages-content {
-   padding: 15px;
+   padding: 5px; /* 텍스트 영역 패딩 감소 */
 }
 
 .pagination {
@@ -116,119 +122,114 @@ main {
 .pagination a {
     text-decoration: none;
     padding: 10px 15px;
-    color: #007bff;
-    border: 1px solid #dee2e6;
-    border-radius: 5px;
-    transition: background-color 0.3s, color 0.3s;
-}
-
-.pagination a:hover {
-    background-color: #007bff;
-    color: white;
-}
-
-.pagination .current a {
-    background-color: #007bff;
-    color: white;
-}
-/* 기본 페이지네이션 스타일 */
-.pagination {
-    display: flex;
-    justify-content: center;
-    padding: 20px 0;
-}
-
-.pagination ul {
-    list-style: none;
-    padding: 0;
-    display: flex;
-}
-
-.pagination li {
-    margin: 0 5px;
-}
-
-.pagination a {
-    text-decoration: none;
-    padding: 10px 15px;
-    color: #333; /* 텍스트 색상을 진한 회색으로 설정 */
-    border: 1px solid #ddd; /* 테두리 색상을 연한 회색으로 설정 */
+    color: rgb(37, 103, 75); /* 링크 텍스트 색상을 어두운 녹색으로 설정 */
+    border: 1px solid rgb(37, 103, 75); /* 테두리 색상을 어두운 녹색으로 설정 */
     border-radius: 5px;
     background-color: #f1f1f1; /* 배경색을 연한 회색으로 설정 */
     transition: background-color 0.3s, color 0.3s;
 }
 
 .pagination a:hover {
-    background-color: #ddd; /* 호버 시 배경색을 더 진한 회색으로 설정 */
-    color: #333; /* 호버 시 텍스트 색상을 진한 회색으로 설정 */
+    background-color: #ddd; /* 호버 시 배경색을 더 연한 회색으로 설정 */
+    color: rgb(37, 103, 75); /* 호버 시 텍스트 색상을 어두운 녹색으로 설정 */
 }
 
 .pagination .current a {
-    background-color: #aaa; /* 현재 페이지의 배경색을 진한 회색으로 설정 */
-    color: white; /* 현재 페이지의 텍스트 색상을 흰색으로 설정 */
+    background-color: rgb(37, 103, 75); /* 현재 페이지의 배경색을 어두운 녹색으로 설정 */
+    color: #ffffff; /* 현재 페이지의 텍스트 색상을 흰색으로 설정 */
 }
 
 </style>
 </head>
 <body>
    <!-- Header Start -->
-      <div class="container-fluid bg-breadcrumb">
-         <div class="container text-center py-5" style="max-width: 900px;">
-            <h3 class="text-white display-3 mb-4">캠핑용품</h3>
-             <ol class="breadcrumb justify-content-center mb-0">
-             </ol>    
-          </div>
+   <div class="container-fluid bg-breadcrumb">
+      <div class="container text-center py-5" style="max-width: 900px;">
+         <h3 class="text-white display-3 mb-4">캠핑용품</h3>
+         <ol class="breadcrumb justify-content-center mb-0"></ol>
       </div>
+   </div>
    <!-- Header End -->
+
    <div class="container-fluid packages py-5">
-       <div class="container py-5">
-           <div class="mx-auto text-center mb-5" style="max-width: 900px;">
-               <h3 class="section-title px-3"style="color: black;">${title }</h3>
-                <h1 class="mb-0"></h1>
-            </div>
-            <div class="row">
-               <c:forEach var="vo" items="${gList }" varStatus="s">
-                  <div class="col-lg-3 col-md-6 col-sm-12">
-                     <div class="packages-item">
+      <div class="container py-5">
+         <div class="mx-auto text-center mb-5" style="max-width: 900px;">
+            <h3 class="section-title px-3" style="color: black;">${title }</h3>
+         </div>
+
+         <div class="tab-class text-center">
+    <ul class="nav nav-pills d-inline-flex justify-content-center mb-5">
+        <li class="nav-item">
+            <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill active" href="#" data-category="all"> 
+                <span class="text-dark" style="width: 150px;">에어매트</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="d-flex py-2 mx-3 border border-primary bg-light rounded-pill" href="#" data-category="korean"> 
+                <span class="text-dark" style="width: 150px;">텐트</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill" href="#" data-category="japanese"> 
+                <span class="text-dark" style="width: 150px;">등산용품</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill" href="#" data-category="chinese"> 
+                <span class="text-dark" style="width: 150px;">의자</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill" href="#" data-category="western"> 
+                <span class="text-dark" style="width: 150px;">바베큐</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill" href="#" data-category="fusion"> 
+                <span class="text-dark" style="width: 150px;">랜턴</span>
+            </a>
+        </li>
+    </ul>
+</div>
+
+         <div class="row">
+            <c:forEach var="vo" items="${gList }" varStatus="s">
+               <div class="col-lg-3 col-md-6 col-sm-12">
+                  <div class="packages-item">
+                     <a href="../campgoods/detail.do?cno=${vo.cno}&gno=${gno}" class="text-decoration-none">
                         <div class="packages-img">
-                           <img src="${vo.poster}"
-                              class="img-fluid w-100 rounded-top" title="${vo.name}">
-                           <div
-                              class="packages-info d-flex border border-start-0 border-end-0 position-absolute"
-                              style="width: 100%; bottom: 0; left: 0; z-index: 5;">
-                              <a href="../campgoods/detail.do?cno=${vo.cno}&gno=${gno}"
-                                 class="text-white flex-fill text-center border-end py-2 text-decoration-none"><i
-                                 class="text-white fa-solid fa-cart-shopping me-2"></i>구매하기</a>
-                           </div>
+                           <img src="${vo.poster}" class="img-fluid w-100 rounded-top" title="${vo.name}">
                         </div>
-                        <div class="packages-content bg-light">
-                           <div class="p-4 pb-0">
-                              <h5 class="mb-0 text-center small-title">${vo.name}</h5>
-                              <div class="text-center packages-price py-2 px-4">
-                               <span>${vo.price}</span> <!-- 가격 추가 -->
-                              </div>
-                              <p class="mb-4"></p>
+                     </a>
+                     <div class="packages-content bg-light">
+                        <div class="p-4 pb-0">
+                           <h5 class="mb-0 text-center small-title">${vo.name}</h5>
+                           <div class="text-center packages-price py-2 px-4">
+                              <span>${vo.price}</span>
                            </div>
                         </div>
                      </div>
                   </div>
-               </c:forEach>
-            </div>
-        </div>
-    </div>
-
-<nav class="pagination">
-   <ul>
-      <c:if test="${startPage>1 }">
-         <li><a href="../campgoods/list.do?page=${startPage-1 }&gno=${gno}">&laquo; Previous</a></li>
-      </c:if>
-      <c:forEach var="i" begin="${startPage }" end="${endPage }">
-           <li ${i==curpage?"class=current":"" }><a href="../campgoods/list.do?page=${i }&gno=${gno}">${i }</a></li>
-      </c:forEach>
-      <c:if test="${endPage<totalpage }">
+               </div>
+            </c:forEach>
+            
+         </div>
+         
+      </div>
+      <nav class="pagination">
+      <ul>
+         <c:if test="${startPage>1 }">
+            <li><a href="../campgoods/list.do?page=${startPage-1 }&gno=${gno}">&laquo; Previous</a></li>
+         </c:if>
+         <c:forEach var="i" begin="${startPage }" end="${endPage }">
+            <li ${i==curpage?"class=current":"" }><a href="../campgoods/list.do?page=${i }&gno=${gno}">${i }</a></li>
+         </c:forEach>
+         <c:if test="${endPage<totalpage }">
             <li><a href="../campgoods/list.do?page=${endPage+1 }&gno=${gno}">Next &raquo;</a></li>
-      </c:if>
-   </ul>
-</nav>        
+         </c:if>
+      </ul>
+   </nav>
+   </div>
+
 </body>
 </html>
