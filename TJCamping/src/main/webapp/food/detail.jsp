@@ -343,7 +343,7 @@ function replyList(cno)
          <div id="map" style="width: 100%; height: 350px;"></div>
 
          <script type="text/javascript"
-            src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7090f2fb67ce830f5f8818fafd3fddbb&libraries=services"></script>
+            src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9965c727d3306713c47391be682e4be9&libraries=services"></script>
          <script>
       var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
           mapOption = {
