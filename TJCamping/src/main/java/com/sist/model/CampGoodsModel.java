@@ -65,11 +65,11 @@ public class CampGoodsModel {
 	   }
 	@RequestMapping("campgoods/detail.do")
 	public String campgoods_detail(HttpServletRequest request, HttpServletResponse response) {
+		String cno1=request.getParameter("cno");
 		String gno=request.getParameter("gno");
-		String cno=request.getParameter("cno");
 		String type=request.getParameter("type");
 		Map map=new HashMap();
-		map.put("cno", cno);
+		map.put("cno", cno1);
 		map.put("table_name", tables[Integer.parseInt(gno)]);
 		CampGoodsVO vo=CampGoodsDAO.campGoodsDetailData(map);
 		String price2=vo.getPrice();
@@ -82,16 +82,14 @@ public class CampGoodsModel {
 		request.setAttribute("type",type);
 		if(id!=null) {
 			Map map2 = new HashMap();
-			map2.put("cno", cno);
+			map2.put("cno", cno1);
 			map2.put("type",type);
 			map2.put("id", id);
 			int count=AllJjimDAO.allJjimCheck(map2);
-			AllJjimDAO.campGoodjimCountIncrement(map2);
-	        System.out.println(cno+" "+type+" "+id);
+	        System.out.println(cno1+" "+type+" "+id+" "+count);
 			if(count==1) {
 				bCheck=true;
-		        AllJjimDAO.campGoodjimCountIncrement(map2);
-		        System.out.println(cno+" "+type+" "+id);
+		        System.out.println(cno1+" "+type+" "+id);
 			}
 			else
 				bCheck=false;

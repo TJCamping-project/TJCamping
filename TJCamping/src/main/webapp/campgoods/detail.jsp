@@ -30,17 +30,18 @@
 <script src="../lib/owlcarousel/owl.carousel.min.js"></script>
 <script src="../lib/lightbox/js/lightbox.min.js"></script>
 <script type="text/javascript">
+$(function(){
 $('#jjimBtn').on('click', function() {
     let cno = $(this).attr("data-cno")
     $.ajax({
         type: 'post',
-        url: '../all_jjim/insert.do',
+        url: '../all_jjim/cinsert.do',
         data: { "cno": cno, "type": 2 },
         success: function(result) {
             if (result === 'OK') {
                 $(this).attr("data-count",1);
                 $(this).attr("class",'btn-xs btn-default')
-                location.href = "../campgoods/detail.do?cno=" + cno + "&type=2";
+                location.href = "../campgoods/detail.do?cno=" + cno + "&gno="+gno+"&type=2";
             } else {
                 alert(result);
             }
@@ -49,7 +50,8 @@ $('#jjimBtn').on('click', function() {
             console.log(error);
         }
     })
-});
+})
+})
 </script>
 <style>
 .bg-breadcrumb {
