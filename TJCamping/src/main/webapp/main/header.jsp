@@ -97,8 +97,8 @@ $(function(){
                     <div class="d-inline-flex align-items-center" style="height: 45px;">
                    <c:if test="${sessionScope.id==null }">
 				      <ul class="inline">
-				        <li style="display: inline-block;"><input size="15" style="margin-top:25px" type="text" id="id" class="input-sm" placeholder="아이디"></li>
-				        <li style="display: inline-block;"><input size="15" type="password" id="pwd" class="input-sm" placeholder="비밀 번호"></li>
+				        <li style="display: inline-block;"><input size="15" style="margin-top:25px" type="text" id="id" class="input-sm" placeholder="아이디" required></li>
+				        <li style="display: inline-block;"><input size="15" type="password" id="pwd" class="input-sm" placeholder="비밀 번호" required></li>
 				        <li style="display: inline-block;"><input type="button" id="logBtn" class="btn btn-sm btn-primary" value="로그인">&nbsp;&nbsp;</li>
 				      </ul>
 			   	</c:if> 
@@ -114,10 +114,10 @@ $(function(){
                         <a href="#"><small class="me-3 text-light"><i class="fa fa-user me-2" style="margin-top:13px"></i>고객센터</small></a>
                         <c:if test="${sessionScope.id!=null }">
        			<c:if test="${sessionScope.admin=='n' }">
-                        <a href="#"><small class="me-3 text-light"><i class="fa fa-user me-2" style="margin-top:13px"></i>마이페이지</small></a>
+                        <a href="../mypage/mypage_main.do"><small class="me-3 text-light"><i class="fa fa-user me-2" style="margin-top:13px"></i>마이페이지</small></a>
                         </c:if>
        			<c:if test="${sessionScope.admin=='y' }">
-                        <a href="#"><small class="me-3 text-light"><i class="fa fa-user me-2" style="margin-top:13px"></i>관리자페이지</small></a>
+                        <a href="../adminpage/adminpage_main.do"><small class="me-3 text-light"><i class="fa fa-user me-2" style="margin-top:13px"></i>관리자페이지</small></a>
                         </c:if>
        			</c:if>
                     </div>
@@ -178,6 +178,8 @@ $(function(){
                             <div class="dropdown-menu m-0">
                                 <a href="../boardcamp/list.do" class="dropdown-item">캠핑장 후기</a>
                                 <a href="#" class="dropdown-item">캠핑용품 후기</a>
+                                <a href="../notice/list.do" class="dropdown-item">공지</a>
+                                <a href="../replyboard/list.do" class="dropdown-item">QnA</a>
                             </div>
                         </div>
                     </div>
