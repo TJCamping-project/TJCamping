@@ -22,6 +22,7 @@ public class AllJjimModel {
 		map.put("cno", cno);
 		map.put("type", type);
 		map.put("id", id);
+	    System.out.println(cno+" "+type+" "+id);
 		String result="";
 		
 		try {

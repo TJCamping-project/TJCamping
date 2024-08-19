@@ -2,6 +2,7 @@ package com.sist.model;
 import java.io.PrintWriter;
 import java.util.*;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -48,10 +49,25 @@ public class CampGoodsModel {
 		request.setAttribute("main_jsp", "../campgoods/list.jsp");
 		return "../main/main.jsp";
 	}
+	@RequestMapping("campgoods/detail_before.do")
+	   public String food_detail_before(HttpServletRequest request,HttpServletResponse response)
+	   {
+		   String cno=request.getParameter("cno");
+		   String gno=request.getParameter("gno");
+		   String type=request.getParameter("type");
+		   // 쿠키
+		   Cookie cookie=new Cookie("campgoods_"+cno, cno);
+		   cookie.setMaxAge(60*60*24);
+		   cookie.setPath("/");
+		   // 브라우저로 전송
+		   response.addCookie(cookie);
+		   return "redirect:../campgoods/detail.do?cno="+cno+"&gno="+gno+"&type="+type;
+	   }
 	@RequestMapping("campgoods/detail.do")
 	public String campgoods_detail(HttpServletRequest request, HttpServletResponse response) {
 		String gno=request.getParameter("gno");
 		String cno=request.getParameter("cno");
+		String type=request.getParameter("type");
 		Map map=new HashMap();
 		map.put("cno", cno);
 		map.put("table_name", tables[Integer.parseInt(gno)]);
@@ -60,22 +76,29 @@ public class CampGoodsModel {
 		price2=price2.replaceAll("[^0-9]", "");
 		vo.setPrice2(Integer.parseInt(price2));
 		
-		/*boolean bCheck=false;
+		boolean bCheck=false;
 		HttpSession session=request.getSession();
 		String id=(String)session.getAttribute("id");
+		request.setAttribute("type",type);
 		if(id!=null) {
-			Map map=new HashMap();
-			map.put("cno", gno);
-			map.put("type1", type1);
-			map.put("id", id);
-			int count=CampGoodsDAO.campGoodsJjimCheck(map);
-			if(count==1)
+			Map map2 = new HashMap();
+			map2.put("cno", cno);
+			map2.put("type",type);
+			map2.put("id", id);
+			int count=AllJjimDAO.allJjimCheck(map2);
+			AllJjimDAO.campGoodjimCountIncrement(map2);
+	        System.out.println(cno+" "+type+" "+id);
+			if(count==1) {
 				bCheck=true;
+		        AllJjimDAO.campGoodjimCountIncrement(map2);
+		        System.out.println(cno+" "+type+" "+id);
+			}
 			else
 				bCheck=false;
 			
 			request.setAttribute("check", bCheck);
-		}*/
+			
+		}
 		
 		request.setAttribute("vo", vo);
 		request.setAttribute("main_jsp", "../campgoods/detail.jsp");
