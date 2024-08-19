@@ -868,7 +868,7 @@
                         <div class="packages-info d-flex border border-start-0 border-end-0 position-absolute"
                              style="width: 100%; bottom: 0; left: 0; z-index: 5;">
                             <a href="#" class="flex-fill text-center border-end py-2 text-decoration-none"
-                               style="color: #ffffff;"> <!-- 찜하기 버튼
+                               style="color: #ffffff;">  찜하기 버튼
                                 <i class="fa fa-heart me-2"></i>찜하기
                             </a>
                         </div>
