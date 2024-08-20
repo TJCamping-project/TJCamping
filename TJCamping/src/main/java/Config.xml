@@ -17,7 +17,7 @@
 	<typeAlias type="com.sist.vo.ReplyBoardVO" alias="ReplyBoardVO"/>
 	<typeAlias type="com.sist.vo.BoardReplyVO" alias="BoardReplyVO"/>
 	<typeAlias type="com.sist.vo.NoticeVO" alias="NoticeVO"/>
-	
+	<typeAlias type="com.sist.vo.ReserveVO" alias="ReserveVO"/>
 	</typeAliases>
 	<environments default="development">
 	<!-- environments : 환경 설정 관련 -->
@@ -45,6 +45,7 @@
 		<mapper resource="com/sist/mapper/admin-mapper.xml"/>
 		<mapper resource="com/sist/mapper/board-mapper.xml"/>
 		<mapper resource="com/sist/mapper/replyboard-mapper.xml"/>
+		<mapper resource="com/sist/mapper/reserve-mapper.xml"/>
 		
 	</mappers>
 </configuration>

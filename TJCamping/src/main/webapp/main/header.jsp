@@ -138,16 +138,16 @@ $(function(){
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto py-0">
-                        <a href="../main/main.do" class="nav-item nav-link active">&nbsp;&nbsp;&nbsp;홈&nbsp;&nbsp;&nbsp;</a>
+                        <a href="../main/main.do" class="nav-item nav-link">&nbsp;&nbsp;&nbsp;홈&nbsp;&nbsp;&nbsp;</a>
                         
                         <div class="nav-item dropdown">
                             <a href="../camp/list.do" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                             &nbsp;&nbsp;&nbsp;캠핑장&nbsp;&nbsp;&nbsp;</a>
                             <div class="dropdown-menu m-0">
                                 <a href="../camp/list.do" class="dropdown-item">캠핑장 목록</a>
-                                <a href="#" class="dropdown-item">지역별 캠핑장</a>
-                                <a href="#" class="dropdown-item">With Pet 캠핑장</a>
-                                <a href="#" class="dropdown-item">근처 맛집</a>
+                                <a href="../camp/map.do" class="dropdown-item">지역별 캠핑장</a>
+                                <a href="../camp/pet.do" class="dropdown-item">With Pet 캠핑장</a>
+                                <a href="../camp/nearfood.do" class="dropdown-item">근처 맛집</a>
                             </div>
                         </div>
                         
