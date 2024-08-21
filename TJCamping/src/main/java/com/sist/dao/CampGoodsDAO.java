@@ -77,6 +77,7 @@ public class CampGoodsDAO {
 		return vo;
 	}
 	
+	
 	// 메인페이지 캠핑용품 출력
 	public static List<CampGoodsVO> campGoodsJjimTopData(){
 		List<CampGoodsVO> list = new ArrayList<CampGoodsVO>();
@@ -94,5 +95,22 @@ public class CampGoodsDAO {
 		}
 		return list;
 	}
-	
+	// 캠핑용품 상세페이지 추천 상품 
+	   public static List<CampGoodsVO> campGoodsRecListData(Map map)
+	   {
+	      List<CampGoodsVO> list = new ArrayList<CampGoodsVO>();
+	      SqlSession session=null; // Connection
+	      try 
+	      {
+	         session = ssf.openSession();
+	         list=session.selectList("campGoodsRecListData" , map);
+	      }catch (Exception ex) {
+	         ex.printStackTrace();
+	      } 
+	      finally 
+	      {
+	         if(session!=null) session.close(); 
+	      }
+	      return list;
+	   }
 }

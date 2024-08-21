@@ -84,6 +84,7 @@ main {
 }
 .packages-content {
    padding: 5px;
+   background-color: rgba(211,211,211,0.1) !important;
 }
 .pagination {
    display: flex;

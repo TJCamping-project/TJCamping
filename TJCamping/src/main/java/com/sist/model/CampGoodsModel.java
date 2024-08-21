@@ -71,7 +71,9 @@ public class CampGoodsModel {
 		Map map=new HashMap();
 		map.put("cno", cno1);
 		map.put("table_name", tables[Integer.parseInt(gno)]);
+		List<CampGoodsVO> gList=CampGoodsDAO.campGoodsRecListData(map);
 		CampGoodsVO vo=CampGoodsDAO.campGoodsDetailData(map);
+		String price=vo.getPrice();
 		String price2=vo.getPrice();
 		price2=price2.replaceAll("[^0-9]", "");
 		vo.setPrice2(Integer.parseInt(price2));
@@ -97,7 +99,8 @@ public class CampGoodsModel {
 			request.setAttribute("check", bCheck);
 			
 		}
-		
+	    
+		request.setAttribute("gList", gList);
 		request.setAttribute("vo", vo);
 		request.setAttribute("main_jsp", "../campgoods/detail.jsp");
 		return "../main/main.jsp";

@@ -65,5 +65,11 @@
 		WHERE cno = #{cno}
 
 	</select>
-
+    <!-- 캠핑용품 상세페이지 추천 상품 -->
+    <select id="campGoodsRecListData" resultType="CampGoodsVO" parameterType="string">
+        SELECT cno,poster,name,price,jjimcount,type1,rownum
+	    FROM (SELECT cno,poster,name,price,jjimcount,type1
+	    FROM camp_goods_all ORDER BY jjimcount DESC)
+	    WHERE rownum&lt;=12
+    </select>
 </mapper>
