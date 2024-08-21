@@ -439,16 +439,17 @@
                         <img src="${vo.poster}" class="img-fluid w-100 rounded-top" alt="Image">
                         <div class="packages-info d-flex border border-start-0 border-end-0 position-absolute"
                              style="width: 100%; bottom: 0; left: 0; z-index: 5;">
-                            <a href="#" class="flex-fill text-center border-end py-2 text-decoration-none"
-                               style="color: #ffffff;"> <!-- 찜하기 버튼 -->
+                            <!-- <a href="#" class="flex-fill text-center border-end py-2 text-decoration-none"
+                               style="color: #ffffff;">
                                 <i class="fa fa-heart me-2"></i>찜하기
-                            </a>
+                            </a> -->
+                    
                             <a href="#" class="flex-fill text-center border-end py-2 text-decoration-none"
-                               style="color: #ffffff;"> <!-- 장바구니 버튼 -->
+                               style="color: #ffffff;"> 
                                 <i class="fa fa-shopping-cart me-2"></i>장바구니
                             </a>
                             <a href="../campgoods/detail.do?cno=${vo.cno}&gno=1" class="flex-fill text-center border-end py-2 text-decoration-none"
-                               style="color: #ffffff;"> <!-- 구매하기 버튼 -->
+                               style="color: #ffffff;"> 
                                 <i class="fa fa-shopping-bag me-2"></i>구매하기
                             </a>
                         </div>
@@ -456,20 +457,38 @@
                     </div>
                     <div class="packages-content bg-light">
                         <div class="p-4 pb-0">
-                            <h5 class="mb-0 truncate-text">${vo.name}</h5>
-                            <small class="text-uppercase truncate-text">${vo.type1}</small>
-                            <!--<div class="mb-3">
-                                <small class="fa fa-star text-primary"></small>
-                                <small class="fa fa-star text-primary"></small>
-                                <small class="fa fa-star text-primary"></small>
-                                <small class="fa fa-star text-primary"></small>
-                                <small class="fa fa-star text-primary"></small>
-                            </div>-->
+                            <h5 class="mb-0 truncate-text" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
+                             ${vo.name}</h5>
+                             <small class="text-uppercase truncate-text">
+                                <c:choose>
+                                    <c:when test="${vo.type1 == 1}">
+                                        에어매트
+                                    </c:when>
+                                    <c:when test="${vo.type1 == 2}">
+                                        텐트
+                                    </c:when>
+                                    <c:when test="${vo.type1 == 3}">
+                                        등산용품
+                                    </c:when>
+                                    <c:when test="${vo.type1 == 4}">
+                                        의자
+                                    </c:when>
+                                    <c:when test="${vo.type1 == 5}">
+                                        바베큐
+                                    </c:when>
+                                    <c:when test="${vo.type1 == 6}">
+                                        랜턴/버너
+                                    </c:when>
+                                    <c:otherwise>
+                                        기타
+                                    </c:otherwise>
+                                </c:choose>
+                            </small>
                             <p class="mb-4"></p>
                         </div>
                         <div class="row bg-primary rounded-bottom mx-0">
                             <div class="col-6 text-start px-0">
-                                <a href="#" class="btn-hover btn text-white py-2 px-4">${vo.jjimcount}</a>
+                                <a href="#" class="btn-hover btn text-white py-2 px-4"><i class="fa fa-heart me-2"></i>${vo.jjimcount}</a>
                             </div>
                             <div class="col-6 text-end px-0">
                                 <a href="#" class="btn-hover btn text-white py-2 px-4">${vo.price}</a>
