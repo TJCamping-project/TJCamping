@@ -87,10 +87,17 @@ main {
 
 .mainsection {
 	position: relative;
-	width: 100%;
+	/* width: 100%; */
 	margin: 0 auto /* 수평 중앙 정렬 */
     overflow: hidden;
 	height: 350px; /* 컨테이너 높이 */
+	
+	 margin-bottom: 70px; /* 이미지 아래 공간 추가 */
+        text-align: center; /* 이미지를 가운데 정렬 */
+        
+    width: auto; 
+    
+     
 }
 
 .mainsection img#mainThumb {
@@ -104,30 +111,28 @@ main {
 	transform: translate(-50%, -50%);
 }
 
-.chef-info {
-	position: absolute;
-	bottom: -50px; /* 부모 컨테이너의 하단에서 위로 10px */
-	left: 50%; /* 중앙 정렬 */
-	transform: translateX(-50%);
-	text-align: center;
-}
-
-.chef-info img {
-	border-radius: 50%;
-	width: 80px; /* 썸네일 크기 */
-	height: 80px;
-	object-fit: cover;
-	border: 2px solid white; /* 썸네일 외곽선 */
-}
-
-.chef {
-	margin-top: 60px;
-}
 
 .recipeinfo {
 	margin-top: 50px;
+	margin-bottom: 30px;
 }
 
+  .text-right {
+        text-align: right;
+        margin-top: 50px; /* 버튼과 이미지 사이의 공간 추가 */
+    }
+
+.detailTable{
+	width:auto;
+	height:100%;
+}
+
+
+.ingredients{
+	margin: 0 auto;
+	margin-top : 100px;
+	margin-bottom : 100px;
+}
 
 </style>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
@@ -147,7 +152,7 @@ $(function(){
       
       $.ajax({
          type:'post',
-         url:'../all_reply/insert.do',
+         url:'../all_reply/reinsert.do',
          data:{"cno":cno,"type":3,"msg":msg},
          success:function(result)
          {
@@ -174,7 +179,7 @@ $(function(){
 
       $.ajax({
          type:'post',
-         url:'../all_jjim/insert.do' ,
+         url:'../all_jjim/reinsert.do' ,
          data:{"cno":cno,"type":3} ,
          success:function(result){
             if(result==="OK"){
@@ -308,7 +313,7 @@ function replyList(cno)
 	<div class="container-fluid bg-breadcrumb">
 		<div class="container text-center py-5" style="max-width: 900px;">
 			<h3 class="text-black display-3 mb-4">${revo.title }</h3>
-			<h5 width="80%">${revo.content }</h5>
+			<h5 width="80%">${revo.subtitle }</h5>
 			<ol class="breadcrumb justify-content-center mb-0">
 			</ol>
 		</div>
@@ -319,55 +324,119 @@ function replyList(cno)
 	<!-- 레시피 상세보기 -->
 	<div class="container">
 		<div class="mainsection">
-			<img id="mainThumb" src="${revo.poster }" alt="mainThumb">
-			<div class="chef-info text-center">
-				<a herf="${chef_profile }"> <img src="${revo.chef_poster }"
-					class="text-center">
-				</a>
-			</div>
-		</div>
-		<div class="chef text-center">
-			<span class="chef_name">${revo.chef }</span>
+			<img id="mainThumb" src="https://ottogi.okitchen.co.kr${revo.poster }" alt="mainThumb">
 		</div>
 
-		<tr>
-			<td colspan="3" class="text-right">
-			<c:if test="${sessionScope.id!=null }">
-					<a href="#" class="btn btn-xs btn-success">좋아요</a>
-			<c:if test="${check==false }">
-					<input type=button class="btn btn-xs btn-success" value="찜하기" id="jjimBtn" data-cno="${revo.no }">
-			</c:if>
-			<c:if test="${check==true }">
-					<span class="btn btn-xs btn-default">찜하기</span>
-			</c:if>
-					<a href="#" class="btn btn-xs btn-success">예약하기</a>
-				</c:if> <input type="button" class="btn btn-xs btn-success" value="목록"
-				onclick="javascript:history.back()"></td>
-		</tr>
-
-		<table class="recipeinfo" style="width: 100%; text-align: center;">
+		<table class="recipeinfo" style="width: 100%; text-align: center; ">
     <tr>
         <th width="20%">
             <div style="display: inline-block; text-align: center; width: 100px;">
-                <img src="amount.png" style="width: 50px; height: auto;">
-                <div>${revo.info1 }</div>
+                <img src="ready.png" style="width: 50px; height: auto;">
+                <div>준비시간<br>${revo.info1}분</div>
             </div>
         </th>
         <th width="20%">
             <div style="display: inline-block; text-align: center; width: 100px;">
                 <img src="time.png" style="width: 50px; height: auto;">
-                <div>${revo.info2 }</div>
+                <div>조리시간<br>${revo.info2 }분</div>
             </div>
         </th>
         <th width="20%">
             <div style="display: inline-block; text-align: center; width: 100px;">
-                <img src="star.png" style="width: 50px; height: auto;">
-                <div>${revo.info3 }</div>
+                <img src="amount.png" style="width: 50px; height: auto;">
+                <div>인분수<br>${revo.info3 }인분</div>
             </div>
         </th>
     </tr>
 </table>
+		<tr >
+			<td colspan="3" class="text-right">
+			<c:if test="${sessionScope.id!=null }">
+						<a href="#" class="btn btn-xs btn-success">좋아요</a>
+						
+				<c:if test="${check==false }">
+						<input type=button class="btn btn-xs btn-success" value="찜하기" id="jjimBtn" data-cno="${revo.no }">
+				</c:if>
+				
+				<c:if test="${check==true }">
+						<span class="btn btn-xs btn-default">찜하기</span>
+				</c:if>
+			</c:if> 
+				<input type="button" class="btn btn-xs btn-success" value="목록"
+				onclick="javascript:history.back()"></td>
+		</tr>
 	</div>
+
+
+<div>
+  <table class="ingredients">
+    <tr>
+      <td colspan="2" class="text-center"><h2>필요한 재료</h2></td>
+    </tr>
+    <tr>
+      <td class="text-center">${revo.ingredients }</td>
+    </tr>
+  </table>
+</div>
+
+
+
+<div>
+  <table class="detailTable" style="margin : 0 auto;">
+    <!-- Step 1 -->
+    <tr>
+      <td colspan="2"><h2>Step 1</h2></td>
+    </tr>
+    <tr>
+      <td colspan="2"><img src="https://ottogi.okitchen.co.kr${revo.detail_poster1 }" style="width: 100%; height: auto;"></td>
+    </tr>
+    <tr>
+      <td colspan="2">${revo.detail_content2 }</td>
+    </tr>
+    <!-- Step 2 -->
+    <tr>
+      <td colspan="2"><h2>Step 2</h2></td>
+    </tr>
+    <tr>
+      <td colspan="2"><img src="https://ottogi.okitchen.co.kr${revo.detail_poster2 }" style="width: 100%; height: auto;"></td>
+    </tr>
+    <tr>
+      <td colspan="2">${revo.detail_content4 }</td>
+    </tr>
+    <!-- Step 3 -->
+    <tr>
+      <td colspan="2"><h2>Step 3</h2></td>
+    </tr>
+    <tr>
+      <td colspan="2"><img src="https://ottogi.okitchen.co.kr${revo.detail_poster3 }" style="width: 100%; height: auto;"></td>
+    </tr>
+    <tr>
+      <td colspan="2">${revo.detail_content6 }</td>
+    </tr>
+    <!-- Step 4 -->
+    <tr>
+      <td colspan="2"><h2>Step 4</h2></td>
+    </tr>
+    <tr>
+      <td colspan="2"><img src="https://ottogi.okitchen.co.kr${revo.detail_poster4 }" style="width: 100%; height: auto;"></td>
+    </tr>
+    <tr>
+      <td colspan="2">${revo.detail_content8 }</td>
+    </tr>
+    <!-- Step 5 -->
+    <tr>
+      <td colspan="2"><h2>Step 5</h2></td>
+    </tr>
+    <tr>
+      <td colspan="2"><img src="https://ottogi.okitchen.co.kr${revo.detail_poster5 }" style="width: 100%; height: auto;"></td>
+    </tr>
+    <tr>
+      <td colspan="2">${revo.detail_content10 }</td>
+    </tr>
+  </table>
+</div>
+
+
 
 
 	<div style="height: 10px"></div>
@@ -405,13 +474,12 @@ function replyList(cno)
 
 
 
-
 	<div class="container-fluid packages py-5">
 		<div class="container py-5 ">
 
 			<div class="mx-auto text-center mb-5" style="max-width: 900px;">
-				<h5 class="section-title px-3">Chef's Recipe</h5>
-				<h1 class="mb-0">${revo.chef } 셰프의 다른 레시피</h1>
+				<h5 class="section-title px-3">Recipe</h5>
+				<h1 class="mb-0">추천 레시피</h1>
 			</div>
 
 
@@ -420,20 +488,40 @@ function replyList(cno)
 				<c:forEach var="revo" items="${reList }" varStatus="s">
 					<div class="packages-item">
 						<div class="packages-img">
-							<img src="${revo.poster}" class="img-fluid w-10  rounded-top"
+							<img src="https://ottogi.okitchen.co.kr${revo.poster}" class="img-fluid w-10  rounded-top"
 								alt="${revo.title}" title="${revo.title}"></a>
 
 							<div
 								class="packages-info d-flex border border-start-0 border-end-0 position-absolute"
 								style="width: 100%; bottom: 0; left: 0; z-index: 5;">
+									<tr>
+						        <th width="20%">
+						            <div style="display: inline-block; text-align: center; width: 100px;">
+						                <img src="ready.png" style="width: 50px; height: auto;">
+						                <div>준비시간<br>${revo.info1}분</div>
+						            </div>
+						        </th>
+						        <th width="20%">
+						            <div style="display: inline-block; text-align: center; width: 100px;">
+						                <img src="time.png" style="width: 50px; height: auto;">
+						                <div>조리시간<br>${revo.info2 }분</div>
+						            </div>
+						        </th>
+						        <th width="20%">
+						            <div style="display: inline-block; text-align: center; width: 100px;">
+						                <img src="amount.png" style="width: 50px; height: auto;">
+						                <div>인분수<br>${revo.info3 }인분</div>
+						            </div>
+						        </th>
+						    </tr>
 								<!-- 밑에 얇은줄 -->
-
 							</div>
-							<div class="text-center packages-price py-2 px-4">${revo.info3 }</div>
+							<div class="text-center packages-price py-2 px-4"><img src="pointer.png" style="width: 30px; height: auto;" >${revo.hit }</div>
 							<!-- 매퍼에서 연결해야함~ -->
 						</div>
 						<div class="packages-content bg-light">
 							<div class="p-4 pb-0">
+						
 								<!-- 회색박스 -->
 								<a href="../recipe/detail_before.do?no=${revo.no}&type=3">
 									<h5 class="mb-0 text-center">${revo.title}</h5>

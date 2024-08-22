@@ -780,7 +780,7 @@
 	<!-- 맛집 추천 End -->
 	
 	
-		<!-- 레시피 Start -->
+	<!-- 레시피 Start -->
 	<div class="container-fluid packages py-5">
 		<div class="container py-5">
 			<div class="mx-auto text-center mb-5" style="max-width: 900px;">
@@ -839,7 +839,7 @@
         <div class="col-lg-4 col-md-6">
             <div class="blog-item border rounded shadow-sm overflow-hidden" style="max-width:100%; height: 100%;">
                 <div class="blog-img position-relative" style="width: 100%; height: 270px;">
-                    <a href="../recipe/detail_before.do?no=${revo.no}&type=3" class="h4"><img class="img-fluid w-100 h-100 object-fit-cover rounded-top" src="${revo.poster }" alt="Image"></a>
+                    <a href="../recipe/detail_before.do?no=${revo.no}&type=3" class="h4"><img class="img-fluid w-100 h-100 object-fit-cover rounded-top" src="https://ottogi.okitchen.co.kr/${revo.poster }" alt="Image"></a>
                     <!-- 링크 아이콘: 호버 시에만 표시 -->
                     <div class="blog-icon position-absolute top-50 start-50 translate-middle" style="opacity: 0; transition: opacity 0.3s;">
                         <a href="#"><i class="fas fa-link fa-2x text-white"></i></a>
@@ -847,22 +847,22 @@
                 </div>
                 <div class="blog-info d-flex justify-content-between align-items-center border border-start-0 border-end-0 p-3" >
                     <div class="text-center" style="margin-left:40px">
-                        <img src="amount.png" style="width: 30px; height: auto;">
-                        <div>${revo.info1}</div>
+                        <img src="ready.png" style="width: 30px; height: auto;">
+                        <div>준비시간<br>${revo.info1}분</div>
                     </div>
                     <div class="text-center">
                         <img src="time.png" style="width: 30px; height: auto;">
-                        <div>${revo.info2}</div>
+                        <div>조리시간<br>${revo.info2}분</div>
                     </div>
                     <div class="text-center" style="margin-right:40px">
-                        <img src="star.png" style="width: 30px; height: auto;">
-                        <div>${revo.info3}</div>
+                        <img src="amount.png" style="width: 30px; height: auto;">
+                        <div>인분수<br>${revo.info3}인분</div>
                     </div>
                 </div>
                 <div class="blog-content border-top-0 rounded-bottom p-4">
-                    <p class="mb-3">${revo.chef}</p>
+                    <p class="mb-3"><img src="pointer.png" style="width: 30px; height: auto;">${revo.hit}</p>
                     <a href="../recipe/detail_before.do?no=${revo.no}&type=3" class="h4">${revo.title}</a>
-                    <p class="my-3" style=" white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${revo.content}</p>
+                    <p class="my-3" style=" white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${revo.subtitle}</p>
                     <a href="#" class="btn btn-primary d-block text-center"><i class="fa fa-heart me-2"></i>찜하기</a>
  
                     
@@ -876,44 +876,9 @@
 
 				</div>
         <!-- Blog End -->
-        
-        <!-- 
-
-        
-            <c:forEach var="revo" items="${relikelist}" varStatus="s">
-                <div class="packages-item" style="max-width:100%; overflow:hidden" >
-                    <div class="packages-img" style="width:100%; height:270px; overflow:hidden;">
-                        <img src="${revo.poster}" class="img-fluid w-100 rounded-top" alt="Image">
-                        <div class="packages-info d-flex border border-start-0 border-end-0 position-absolute"
-                             style="width: 100%; bottom: 0; left: 0; z-index: 5;">
-                            <a href="#" class="flex-fill text-center border-end py-2 text-decoration-none"
-                               style="color: #ffffff;">  찜하기 버튼
-                                <i class="fa fa-heart me-2"></i>찜하기
-                            </a>
-                        </div>
-                        <div class="text-center packages-price py-2 px-4">${revo.info3 }</div>
-                    </div>
-                    <div class="packages-content bg-light">
-                        <div class="p-4 pb-0">
-                            <h5 class="mb-0 truncate-text">${revo.title}</h5>
-                            <small class="text-uppercase truncate-text">${revo.chef}</small>
-                            <p class="mb-4"></p>
-                        </div>
-                        <div class="row bg-primary rounded-bottom mx-0">
-                            <div class="col-6 text-start px-0">
-                                <a href="#" class="btn-hover btn text-white py-2 px-4">${revo.info1}</a>
-                            </div>
-                            <div class="col-6 text-end px-0">
-                                <a href="#" class="btn-hover btn text-white py-2 px-4">${revo.info2}</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </c:forEach>
-        </div>
-	</div>
-         -->
+ 
 	<!-- 레시피 End -->
+
 
 	<!-- 후기 Start -->
 	<div class="container-fluid testimonial py-5">

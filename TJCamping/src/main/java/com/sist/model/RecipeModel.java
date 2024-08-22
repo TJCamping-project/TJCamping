@@ -62,7 +62,7 @@ public class RecipeModel {
 	   response.addCookie(cookie);
 	   return "redirect:../recipe/detail.do?no="+no+"&type="+type;
    }
-   
+
    @RequestMapping("recipe/detail.do")
    public String recipe_detail(HttpServletRequest request,HttpServletResponse response)
    {
@@ -72,17 +72,17 @@ public class RecipeModel {
 	   // 서울 종로구 명륜2가 21-14
 	   // 데이터베이스 연동 
 	   RecipeVO revo=RecipeDAO.recipeDetailData(Integer.parseInt(no));
-	   String chef=revo.getChef();
+	   String info3=revo.getInfo3();
 	   
 	   
-       List<RecipeVO> reList=RecipeDAO.chefRecipeData(chef);
+       List<RecipeVO> reList=RecipeDAO.sameRecipeData(info3);
        request.setAttribute("reList", reList);
 	   request.setAttribute("revo", revo);
 	   request.setAttribute("type", type);
-	   /*
-	    *   맛집(1) / 레시피(2) / 서울 여행(3) / 상품(4)  
-	    *   
-	    */
+	 
+	   /*   맛집(1) / 레시피(2) / 서울 여행(3) / 상품(4)  
+	    */   
+	   
 	   
 	   boolean bCheck=false;
 	   HttpSession session=request.getSession();

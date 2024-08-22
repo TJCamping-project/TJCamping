@@ -98,7 +98,7 @@
                                 <div class="col-lg-3 col-md-6 col-sm-12">
                                     <div class="packages-item">
                                         <div class="packages-img">
-                                            <img src="${vo.poster}" class="img-fluid w-200 h-200 rounded-top" alt="${vo.title}">
+                                            <img src="https://ottogi.okitchen.co.kr/${vo.poster}" class="img-fluid w-200 h-200 rounded-top" alt="${vo.title}">
                                             <div class="packages-info d-flex border border-start-0 border-end-0 position-absolute" style="width: 100%; bottom: 0; left: 0; z-index: 5;">
                                                 <a href="" class="text-white flex-fill text-center border-end py-2 text-decoration-none">
                                                 <i class="text-white fa fa-map-marker-alt me-2"></i>저장하기</a>

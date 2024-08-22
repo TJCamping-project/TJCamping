@@ -43,5 +43,16 @@
 		WHERE cno=#{cno}
 
 	</update>
+	
+	
+	<update id="recipeJjimCountIncrement" parameterType="java.util.Map">
+
+		UPDATE recipe SET 
+
+		jjimcount=(SELECT COUNT(*) FROM all_jjim WHERE type=#{type} AND cno=#{cno})
+
+		WHERE no=#{cno}
+
+	</update>
 
 </mapper>
