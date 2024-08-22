@@ -61,9 +61,9 @@ JJIMCOUNT                 VARCHAR2(20)
   </select>
   <!-- 맛집 목록 출력 -->
   <select id="recipeListData" resultType="RecipeVO" parameterType="hashmap">
-    SELECT no,title,poster, info3, num
-    FROM (SELECT no,title,poster, info3, rownum as num 
-    FROM (SELECT no,title,poster, info3
+    SELECT no,title,poster, info3,hit, num
+    FROM (SELECT no,title,poster, info3,hit, rownum as num 
+    FROM (SELECT no,title,poster, info3,hit
     FROM recipe))
     WHERE num BETWEEN #{start} AND #{end}
   </select>
