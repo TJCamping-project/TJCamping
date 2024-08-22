@@ -105,7 +105,7 @@
                                             <div class="text-center packages-price">${vo.info3 }인분</div>
                                         </div>
                                         <div class="packages-content bg-light">
-                                            <div class="p-4 pb-0">
+                                            <div class="p-3 pb-1">
                                             <a href="../recipe/detail_before.do?no=${vo.no}&type=1" class="text-white flex-fill text-center py-2 text-decoration-none">
                                                 <h5 class="mb-0 text-center" style="margin-bottom:10px;">${vo.title}</h5></a>
                                                 <p class="mb-4"></p>
