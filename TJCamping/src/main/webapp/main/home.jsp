@@ -243,7 +243,7 @@
 									<div class="national-content">
 										<div class="national-info">
 											<h3 class="text-white text-uppercase mb-2">맛집</h3>
-											<a href="#" class="btn-hover text-white">바로가기 <i
+											<a href="../food/list.do" class="btn-hover text-white">바로가기 <i
 												class="fa fa-arrow-right ms-2"></i></a>
 										</div>
 									</div>
@@ -260,7 +260,7 @@
 									<div class="national-content">
 										<div class="national-info">
 											<h3 class="text-white text-uppercase mb-2">레시피</h3>
-											<a href="#" class="btn-hover text-white">바로가기 <i
+											<a href="../recipe/list.do" class="btn-hover text-white">바로가기 <i
 												class="fa fa-arrow-right ms-2"></i></a>
 										</div>
 									</div>
