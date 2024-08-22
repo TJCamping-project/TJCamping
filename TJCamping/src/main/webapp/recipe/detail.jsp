@@ -309,6 +309,7 @@ function replyList(cno)
 </script>
 </head>
 <body>
+
 	<!-- Header Start -->
 	<div class="container-fluid bg-breadcrumb">
 		<div class="container text-center py-5" style="max-width: 900px;">
@@ -492,31 +493,13 @@ function replyList(cno)
 								alt="${revo.title}" title="${revo.title}"></a>
 
 							<div
-								class="packages-info d-flex border border-start-0 border-end-0 position-absolute"
+								class="packages-info d-flex border border-start-0 border-end-0 position-absolute pb-1"
 								style="width: 100%; bottom: 0; left: 0; z-index: 5;">
-									<tr>
-						        <th width="20%">
-						            <div style="display: inline-block; text-align: center; width: 100px;">
-						                <img src="ready.png" style="width: 50px; height: auto;">
-						                <div>준비시간<br>${revo.info1}분</div>
-						            </div>
-						        </th>
-						        <th width="20%">
-						            <div style="display: inline-block; text-align: center; width: 100px;">
-						                <img src="time.png" style="width: 50px; height: auto;">
-						                <div>조리시간<br>${revo.info2 }분</div>
-						            </div>
-						        </th>
-						        <th width="20%">
-						            <div style="display: inline-block; text-align: center; width: 100px;">
-						                <img src="amount.png" style="width: 50px; height: auto;">
-						                <div>인분수<br>${revo.info3 }인분</div>
-						            </div>
-						        </th>
-						    </tr>
+								<i class="text-white fa flex-fill text-center border-end  text-decoration-none">
+								<img src="pointer.png" style="width: 30px; height: auto; display: inline;">${revo.hit }</i>
 								<!-- 밑에 얇은줄 -->
 							</div>
-							<div class="text-center packages-price py-2 px-4"><img src="pointer.png" style="width: 30px; height: auto;" >${revo.hit }</div>
+							<div class="text-center packages-price">${revo.info3 }인분</div>
 							<!-- 매퍼에서 연결해야함~ -->
 						</div>
 						<div class="packages-content bg-light">
@@ -534,7 +517,6 @@ function replyList(cno)
 			</div>
 		</div>
 	</div>
-
 
 
 </body>
