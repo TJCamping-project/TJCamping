@@ -101,9 +101,9 @@
                                             <img src="https://ottogi.okitchen.co.kr/${vo.poster}" class="img-fluid w-200 h-200 rounded-top" alt="${vo.title}">
                                             <div class="packages-info d-flex border border-start-0 border-end-0 position-absolute" style="width: 100%; bottom: 0; left: 0; z-index: 5;">
                                                 <a href="" class="text-white flex-fill text-center border-end py-2 text-decoration-none">
-                                                <i class="text-white fa fa-map-marker-alt me-2"></i>저장하기</a>
+                                                <i class="text-white fa"><img src="pointer.png" style="width: 30px; height: auto; display: inline;">${vo.hit }</i></a>
                                             </div>
-                                            <div class="text-center packages-price py-2 px-4">${vo.info3 }</div>
+                                            <div class="text-center packages-price py-2 px-4">${vo.info3 }인분</div>
                                         </div>
                                         <div class="packages-content bg-light">
                                             <div class="p-4 pb-0">
