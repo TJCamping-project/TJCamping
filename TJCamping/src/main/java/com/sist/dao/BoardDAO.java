@@ -14,13 +14,13 @@ public class BoardDAO {
 		ssf=CreateSqlSessionFactory.getSsf();	//
 	}
 	
-	//목록 리스트
+	//캠핑장 목록 리스트
 	public static List<BoardVO> board_CampList(Map map){
 		List<BoardVO> list=new ArrayList<BoardVO>();
 		SqlSession session=null;
 		try {
 			session=ssf.openSession(); 
-			 list=session.selectList("board_CampList",map);
+			list=session.selectList("board_CampList",map);
 		}catch (Exception ex) {
 			ex.printStackTrace();
 		}finally {
@@ -42,11 +42,11 @@ public class BoardDAO {
 		return count;
 	}
 	
-	//새 글 작성
+	//새 글 작성(캠핑장)
 	public static void board_CampInsert(BoardVO vo) {
 		SqlSession session=null;
 		try {
-			session=ssf.openSession();
+			session=ssf.openSession(true);
 			session.insert("board_CampInsert",vo);
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -94,6 +94,24 @@ public class BoardDAO {
 		}
 	
 	//수정하기
+   public static void board_CampUpdate(BoardVO vo)
+   {
+	      SqlSession session=null;
+		  try
+		  {
+			  session=ssf.openSession(true); 
+			  session.update("board_CampUpdate",vo);
+			  
+		  }catch(Exception ex)
+		  {
+			  ex.printStackTrace();
+		  }
+		  finally
+		  {
+			  if(session!=null)
+				  session.close(); // 반환 (DBCP사용)
+		  }
+   }
 	public static BoardVO boardUpdateData(int no)
 	   {
 		BoardVO vo=new BoardVO();
@@ -135,24 +153,6 @@ public class BoardDAO {
 		   return pwd;
 	   }
 	   
-	   public static void boardUpdate(BoardVO vo)
-	   {
-		      SqlSession session=null;
-			  try
-			  {
-				  session=ssf.openSession(true); 
-				  session.update("boardUpdate",vo);
-				  
-			  }catch(Exception ex)
-			  {
-				  ex.printStackTrace();
-			  }
-			  finally
-			  {
-				  if(session!=null)
-					  session.close(); // 반환 (DBCP사용)
-			  }
-	   }
 	
 	//삭제하기
 	public static String boardDelete(int no,String pwd)
@@ -203,4 +203,5 @@ public class BoardDAO {
 			  }
 		   return list;
 	   }
+	
 }
