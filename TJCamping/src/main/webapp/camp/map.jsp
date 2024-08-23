@@ -202,9 +202,28 @@ $(function(){
 		<!-- 여기다가 검색 기능 넣으세요^^ -->
 	
 		
-		
+	
 <div class="tab-class text-center">
 
+<div class="wrapper row3 reserve_row">
+  <main class="container clear">
+    <table class="table">
+      <tr>
+        <td class="text-center">
+          <span class="btn btn-lg btn-success rebtn" data-no="1">경기</span> 
+          <span class="btn btn-lg btn-info rebtn" data-no="2">충북</span> 
+          <span class="btn btn-lg btn-primary rebtn" data-no="3">충남</span> 
+        </td>
+      </tr>
+    </table>
+    <div id="menu">
+     
+    </div>
+    <div id="recommand">
+      
+    </div>
+  </main>
+</div>
 
 
 <div class="container text-center mt-5">
@@ -230,242 +249,17 @@ $(function(){
             </a>
         </li>
         
-        
-    <!--
-        <li class="nav-item">
-            <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#tab-4" id="btn-chungnam">
-                <span class="text-dark" style="width: 150px;">의정부</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#tab-4" id="btn-chungnam">
-                <span class="text-dark" style="width: 150px;">안양</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#tab-4" id="btn-chungnam">
-                <span class="text-dark" style="width: 150px;">평택</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#tab-4" id="btn-chungnam">
-                <span class="text-dark" style="width: 150px;">동두천</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#tab-4" id="btn-chungnam">
-                <span class="text-dark" style="width: 150px;">안산</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#tab-4" id="btn-chungnam">
-                <span class="text-dark" style="width: 150px;">고양</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#tab-4" id="btn-chungnam">
-                <span class="text-dark" style="width: 150px;">남양주</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#tab-4" id="btn-chungnam">
-                <span class="text-dark" style="width: 150px;">오산</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#tab-4" id="btn-chungnam">
-                <span class="text-dark" style="width: 150px;">용인</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#tab-4" id="btn-chungnam">
-                <span class="text-dark" style="width: 150px;">파주</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#tab-4" id="btn-chungnam">
-                <span class="text-dark" style="width: 150px;">안성</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#tab-4" id="btn-chungnam">
-                <span class="text-dark" style="width: 150px;">김포</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#tab-4" id="btn-chungnam">
-                <span class="text-dark" style="width: 150px;">화성</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#tab-4" id="btn-chungnam">
-                <span class="text-dark" style="width: 150px;">광주</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#tab-4" id="btn-chungnam">
-                <span class="text-dark" style="width: 150px;">양주</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#tab-4" id="btn-chungnam">
-                <span class="text-dark" style="width: 150px;">포천</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#tab-4" id="btn-chungnam">
-                <span class="text-dark" style="width: 150px;">여주</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#tab-4" id="btn-chungnam">
-                <span class="text-dark" style="width: 150px;">연천</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#tab-4" id="btn-chungnam">
-                <span class="text-dark" style="width: 150px;">가평</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#tab-4" id="btn-chungnam">
-                <span class="text-dark" style="width: 150px;">양평</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#tab-4" id="btn-chungnam">
-                <span class="text-dark" style="width: 150px;">청주</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#tab-4" id="btn-chungnam">
-                <span class="text-dark" style="width: 150px;">충주</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#tab-4" id="btn-chungnam">
-                <span class="text-dark" style="width: 150px;">제천</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#tab-4" id="btn-chungnam">
-                <span class="text-dark" style="width: 150px;">보은</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#tab-4" id="btn-chungnam">
-                <span class="text-dark" style="width: 150px;">옥천</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#tab-4" id="btn-chungnam">
-                <span class="text-dark" style="width: 150px;">영동</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#tab-4" id="btn-chungnam">
-                <span class="text-dark" style="width: 150px;">진천</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#tab-4" id="btn-chungnam">
-                <span class="text-dark" style="width: 150px;">음성</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#tab-4" id="btn-chungnam">
-                <span class="text-dark" style="width: 150px;">괴산</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#tab-4" id="btn-chungnam">
-                <span class="text-dark" style="width: 150px;">단양</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#tab-4" id="btn-chungnam">
-                <span class="text-dark" style="width: 150px;">증평</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#tab-4" id="btn-chungnam">
-                <span class="text-dark" style="width: 150px;">천안</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#tab-4" id="btn-chungnam">
-                <span class="text-dark" style="width: 150px;">아산</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#tab-4" id="btn-chungnam">
-                <span class="text-dark" style="width: 150px;">서산</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#tab-4" id="btn-chungnam">
-                <span class="text-dark" style="width: 150px;">당진</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#tab-4" id="btn-chungnam">
-                <span class="text-dark" style="width: 150px;">공주</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#tab-4" id="btn-chungnam">
-                <span class="text-dark" style="width: 150px;">보령</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#tab-4" id="btn-chungnam">
-                <span class="text-dark" style="width: 150px;">논산</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#tab-4" id="btn-chungnam">
-                <span class="text-dark" style="width: 150px;">홍성</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#tab-4" id="btn-chungnam">
-                <span class="text-dark" style="width: 150px;">예산</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#tab-4" id="btn-chungnam">
-                <span class="text-dark" style="width: 150px;">부여</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#tab-4" id="btn-chungnam">
-                <span class="text-dark" style="width: 150px;">서천</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#tab-4" id="btn-chungnam">
-                <span class="text-dark" style="width: 150px;">청양</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#tab-4" id="btn-chungnam">
-                <span class="text-dark" style="width: 150px;">태안</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#tab-4" id="btn-chungnam">
-                <span class="text-dark" style="width: 150px;">금산</span>
-            </a>
-        </li>
-        -->
+     
         
     </ul>
 
-    <!-- Sub-buttons will be displayed here -->
+    
     <div id="sub-button-container" class="sub-buttons"></div>
 </div>
 
+
 <script>
+
     document.addEventListener('DOMContentLoaded', function() {
         // Elements
         const gyeonggiBtn = document.getElementById('btn-gyeonggi');
@@ -507,6 +301,22 @@ $(function(){
             });
         }
     });
+
+
+$(function(){
+	$('.rebtn').click(function(){
+		let no=$(this).attr("data-no");
+		$.ajax({
+			type:'post',
+			url:'../camp/sub_menu.do',
+			data:{"no":no},
+			success:function(result)
+			{
+				$('#menu').html(result);
+			}
+		})
+	})
+})
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -542,11 +352,6 @@ $(function(){
 													<i class="fa fa-arrow-right ms-2"></i>
 												</a>
 											</div>
-								<!-- 		<div class="search-icon">
-												<a href="${vo.image1 }"
-													data-lightbox="destination-1"><i
-													class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
-											</div>  -->
 											</div>
 											</div>
 										</c:forEach>
