@@ -14,7 +14,7 @@ public class BoardDAO {
 		ssf=CreateSqlSessionFactory.getSsf();	//
 	}
 	
-	//캠핑장 목록 리스트
+	//캠핑장후기 목록 리스트
 	public static List<BoardVO> board_CampList(Map map){
 		List<BoardVO> list=new ArrayList<BoardVO>();
 		SqlSession session=null;
@@ -28,12 +28,12 @@ public class BoardDAO {
 		}
 		return list;
 	}
-	public static int board_campRowCount() {
+	public static int board_CampRowCount() {
 		int count=0;
 		SqlSession session=null;
 		try {
 			session=ssf.openSession();
-			count=session.selectOne("board_campRowCount");
+			count=session.selectOne("board_CampRowCount");
 		}catch (Exception ex) {
 			ex.printStackTrace();
 		}finally {
@@ -41,7 +41,6 @@ public class BoardDAO {
 		}
 		return count;
 	}
-	
 	//새 글 작성(캠핑장)
 	public static void board_CampInsert(BoardVO vo) {
 		SqlSession session=null;
@@ -54,6 +53,46 @@ public class BoardDAO {
 			if(session!=null) session.close();
 		}
 	}
+	
+	//캠핑용품후기 목록 리스트
+	public static List<BoardVO> board_GoodsList(Map map){
+		List<BoardVO> list=new ArrayList<BoardVO>();
+		SqlSession session=null;
+		try {
+			session=ssf.openSession(); 
+			list=session.selectList("board_GoodsList",map);
+		}catch (Exception ex) {
+			ex.printStackTrace();
+		}finally {
+			if(session!=null) session.close();
+		}
+		return list;
+	}
+	public static int board_GoodsRowCount() {
+		int count=0;
+		SqlSession session=null;
+		try {
+			session=ssf.openSession();
+			count=session.selectOne("board_GoodsRowCount");
+		}catch (Exception ex) {
+			ex.printStackTrace();
+		}finally {
+			if(session!=null) session.close();
+		}
+		return count;
+	}
+	//새 글 작성(캠핑장)
+	public static void board_GoodsInsert(BoardVO vo) {
+		SqlSession session=null;
+		try {
+			session=ssf.openSession(true);
+			session.insert("board_GoodsInsert",vo);
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}finally {
+			if(session!=null) session.close();
+		}
+	}	
 	
 	//자세히보기
 	public static BoardVO boardDetailData(int no)
@@ -182,15 +221,37 @@ public class BoardDAO {
 		   return result;
 	   }
 	
-	//검색
-	public static List<BoardVO> boardFindData(Map map)
+	//캠핑장 후기 검색
+	public static List<BoardVO> boardCampFindData(Map map)
 	   {
 		   List<BoardVO> list=new ArrayList<BoardVO>();
 		   SqlSession session=null;
 			  try
 			  {
 				  session=ssf.openSession(true); 
-				  list=session.selectList("boardFindData",map);
+				  list=session.selectList("boardCampFindData",map);
+				  
+			  }catch(Exception ex)
+			  {
+				  ex.printStackTrace();
+			  }
+			  finally
+			  {
+				  if(session!=null)
+					  session.close(); // 반환 (DBCP사용)
+			  }
+		   return list;
+	   }
+
+	//캠핑용품 후기 검색
+	public static List<BoardVO> boardGoodsFindData(Map map)
+	   {
+		   List<BoardVO> list=new ArrayList<BoardVO>();
+		   SqlSession session=null;
+			  try
+			  {
+				  session=ssf.openSession(true); 
+				  list=session.selectList("boardGoodsFindData",map);
 				  
 			  }catch(Exception ex)
 			  {

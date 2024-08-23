@@ -26,12 +26,12 @@ public class Board_Model {
 		int curpage=Integer.parseInt(page);
 		Map map=new HashMap();
 		map.put("start", (curpage*10)-9);
-		map.put("end", curpage*10);
+		map.put("end", (curpage*10));
 		
 		List<BoardVO> list=BoardDAO.board_CampList(map);
-		int count=BoardDAO.board_campRowCount();
+		int count=BoardDAO.board_CampRowCount();
 		int totalpage=(int)(Math.ceil(count	/10.0));
-		count=count-((curpage*10)-9);
+		count=count-((curpage*10)-10);
 		
 		request.setAttribute("list", list);
 		request.setAttribute("curpage", curpage);
@@ -245,7 +245,7 @@ public class Board_Model {
 		  map.put("fsArr", fsArr);
 		  map.put("ss", ss);
 		  // 데이터베이스 연동 
-		  List<BoardVO> list=BoardDAO.boardFindData(map);
+		  List<BoardVO> list=BoardDAO.boardCampFindData(map);
 		  // 결과값 전송 
 		  request.setAttribute("list", list);
 		  request.setAttribute("main_jsp", "../boardcamp/find.jsp");

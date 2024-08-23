@@ -28,6 +28,8 @@
 .boardcheckbox{color: yellow;}	/* checkbox 글자 색상 */
 a.pagetagcolor{color: yellow; background: ;}
 .boardlistsytle{color: white; text-align: center;}
+nav{float: right;}
+.gaechulist{width:100px; height:20px; margin: 0px auto;}
 </style>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
@@ -43,7 +45,7 @@ $(function(){
 		 }
 		 else
 		 {
-			 $('#delBtn').text("수정")
+			 $('#delBtn').text("삭제")
 			 $('#delTr').hide() // display:none , display:''
 			 bCheck=true
 		 }
@@ -234,6 +236,23 @@ $(function(){
 	<!-- board css end -->
 	<!-- board start -->
 	<table class="table">
+		<tr>
+			<td colspan="4" class="text-right">
+			<nav>
+				<a href="../boardcamp/update.do?no=${vo.no }" class="btn btn-xs btn-success" >수정</a>
+				<span class="btn btn-xs btn-warning" id="delBtn">삭제</span>
+				<a href="../boardcamp/list.do" class="btn btn-xs btn-info">목록</a>
+			</nav>
+			</td>
+		</tr>
+       <tr id="delTr" style="display: none">
+         <td colspan="4" class="text-right inline" style="color: yellow;">
+         <nav>
+         비밀번호 : <input type=password id="del_pwd" class="input-sm" size=15>
+         <input type=button value="삭제" class="btn-warning btn-sm" id="deleteBtn">
+         </nav>
+         </td>
+       	</tr>
        <tr>
         <th width=20% class="text-center boardtitlecolor">번호</th>
         <td width=30% class="text-center del_no boardtitlecolor">${vo.no }</td>
@@ -261,26 +280,16 @@ $(function(){
             업로드된 파일       
         --%>
        <tr>
-         <td colspan="4" class="text-left" valign="top" height="200">
-          <pre style="white-space: pre-wrap; border:none; color: white;">${vo.content }</pre>
+         <td colspan="4" valign="top">
+         <!-- 이미지 삽입 -->
+          <pre class="text-left" style="white-space: pre-wrap; border:none; color: white; height: 200px;">${vo.content }</pre>
+          <div style="text-align: center; bottom:0px;">
+          		<a href="../boardcamp/list.do" class="btn btn-xs btn-info">목록으로</a>
+          		&nbsp;
+				<a type="button" style="color: blue;"><img src="../img/1.jpg" width="40" height="40">추천</a>
+          </div>
          </td>
-       </tr>
-       <tr>
-         <td colspan="4" class="text-right">
-          <a href="../boardcamp/update.do?no=${vo.no }" class="btn btn-xs btn-success">수정</a>
-          <span class="btn btn-xs btn-warning" id="delBtn">삭제</span>
-          <a href="../boardcamp/list.do" class="btn btn-xs btn-info">목록</a>
-         </td>
-       </tr>
-       <tr id="delTr" style="display: none">
-         <td colspan="4" class="text-right inline">
-         비밀번호:<input type=password id="del_pwd" class="input-sm" size=10>
-         <input type=button value="삭제" class="btn-warning btn-sm" id="deleteBtn">
-         </td>
-       </tr>
      </table>
-     
-     <div style="height: 20px"></div>
 
      <table class="table">
       <tr>
