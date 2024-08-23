@@ -223,7 +223,7 @@ $(function(){
             <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#tab-3" id="btn-chungbuk">
                 <span class="text-dark" style="width: 150px;">충북</span>
             </a>
-        </li>
+        </li> 
         <li class="nav-item">
             <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#tab-4" id="btn-chungnam">
                 <span class="text-dark" style="width: 150px;">충남</span>
