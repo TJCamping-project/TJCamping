@@ -210,7 +210,7 @@ $(function(){
 <div class="container text-center mt-5">
     <ul class="nav nav-pills d-inline-flex justify-content-center mb-5">
         <li class="nav-item">
-            <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#tab-1">
+            <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="${aList }">
                 <span class="text-dark" style="width: 150px;">전국</span>
             </a>
         </li>
