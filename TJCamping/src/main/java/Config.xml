@@ -42,7 +42,7 @@
 		<mapper resource="com/sist/mapper/food-mapper.xml"/>
 		<mapper resource="com/sist/mapper/recipe-mapper.xml"/>
 		<mapper resource="com/sist/mapper/alljjim-mapper.xml"/>
-		<!--  <mapper resource="com/sist/mapper/boardreply-mapper.xml"/>-->
+		<mapper resource="com/sist/mapper/boardreply-mapper.xml"/>
 		<mapper resource="com/sist/mapper/notice-mapper.xml"/>
 		<mapper resource="com/sist/mapper/admin-mapper.xml"/>
 		<mapper resource="com/sist/mapper/board-mapper.xml"/>

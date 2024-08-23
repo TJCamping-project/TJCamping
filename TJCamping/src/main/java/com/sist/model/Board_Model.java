@@ -31,7 +31,7 @@ public class Board_Model {
 		List<BoardVO> list=BoardDAO.board_CampList(map);
 		int count=BoardDAO.board_campRowCount();
 		int totalpage=(int)(Math.ceil(count	/10.0));
-		count=count-((curpage*10)-10);
+		count=count-((curpage*10)-9);
 		
 		request.setAttribute("list", list);
 		request.setAttribute("curpage", curpage);
@@ -87,6 +87,8 @@ public class Board_Model {
 		}
 		return "redirect:../boardcamp/list.do";
 	}
+	
+	//게시글 상세보기
 	  @RequestMapping("boardcamp/detail.do")
 	  public String board_detail(HttpServletRequest request,HttpServletResponse response){
 		  String no=request.getParameter("no");
@@ -123,6 +125,7 @@ public class Board_Model {
 		  }catch(Exception ex){}
 	  }
 
+	  //게시글 삭제
 	  @RequestMapping("boardcamp/delete.do") // => if문 동일 
 	  public void board_delete(HttpServletRequest request,HttpServletResponse response)
 	  {
@@ -149,17 +152,7 @@ public class Board_Model {
 		  }catch(Exception ex) {}
 	  }
 	  
-	  @RequestMapping("boardcamp/update.do")
-	  public String board_update(HttpServletRequest request,HttpServletResponse response)
-	  {
-		  String no=request.getParameter("no");
-		  BoardVO vo=BoardDAO.boardUpdateData(Integer.parseInt(no));
-		  // 데이터를 request에 추가해서 jsp로 전송 
-		  request.setAttribute("vo", vo);
-		  request.setAttribute("main_jsp", "../boardcamp/update.jsp");
-		  return "../main/main.jsp";
-	  }
-	  
+	  //비밀번호 체크
 	  @RequestMapping("boardcamp/password_check.do")
 	  public void board_pwd_check(HttpServletRequest request,HttpServletResponse response)
 	  {
@@ -178,19 +171,27 @@ public class Board_Model {
 		  }catch(Exception ex) {}
 	  }
 	  
-	  @RequestMapping("boardcamp/update_ok.do")
-	  public String board_update_ok(HttpServletRequest request,HttpServletResponse response)
+	  @RequestMapping("boardcamp/update.do")
+	  public String board_update(HttpServletRequest request,HttpServletResponse response)
 	  {
-		  try
-		  { 
+		  String no=request.getParameter("no");
+		  System.out.println("no="+no);
+		  BoardVO vo=BoardDAO.boardUpdateData(Integer.parseInt(no));
+		  // 데이터를 request에 추가해서 jsp로 전송 
+		  request.setAttribute("vo", vo);
+		  request.setAttribute("main_jsp", "../boardcamp/update.jsp");
+		  return "../main/main.jsp";
+	  }
+	  
+	  @RequestMapping("boardcamp/update_ok.do")
+	  public String board_update_ok(HttpServletRequest request,HttpServletResponse response){
+		  try{ 
 			  
 			  request.setCharacterEncoding("UTF-8");
 			  String path="c:\\project_upload";
 			  String enctype="UTF-8";// 한글 파일명 
 			  int max_size=1024*1024*100;
-			  MultipartRequest mr=
-					  new MultipartRequest(request, path,max_size,enctype,
-							  new DefaultFileRenamePolicy());
+			  MultipartRequest mr=new MultipartRequest(request, path,max_size,enctype, new DefaultFileRenamePolicy());
 			  // 자동 변경 => a.jpg , a1.jpg
 			  String name=mr.getParameter("name");
 			  String subject=mr.getParameter("subject");
@@ -200,10 +201,9 @@ public class Board_Model {
 			  String no=mr.getParameter("no");
 			  
 			  BoardVO dvo=BoardDAO.boardImgInfoData(Integer.parseInt(no));
-			  if(dvo.getImgsize()>0)
-			  {
-				  File file=new File("c:\\project_upload\\"+dvo.getImgname());
-				  file.delete();
+			  if(dvo.getImgsize()>0){
+				  File img=new File("c:\\project_upload\\"+dvo.getImgname());
+				  img.delete();
 			  }
 			  // a.jpg
 			  // a.jpg => a1.jpg
@@ -226,7 +226,7 @@ public class Board_Model {
 				  vo.setImgsize((int)img.length()); // int => 2byte
 			  }
 			  
-			  BoardDAO.boardUpdate(vo);
+			  BoardDAO.board_CampUpdate(vo);
 		  }catch(Exception ex){}
 		  return "redirect:../boardcamp/list.do";
 	  }
