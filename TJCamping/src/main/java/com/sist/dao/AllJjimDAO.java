@@ -77,5 +77,66 @@ public class AllJjimDAO {
 				session.close();
 		}
 	}
+	public static List<CampGoodsVO> cgjjimListData(String id){
+		List<CampGoodsVO> cglist = new ArrayList<CampGoodsVO>();
+		SqlSession session=null;
+		try {
+			session=ssf.openSession();
+			cglist = session.selectList("cgjjimListData",id);
+		}catch(Exception ex) {
+			System.out.println("cgjjimListData err");
+			ex.printStackTrace();
+		}finally {
+			if(session!=null)
+				session.close();
+		}
+		return cglist;
+	}
+	public static List<RecipeVO> recjjimListData(String id){
+		List<RecipeVO> reclist = new ArrayList<RecipeVO>();
+		SqlSession session=null;
+		try {
+			session=ssf.openSession();
+			reclist = session.selectList("recjjimListData",id);
+		}catch(Exception ex) {
+			System.out.println("recjjimListData err");
+			ex.printStackTrace();
+		}finally {
+			if(session!=null)
+				session.close();
+		}
+		return reclist;
+	}
+	public static List<FoodVO> fhjjimListData(String id){
+		List<FoodVO> fhlist = new ArrayList<FoodVO>();
+		SqlSession session=null;
+		try {
+			session=ssf.openSession();
+			fhlist = session.selectList("fhjjimListData",id);
+		}catch(Exception ex) {
+			System.out.println("fhjjimListData err");
+			ex.printStackTrace();
+		}finally {
+			if(session!=null)
+				session.close();
+		}
+		return fhlist;
+	}
 	
+	
+	public static void camp_jjim_delete(Map map) {
+		SqlSession session=null;
+		try {
+			session=ssf.openSession();
+			session.delete("jjim_delete",map);
+			session.update("camp_jjimcount_minus",map);
+			session.commit();
+		}catch(Exception ex) {
+			System.out.println("jjim_delete err");
+			ex.printStackTrace();
+		}finally {
+			if(session!=null)
+				session.close();
+		}
+	}
 }
