@@ -6,13 +6,19 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 </head>
 <body>
-	<div class="wrapper row3">
+<!-- Header Start -->
+	<div class="container-fluid whitezzz "style="height:100px;"></div>
+		<div class="container text-center py-5" style="max-width: 200px; ">
+			<div class="mx-auto text-center mb-5" style="max-width: 200px;">
+				<h5 class="section-title py-12"></h5>
+				<h1 class="mb-0 " >공지사항</h1>
+			</div>
+		</div>
+	<!-- Header End -->
+	<div class="container py-5">
 		<main class="container clear">
-			<h2 class="sectiontitle">공지사항</h2>
 			<table class="table">
 				<tr>
 					<th width="10%" class="text-center">번호</th>
