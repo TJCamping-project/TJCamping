@@ -180,6 +180,7 @@ $(function(){
                                 <a href="#" class="dropdown-item">캠핑용품 후기</a>
                                 <a href="../notice/list.do" class="dropdown-item">공지</a>
                                 <a href="../replyboard/list.do" class="dropdown-item">QnA</a>
+                                <a href="../chat/chat.do" class="dropdown-item">1:1채팅</a>
                             </div>
                         </div>
                     </div>
