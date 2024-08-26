@@ -52,7 +52,7 @@ color:rgb(82,82,82);
       <th class="text-center">번호</th>
       <th class="text-center"></th>
       <th class="text-center">이름</th>
-      <th class="text-center">예약유무</th>
+      <th class="text-center">찜유무</th>
     </tr>
     <c:forEach var="fvo" items="${fhList }">
     <tr>
@@ -75,7 +75,7 @@ color:rgb(82,82,82);
       <th class="text-center">번호</th>
       <th class="text-center"></th>
       <th class="text-center">이름</th>
-      <th class="text-center">예약유무</th>
+      <th class="text-center">찜유무</th>
     </tr>
     <c:forEach var="cvo" items="${cgList }">
     <tr>
@@ -97,7 +97,7 @@ color:rgb(82,82,82);
       <th class="text-center">번호</th>
       <th class="text-center"></th>
       <th class="text-center">이름</th>
-      <th class="text-center">예약유무</th>
+      <th class="text-center">찜유무</th>
     </tr>
     <c:forEach var="rvo" items="${recList }">
     <tr>

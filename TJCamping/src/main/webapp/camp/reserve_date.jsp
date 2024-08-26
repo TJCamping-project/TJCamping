@@ -6,19 +6,18 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
 $(function(){
 	$('#year').change(function(){
 		let year=$('#year').val()
 		let month=$('#month').val()
-		let cno=${cno}
+		let camp_no=${camp_no}
 		
 		$.ajax({
 			type:'post',
 			url:'../camp/reserve_date.do',
-			data:{"year":year,"month":month,"cno":cno},
+			data:{"year":year,"month":month,"camp_no":camp_no},
 			success:function(result)
 			{
 				$('#rdate').html(result)
@@ -33,12 +32,12 @@ $(function(){
 	$('#month').change(function(){
 		let year=$('#year').val()
 		let month=$('#month').val()
-		let cno=${cno}
+		let camp_no=${camp_no}
 		
 		$.ajax({
 			type:'post',
 			url:'../camp/reserve_date.do',
-			data:{"year":year,"month":month,"cno":cno},
+			data:{"year":year,"month":month,"camp_no":camp_no},
 			success:function(result)
 			{
 				$('#rdate').html(result)
@@ -79,14 +78,25 @@ $(function(){
 .rday_can:hover{
 	cursor: pointer;
 }
+.reserve {
+	background-color: rgba(141, 186, 0, .6);
+}
+
+.reservedate {
+	background-color: rgba(222, 236, 183.6);
+}
+
+.can {
+	background-color: red;
+}
 </style>
 </head>
 <body>
-  <table class="table">
-   <tr>
-     <td class="text-center">${year }년 ${month }월</td>
+  <table class="table " >
+   <tr class="reserve">
+     <td class="text-center ">${year }년 ${month }월</td>
    </tr>
-   <tr>
+   <tr class="reservedate">
      <td class="inline">
       <select name="year" id="year" class="input-sm">
        <c:forEach var="i" begin="2024" end="2028">
@@ -101,8 +111,8 @@ $(function(){
      </td>
    </tr>
   </table>
-  <div style="height: 10px"></div>
-  <table class="table">
+  <div style=" background-color: rgba(222, 236, 183.6);"></div>
+  <table class="table reservedate">
     <tr>
      <c:forEach var="i" items="${weeks }" varStatus="s">
        <c:choose>
@@ -128,8 +138,8 @@ $(function(){
         </c:forEach>
       </c:if>
       <c:if test="${rday[i]==1 }">
-	      <td class="text-center success ${day==i?'danger':'' }" height="35">
-	      	<span class="rday_can" style="font-weight:bold"
+	      <td class="text-center bs-success ${day==i?'bs-danger':'' }" height="35">
+	      	<span class="rday_can" style="font-weight:bold; color:red;"
 	      	  data-year="${year }"
 	      	  data-month="${month }"
 	      	  data-day="${i }">${i }</span>
