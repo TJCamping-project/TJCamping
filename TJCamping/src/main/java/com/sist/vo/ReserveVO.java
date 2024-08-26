@@ -19,5 +19,5 @@ public class ReserveVO {
 	private String id,day,time,inwon,isok,dbday;
 	private Date regdate;
 	
-	private CampVO cvo=new CampVO(); // JOIN
+	private CampVO cvo=new CampVO(); // JOIN 
 }
