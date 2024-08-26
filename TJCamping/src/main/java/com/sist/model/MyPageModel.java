@@ -169,4 +169,12 @@ public class MyPageModel {
 		
 		return "redirect:../mypage/alljjim_list.do";
 	}
+	@RequestMapping("mypage/mypage_reserve.do")
+	public String mypage_reserve(HttpServletRequest request, HttpServletResponse response) {
+		
+		request.setAttribute("mypage_jsp", "../mypage/mypage_reserve.jsp");
+		request.setAttribute("main_jsp", "../mypage/mypage_main.jsp");
+		return "../main/main.jsp";
+	}
+
 }
