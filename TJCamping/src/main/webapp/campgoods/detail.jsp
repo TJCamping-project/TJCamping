@@ -30,28 +30,50 @@
 <script src="../lib/owlcarousel/owl.carousel.min.js"></script>
 <script src="../lib/lightbox/js/lightbox.min.js"></script>
 <script type="text/javascript">
-$(function(){
-$('#jjimBtn').on('click', function() {
-    let cno = $(this).attr("data-cno")
+$(function() {
+    // 버튼 클릭 이벤트 처리
+    $('#jjimBtn').on('click', function() {
+        let button = $(this);
+        let cno = button.attr("data-cno");
+
+        button.addClass('clicked');  // 'clicked' 클래스 추가
+        button.val("찜하기");  // 버튼 텍스트 변경
+
+        $.ajax({
+            type: 'post',
+            url: '../all_jjim/cinsert.do',
+            data: { "cno": cno, "type": 2, "gno": 1 },
+            success: function(result) {
+                if (result === 'OK') {
+                    button.attr("data-count", 1); // 데이터 속성 업데이트
+                } else {
+                    alert(result); // 에러 메시지 출력
+                }
+            },
+            error: function(request, status, error) {
+                console.log(error); // 에러 로그 출력
+            }
+        })
+    });
+
+    // 페이지 로드 시 버튼 상태 확인
+    let cno = $('#jjimBtn').attr("data-cno");
+
     $.ajax({
-        type: 'post',
-        url: '../all_jjim/cinsert.do',
-        data: { "cno": cno, "type": 2 },
+        type: 'get',
+        url: '../all_jjim/status.do', // 찜 상태를 가져오는 URL
+        data: { "cno": cno },
         success: function(result) {
             if (result === 'OK') {
-                $(this).attr("data-count",1);
-                $(this).attr("class",'btn-xs btn-default')
-                location.href = "../campgoods/detail.do?cno=" + cno + "&gno="+gno+"&type=2";
-            } else {
-                alert(result);
+                $('#jjimBtn').addClass('clicked');  // 찜 상태가 확인되면 'clicked' 클래스 추가
+                $('#jjimBtn').val("찜하기"); // 버튼 텍스트 변경
             }
         },
         error: function(request, status, error) {
-            console.log(error);
+            console.log(error); // 에러 로그 출력
         }
     })
-})
-})
+});
 </script>
 <style>
 .bg-breadcrumb {
@@ -79,6 +101,10 @@ $('#jjimBtn').on('click', function() {
     font-size: 16px;
     transition: background-color 0.3s, transform 0.3s;
 }
+.btn-custom.clicked {
+    background-color: #a9a9a9;
+    color: #fff;
+}
 .btn-custom:hover {
     background-color: #0056b3;
     transform: scale(1.05);
@@ -104,19 +130,27 @@ $('#jjimBtn').on('click', function() {
 .product-image-container {
     text-align: center;
     margin-bottom: 20px;
+    transform: translateX(-10px);
+}
+.product-image-container img {
+    width: 100%; 
+    max-width: 500px; 
+    height: auto; 
+    display: inline-block; /
+    
 }
 .poster-img {
-    border: 2px solid #d3d3d3;
+    border: 1px solid #ddd;
     border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     max-width: 100%;
     height: auto;
 }
 .product-info-container {
-    padding: 20px;
+    padding: 40px;
     background-color: #f9f9f9;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.01);
+    transform: translateX(-30px);
 }
 .product-name {
     font-size: 24px;
@@ -149,6 +183,10 @@ $('#jjimBtn').on('click', function() {
     background-color: rgb(37, 103, 75);
     color: #fff;
 }
+.btn-wishlist.clicked {
+    background-color: rgb(170, 170, 170);
+    color: #fff; 
+}
 .btn-wishlist:hover {
     background-color: rgb(30, 83, 60);
 }
@@ -165,6 +203,11 @@ $('#jjimBtn').on('click', function() {
 }
 .btn-back:hover {
     background-color: rgb(30, 83, 60);
+}
+.packages-item {
+    border: 1px solid #ddd; 
+    border-radius: 12px;
+    overflow: hidden; 
 }
 </style>
 </head>
@@ -200,11 +243,11 @@ $('#jjimBtn').on('click', function() {
                         </tr>
                         <tr>
                             <th class="text-right">소비자가</th>
-                            <td class="text-decoration-line-through">${vo.saleprice}</td>
+                            <td class="text-decoration-line-through">${vo.price}</td>
                         </tr>
                         <tr>
                             <th class="text-right">판매가</th>
-                            <td class="text-primary fw-bold">${vo.price}</td>
+                            <td class="text-primary fw-bold">${vo.saleprice}</td>
                         </tr>
                         <tr>
                             <th class="text-right">배송비</th>
@@ -216,10 +259,11 @@ $('#jjimBtn').on('click', function() {
                     <c:if test="${sessionScope.id != null}">
                         <a href="#" class="btn btn-cart btn-custom mx-2 mb-2">장바구니</a>
                         <c:if test="${check == false}">
-                            <input type="button" class="btn btn-wishlist btn-custom mx-2 mb-2" value="찜하기" id="jjimBtn" data-cno="${vo.cno}">
+                            <input type="button" class="btn btn-wishlist btn-custom mx-2 mb-2" value="찜하기" 
+                            id="jjimBtn" data-cno="${vo.cno}">
                         </c:if>
                         <c:if test="${check == true}">
-                            <span class="btn btn-wishlist btn-custom mx-2 mb-2">찜하기</span>
+                            <span class="btn btn-wishlist btn-custom mx-2 mb-2 clicked">찜하기</span>
                         </c:if>
                         <a href="#" class="btn btn-buy btn-custom mx-2 mb-2">구매하기</a>
                     </c:if>
@@ -229,6 +273,10 @@ $('#jjimBtn').on('click', function() {
         </div>
     </main>
 </div>
+
+<hr style="border-top: 1px solid #999; width: 70%; margin: 50px auto;">
+
+
 <!-- Additional Product Images -->
 <section class="mt-4">
     <h5></h5>
@@ -237,6 +285,7 @@ $('#jjimBtn').on('click', function() {
     </div>
 </section>
 <!-- Product Details End -->
+
 <!-- 추천상품 Start -->
 <div class="container-fluid packages py-5">
     <div class="container py-5">
@@ -254,51 +303,52 @@ $('#jjimBtn').on('click', function() {
 					            <i class="fa fa-shopping-cart me-2"></i>장바구니
 					        </a>
 					        <a href="../campgoods/detail.do?cno=${vo.cno}&gno=1" class="flex-fill text-center border-end py-2 text-decoration-none" style="color: #ffffff;">
-					            <i class="fa fa-shopping-bag me-2"></i>구매하기
+					            <i class="fa fa-search me-2"></i>상세보기
 					        </a>
 					    </div>
-					    <div class="text-center packages-price py-2 px-4">Best</div>
+					    <!--<div class="text-center packages-price py-2 px-4">Best</div>-->
 					</div>
-                    <div class="packages-content bg-light">
-                        <div class="p-4 pb-0">
-                            <h5 class="mb-0 truncate-text" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
-                             ${vo.name}</h5>
-                            <small class="text-uppercase truncate-text">
-                                <c:choose>
-                                    <c:when test="${vo.type1 == 1}">
-                                        에어매트
-                                    </c:when>
-                                    <c:when test="${vo.type1 == 2}">
-                                        텐트
-                                    </c:when>
-                                    <c:when test="${vo.type1 == 3}">
-                                        등산용품
-                                    </c:when>
-                                    <c:when test="${vo.type1 == 4}">
-                                        의자
-                                    </c:when>
-                                    <c:when test="${vo.type1 == 5}">
-                                        바베큐
-                                    </c:when>
-                                    <c:when test="${vo.type1 == 6}">
-                                        랜턴/버너
-                                    </c:when>
-                                    <c:otherwise>
-                                        기타
-                                    </c:otherwise>
-                                </c:choose>
-                            </small>
-                            <p class="mb-4"></p>
-                        </div>
-                        <div class="row bg-primary rounded-bottom mx-0">
-                            <div class="col-6 text-start px-0">
-                                 <a href="#" class="btn-hover btn text-white py-2 px-4"><i class="fa fa-heart me-2"></i>${vo.jjimcount}</a>
-                            </div>
-                            <div class="col-6 text-end px-0">
-                                <a href="#" class="btn-hover btn text-white py-2 px-4">${vo.price}</a>
-                            </div>
-                        </div>
-                    </div>
+					
+	              <div class="packages-content bg-light">
+	                  <div class="p-4 pb-0">
+	                      <h5 class="mb-0 truncate-text" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
+	                       ${vo.name}</h5>
+	                      <small class="text-uppercase truncate-text">
+	                          <c:choose>
+	                              <c:when test="${vo.type1 == 1}">
+	                                  에어매트
+	                              </c:when>
+	                              <c:when test="${vo.type1 == 2}">
+	                                  텐트
+	                              </c:when>
+	                              <c:when test="${vo.type1 == 3}">
+	                                  등산용품
+	                              </c:when>
+	                              <c:when test="${vo.type1 == 4}">
+	                                  의자
+	                              </c:when>
+	                              <c:when test="${vo.type1 == 5}">
+	                                  바베큐
+	                              </c:when>
+	                              <c:when test="${vo.type1 == 6}">
+	                                  랜턴/버너
+	                              </c:when>
+	                              <c:otherwise>
+	                                  기타
+	                              </c:otherwise>
+	                          </c:choose>
+	                      </small>
+	                      <p class="mb-4"></p>
+	                  </div>
+	                  <div class="row bg-primary rounded-bottom mx-0">
+	                      <div class="col-6 text-start px-0">
+	                           <a href="#" class="btn-hover btn text-white py-2 px-4"><i class="fa fa-heart me-2"></i>${vo.jjimcount}</a>
+	                      </div>
+	                      <div class="col-6 text-end px-0">
+	                          <a href="#" class="btn-hover btn text-white py-2 px-4">${vo.price}</a>
+	                      </div>
+	                  </div>
+	              </div>
                 </div>
             </c:forEach>
         </div>

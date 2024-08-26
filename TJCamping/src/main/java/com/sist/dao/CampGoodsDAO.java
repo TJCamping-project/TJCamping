@@ -55,7 +55,99 @@ public class CampGoodsDAO {
 		}
 		return total;
 	}
-	
+	// 캠핑용품 브랜드 목록
+		public static List<CampGoodsVO> campGoodsBrandListData(Map map)
+		{
+			List<CampGoodsVO> list=new ArrayList<CampGoodsVO>();
+			SqlSession session=null;
+			try
+			{
+				session=ssf.openSession();
+				list=session.selectList("campGoodsBrandListData",map);
+			}catch(Exception ex)
+			{
+				ex.printStackTrace();
+			}finally
+			{
+				if(session!=null)
+					session.close();
+			}
+			return list;
+		}
+	public static int campGoodsBrandTotalPage(Map map)
+	{
+		int total=0;
+		SqlSession session=null;
+		try {
+			session=ssf.openSession();
+			total=session.selectOne("campGoodsBrandTotalPage",map);
+		}catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}finally
+		{
+			if(session!=null)
+				session.close();
+		}
+		return total;
+	}
+	// 브랜드 찾기
+	public static List<CampGoodsVO> goodsFindListData(Map map)
+	   {
+		   List<CampGoodsVO> list=new ArrayList<CampGoodsVO>();
+		   SqlSession session=null;
+		   try
+		   {
+			   session=ssf.openSession();
+			   list=session.selectList("goodsFindListData",map);
+		   }catch(Exception ex)
+		   {
+			   ex.printStackTrace();
+		   }
+		   finally
+		   {
+			   if(session!=null)
+				   session.close();
+		   }
+		   return list;
+	   }
+	   public static int goodsFindTotalPage(String ss)
+	   {
+		   int total=0; 
+		   SqlSession session=null;
+		   try
+		   {
+			   session=ssf.openSession();
+			   total=session.selectOne("goodsFindTotalPage",ss);
+		   }catch(Exception ex)
+		   {
+			   ex.printStackTrace();
+		   }
+		   finally
+		   {
+			   if(session!=null)
+				   session.close();
+		   }
+		   return total;
+	   }
+	// 브랜드 목록
+	    public static List<String> getBrandList() 
+	    {
+	        List<String> list = new ArrayList<>();
+	        SqlSession session = null;
+	        try 
+	        {
+	            session = ssf.openSession();
+	            list = session.selectList("getBrandList");
+	        } catch (Exception ex) {
+	            ex.printStackTrace();
+	        } finally 
+	        {
+	            if (session != null) 
+	            	session.close();
+	        }
+	        return list;
+	    }
 	// 캠핑용품 상세페이지
 	public static CampGoodsVO campGoodsDetailData(Map map)
 	{

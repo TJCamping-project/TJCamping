@@ -94,65 +94,63 @@
 
 
 	<!-- About Start -->
-	<div class="container-fluid about py-5 style="margin-left: 75px;">
-		<div class="container py-5">
-			<div class="row g-5 align-items-center">
-				<div class="col-lg-5">
-					<div class="h-100" style="border: 10px solid rgb(37, 103, 75);">
-						<img src="../img/about-img.jpg" class="img-fluid w-100 h-100" alt="">
-					</div>
-				</div>
-				<div class="col-lg-7"
-					style="background: linear-gradient(rgba(255, 255, 255, .8), rgba(255, 255, 255, .8));">
-					<h5 class="section-about-title"></h5>
-					<h1 class="mb-4">
-						Welcome to <span class="text-primary">TJ Camping!</span>
-					</h1>
-					<p class="mb-4">
-						TJ캠핑은 캠핑에 관련된 모든 서비스를 제공하는 전문 캠핑 플랫폼입니다.<br>
-                        캠핑장 서칭부터 예약, 용품 구매, 정보 및 팁 수집까지<br>
-                        TJ 캠핑이 제공하는 독보적인 원스탑 서비스를 통해 스마트한 캠핑 라이프를 즐겨보세요!
-					</p>
-					<!-- <p class="mb-4">TJ 캠핑만의 원스탑 서비스를 통해 스마트한 캠핑 라이프를 즐겨보세요!</p> -->
-					<div class="row gy-2 gx-4 mb-4">
-						<div class="col-sm-5">
-							<p class="mb-0">
-								<i class="fa fa-arrow-right text-primary me-2"></i>캠핑장 소개
-							</p>
-						</div>
-						<div class="col-sm-5">
-							<p class="mb-0">
-								<i class="fa fa-arrow-right text-primary me-2"></i>캠핑장 예약
-							</p>
-						</div>
-						<div class="col-sm-5">
-							<p class="mb-0">
-								<i class="fa fa-arrow-right text-primary me-2"></i>캠핑용품 판매
-							</p>
-						</div>
-						<div class="col-sm-5">
-							<p class="mb-0">
-								<i class="fa fa-arrow-right text-primary me-2"></i>맛집 추천
-							</p>
-						</div>
-						<div class="col-sm-5">
-							<p class="mb-0">
-								<i class="fa fa-arrow-right text-primary me-2"></i>레시피 소개
-							</p>
-						</div>
-						<div class="col-sm-5">
-							<p class="mb-0">
-								<i class="fa fa-arrow-right text-primary me-2"></i>생생한 후기
-							</p>
-						</div>
-					</div>
-					<a class="btn btn-primary rounded-pill py-3 px-5 mt-2" href="">Read
-						More</a>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- About End -->
+<div class="container-fluid about py-5" style="transform: translateX(110px);">
+    <div class="container py-5">
+        <div class="row g-5 align-items-center">
+            <div class="col-lg-5">
+                <div class="h-100" style="border: 10px solid rgb(37, 103, 75);">
+                    <img src="../img/about-img.jpg" class="img-fluid w-100 h-100" alt="">
+                </div>
+            </div>
+            <div class="col-lg-7" style="background: linear-gradient(rgba(255, 255, 255, .8), rgba(255, 255, 255, .8)); transform: translateX(20px);">
+                <h5 class="section-about-title"></h5>
+                <h1 class="mb-4">
+                    Welcome to <span class="text-primary">TJ Camping!</span>
+                </h1>
+                <p class="mb-4">
+                    TJ캠핑은 캠핑에 관련된 모든 서비스를 제공하는 전문 캠핑 플랫폼입니다.<br>
+                    캠핑장 서칭부터 예약, 용품 구매, 정보 및 팁 수집까지<br>
+                    TJ 캠핑이 제공하는 원스탑 서비스를 통해 스마트한 캠핑 라이프를 즐겨보세요!
+                </p>
+                <!-- <p class="mb-4">TJ 캠핑만의 원스탑 서비스를 통해 스마트한 캠핑 라이프를 즐겨보세요!</p> -->
+                <div class="row gy-2 gx-4 mb-4">
+                    <div class="col-sm-5">
+                        <p class="mb-0">
+                            <i class="fa fa-arrow-right text-primary me-2"></i>캠핑장 소개
+                        </p>
+                    </div>
+                    <div class="col-sm-5">
+                        <p class="mb-0">
+                            <i class="fa fa-arrow-right text-primary me-2"></i>캠핑장 예약
+                        </p>
+                    </div>
+                    <div class="col-sm-5">
+                        <p class="mb-0">
+                            <i class="fa fa-arrow-right text-primary me-2"></i>캠핑용품 판매
+                        </p>
+                    </div>
+                    <div class="col-sm-5">
+                        <p class="mb-0">
+                            <i class="fa fa-arrow-right text-primary me-2"></i>맛집 추천
+                        </p>
+                    </div>
+                    <div class="col-sm-5">
+                        <p class="mb-0">
+                            <i class="fa fa-arrow-right text-primary me-2"></i>레시피 소개
+                        </p>
+                    </div>
+                    <div class="col-sm-5">
+                        <p class="mb-0">
+                            <i class="fa fa-arrow-right text-primary me-2"></i>생생한 후기
+                        </p>
+                    </div>
+                </div>
+                <a class="btn btn-primary rounded-pill py-3 px-5 mt-2" href="">Read More</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- About End -->
 
 
 	<!-- Explore Tour Start -->
@@ -435,8 +433,9 @@
         <div class="packages-carousel owl-carousel">
             <c:forEach var="vo" items="${gList}" varStatus="s">
                 <div class="packages-item">
-                    <div class="packages-img">
-                        <img src="${vo.poster}" class="img-fluid w-100 rounded-top" alt="Image">
+                   <div class="packages-img" style="border: 1px solid #ddd; background-color: #fff;">
+					    <img src="${vo.poster}" class="img-fluid w-100 rounded-top" alt="Image"
+					         style="object-fit: contain; height: 300px; background-color: #fff;">
                         <div class="packages-info d-flex border border-start-0 border-end-0 position-absolute"
                              style="width: 100%; bottom: 0; left: 0; z-index: 5;">
                             <!-- <a href="#" class="flex-fill text-center border-end py-2 text-decoration-none"
@@ -450,10 +449,10 @@
                             </a>
                             <a href="../campgoods/detail.do?cno=${vo.cno}&gno=1" class="flex-fill text-center border-end py-2 text-decoration-none"
                                style="color: #ffffff;"> 
-                                <i class="fa fa-shopping-bag me-2"></i>구매하기
+                                <i class="fa fa-search me-2"></i>상세보기
                             </a>
                         </div>
-                        <div class="text-center packages-price py-2 px-4">Best</div>
+                        <!--<div class="text-center packages-price py-2 px-4">Best</div>-->
                     </div>
                     <div class="packages-content bg-light">
                         <div class="p-4 pb-0">
