@@ -185,13 +185,13 @@
          <nav class="pagination">
             <ul>
                <c:if test="${startPage > 1}">
-			    <li><a href="../campgoods/list_find.do?page=${startPage-1}&gno=${gno}">&laquo; Previous</a></li>
+			    <li><a href="../campgoods/list_find.do?page=${startPage-1}&gno=${gno}&ss=${ss}">&laquo; Previous</a></li>
 			</c:if>
 			<c:forEach var="i" begin="${startPage}" end="${endPage}">
-			    <li ${i == curpage ? "class=current" : ""}><a href="../campgoods/list_find.do?page=${i}&gno=${gno}">${i}</a></li>
+			    <li ${i == curpage ? "class=current" : ""}><a href="../campgoods/list_find.do?page=${i}&gno=${gno}&ss=${ss}">${i}</a></li>
 			</c:forEach>
 			<c:if test="${endPage < totalpage}">
-			    <li><a href="../campgoods/list_find.do?page=${endPage+1}&gno=${gno}">Next &raquo;</a></li>
+			    <li><a href="../campgoods/list_find.do?page=${endPage+1}&gno=${gno}&ss=${ss}">Next &raquo;</a></li>
 			</c:if>
             </ul>
          </nav>
