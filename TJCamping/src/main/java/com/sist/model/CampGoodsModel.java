@@ -105,45 +105,46 @@ public class CampGoodsModel {
 	   }
 	@RequestMapping("campgoods/detail.do")
 	public String campgoods_detail(HttpServletRequest request, HttpServletResponse response) {
-		String cno1=request.getParameter("cno");
-		String gno=request.getParameter("gno");
-		String type=request.getParameter("type");
-		Map map=new HashMap();
-		map.put("cno", cno1);
-		map.put("table_name", tables[Integer.parseInt(gno)]);
-		List<CampGoodsVO> gList=CampGoodsDAO.campGoodsRecListData(map);
-		CampGoodsVO vo=CampGoodsDAO.campGoodsDetailData(map);
-		String price=vo.getPrice();
-		String price2=vo.getPrice();
-		price2=price2.replaceAll("[^0-9]", "");
-		vo.setPrice2(Integer.parseInt(price2));
-		
-		boolean bCheck=false;
-		HttpSession session=request.getSession();
-		String id=(String)session.getAttribute("id");
-		request.setAttribute("type",type);
-		if(id!=null) {
-			Map map2 = new HashMap();
-			map2.put("cno", cno1);
-			map2.put("type",type);
-			map2.put("id", id);
-			int count=AllJjimDAO.allJjimCheck(map2);
-	        System.out.println(cno1+" "+type+" "+id+" "+count);
-			if(count==1) {
-				bCheck=true;
-		        System.out.println(cno1+" "+type+" "+id);
-			}
-			else
-				bCheck=false;
-			
-			request.setAttribute("check", bCheck);
-			
-		}
+	    String cno1 = request.getParameter("cno");
+	    String gno = request.getParameter("gno");
+	    String type = request.getParameter("type");
+	    Map<String, Object> map = new HashMap<>();
+	    map.put("cno", cno1);
+	    map.put("table_name", tables[Integer.parseInt(gno)]);
 	    
-		request.setAttribute("gList", gList);
-		request.setAttribute("vo", vo);
-		request.setAttribute("main_jsp", "../campgoods/detail.jsp");
-		return "../main/main.jsp";
+	    List<CampGoodsVO> gList = CampGoodsDAO.campGoodsRecListData(map);
+	    CampGoodsVO vo = CampGoodsDAO.campGoodsDetailData(map);
+	    
+	    String price = vo.getPrice(); 
+	    String saleprice = vo.getSaleprice(); 
+	    
+	    String numericPrice = price.replaceAll("[^0-9]", "");
+	    String numericSalePrice = saleprice.replaceAll("[^0-9]", "");
+
+	    vo.setPrice2(Integer.parseInt(numericSalePrice)); 
+	    
+	    boolean bCheck = false;
+	    HttpSession session = request.getSession();
+	    String id = (String) session.getAttribute("id");
+	    
+	    request.setAttribute("type", type);
+	    if (id != null) {
+	        Map<String, Object> map2 = new HashMap<>();
+	        map2.put("cno", cno1);
+	        map2.put("type", type);
+	        map2.put("id", id);
+	        int count = AllJjimDAO.allJjimCheck(map2);
+	        if (count == 1) {
+	            bCheck = true;
+	        }
+	        request.setAttribute("check", bCheck);
+	    }
+	    
+	    request.setAttribute("numericPrice", numericPrice); 
+	    request.setAttribute("gList", gList);
+	    request.setAttribute("vo", vo);
+	    request.setAttribute("main_jsp", "../campgoods/detail.jsp");
+	    return "../main/main.jsp";
 	}
 	@RequestMapping("campgoods/list_brand.do")
 	public String campgoods_brandlist(HttpServletRequest request, HttpServletResponse response) {
@@ -190,7 +191,6 @@ public class CampGoodsModel {
 	    {
 	        request.setCharacterEncoding("UTF-8");
 	    } catch (Exception ex) {}
-
 	    String gno = request.getParameter("gno");
 	    if (gno == null) 
 	    	gno = "1"; 

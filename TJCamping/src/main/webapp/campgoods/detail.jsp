@@ -73,7 +73,30 @@ $(function() {
             console.log(error); // 에러 로그 출력
         }
     })
-});
+})
+$(function() {
+    $('#sel').change(function() {
+        let account = $('#sel').val();
+        console.log('Selected quantity:', account)
+
+        if (account === '수량선택') {
+            alert("수량을 선택하세요")
+            return;
+        }
+
+        let price = $('#sel').attr("data-price")
+        console.log('Price from data-price:', price)
+
+        price = price.replace(/[^0-9]/g, '')
+        console.log('Price after removing non-numeric characters:', price)
+
+        let total = Number(price) * Number(account)
+        console.log('Calculated total:', total)
+
+        $('#total').text(total.toLocaleString() + "원")
+        $('#account').val(account)
+    })
+})
 </script>
 <style>
 .bg-breadcrumb {
@@ -129,6 +152,7 @@ $(function() {
 }
 .product-image-container {
     text-align: center;
+    margin-top: 20px;
     margin-bottom: 20px;
     transform: translateX(-10px);
 }
@@ -147,10 +171,11 @@ $(function() {
 }
 .product-info-container {
     padding: 40px;
-    background-color: #f9f9f9;
+    background-color: #ffffff;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.01);
-    transform: translateX(-30px);
+    transform: translateX(-60px);
+    transform: translateY(10px);
 }
 .product-name {
     font-size: 24px;
@@ -219,10 +244,10 @@ $(function() {
     </div>
 </div>
 <!-- Header End -->
+<hr style="border-top: 1px solid #999; width: 70%; margin: 0px auto;">
 <!-- Product Details Start -->
 <div class="container product-details mt-5">
     <main class="row">
-        <!-- Main Product Image and Details -->
         <div class="col-md-6">
             <div class="product-image-container">
                 <img src="${vo.poster}" alt="${vo.name}" class="img-fluid poster-img">
@@ -253,11 +278,34 @@ $(function() {
                             <th class="text-right">배송비</th>
                             <td>${vo.delivery}</td>
                         </tr>
+                        <tr>
+						    <td colspan="2">
+						        <select id="sel" data-price="${vo.price2}" style="width: 75%; padding: 10px; margin-left: auto;">
+								    <option>수량선택</option>
+								    <c:forEach var="i" begin="1" end="10">
+								        <option>${i}</option>
+								    </c:forEach>
+								</select>
+						    </td>
+						</tr>
+						<tr>
+						    <td colspan="2" style="text-align: right; padding-right: 25%;">
+						        총 금액: 
+						        <span id="total" style="font-size: 1.5em; font-weight: bold;">
+						            ${vo.saleprice}
+						        </span>
+						    </td>
+						</tr>
                     </tbody>
                 </table>
                 <div class="d-flex flex-wrap justify-content-start mt-3">
                     <c:if test="${sessionScope.id != null}">
-                        <a href="#" class="btn btn-cart btn-custom mx-2 mb-2">장바구니</a>
+                    <form method="post" action="../campgoods/cart_insert.do">
+				        <input type="hidden" name="gno" value="${vo.cno}" id="gno">
+				        <input type="hidden" name="price" value="${vo.price}" id="price2">
+				        <input type="hidden" name="account" value="" id="account">
+				        <input type="submit" class="btn btn-cart btn-custom mx-2 mb-2" value="장바구니" id="cart">
+				     </form>
                         <c:if test="${check == false}">
                             <input type="button" class="btn btn-wishlist btn-custom mx-2 mb-2" value="찜하기" 
                             id="jjimBtn" data-cno="${vo.cno}">
@@ -274,17 +322,16 @@ $(function() {
     </main>
 </div>
 
+
 <hr style="border-top: 1px solid #999; width: 70%; margin: 50px auto;">
 
 
-<!-- Additional Product Images -->
 <section class="mt-4">
     <h5></h5>
     <div class="section-image-container">
         <img src="${vo.detail_poster}" alt="Detailed View" class="img-fluid">
     </div>
 </section>
-<!-- Product Details End -->
 
 <!-- 추천상품 Start -->
 <div class="container-fluid packages py-5">
@@ -354,6 +401,6 @@ $(function() {
         </div>
     </div>
 </div>
-<!-- 추천상품 End -->
+<!— 추천상품 End —>
 </body>
 </html>
