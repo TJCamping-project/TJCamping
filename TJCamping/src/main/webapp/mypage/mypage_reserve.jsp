@@ -14,27 +14,29 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
 $(function(){
+	
 	$('.infos').click(function(){
 		let rno=$(this).attr("data-rno")
 		$.ajax({
 			type:'post',
 			url:'../mypage/mypage_reserve_info.do',
 			data:{"rno":rno},
-			success:function(json){
-				let js=JSON.parse(json)
-				console.log(js) // debug
-				$('#info').show() 
-				$('#poster').attr("src",js.poster)
-				$('#name').text(js.name)
-				$('#address').text(js.address)
-				$('#phone').text(js.phone)
-				$('#price').text(js.price)
-				$('#rno').text(js.rno)
-				$('#rdate').text(js.day)
-				$('#rtime').text(js.time)
-				$('#rinwon').text(js.inwon)
-				$('#regdate').text(js.regdate)
-			},
+			success: function(json) {
+		        // json이 JavaScript 객체인 경우
+		        console.log(json); // debug
+		        $('#info').show();
+		        $('#poster').attr("src", json.poster);
+		        $('#name').text(json.name);
+		        $('#address').text(json.address);
+		        $('#phone').text(json.phone);
+		        $('#price').text(json.price);
+		        $('#rno').text(json.rno);
+		        $('#rdate').text(json.day);
+		        $('#rtime').text(json.time);
+		        $('#rinwon').text(json.inwon);
+		        $('#regdate').text(json.regdate);
+		    },
+
 			error:function(request,status,error){
 				console.log(error)
 			}
@@ -58,16 +60,20 @@ $(function(){
       <th class="text-center">인원</th>
       <th class="text-center">상태</th>
      </tr>
-     <c:forEach var="rvo" items="${recvList }">
+     <c:forEach var="rvo" items="${rList }">
+     <input type="hidden" id="camp_addr" value="${rvo.cvo.camp_addr }">
+     <input type="hidden" id="camp_price" value="${rvo.cvo.camp_price }">
+     <input type="hidden" id="camp_phone" value="${rvo.cvo.camp_phone}">
+     <input type="hidden" id="camp_regdate" value="${rvo.regdate }">
        <tr>
-          <td class="text-center">${rvo.rno }</td>
+          <td class="text-center" id="camp_rno">${rvo.rno }</td>
 	      <td class="text-center">
-	       <img src="${rvo.cvo.image1 }" style="width: 20px;height: 20px">
+	       <img src="${rvo.cvo.image1 }" style="width: 20px;height: 20px" id="campimg">
 	      </td>
-	      <td>${rvo.cvo.camp_name }</td>
-	      <td class="text-center">${rvo.day }</td>
-	      <td class="text-center">${rvo.time }</td>
-	      <td class="text-center">${rvo.inwon }</td>
+	      <td id=camp_name>${rvo.cvo.camp_name }</td>
+	      <td class="text-center" id=camp_day>${rvo.day }</td>
+	      <td class="text-center" id=camp_time>${rvo.time }</td>
+	      <td class="text-center" id=camp_inwon>${rvo.inwon }</td>
 	      <td class="text-center inline">
 	       <c:if test="${rvo.isok=='y' }">
 	        <span class="btn btn-success btn-xs infos" data-rno="${rvo.rno }">예약완료</span>
@@ -81,7 +87,7 @@ $(function(){
      </c:forEach>
     </table>
     <div style="height: 10px"></div>
-    <%-- <table class="table" style="display:none" id="info">
+    <table class="table" style="display:none" id="info">
       <caption><h4>예약 정보</h4></caption>
       <tr>
         <td width=30% class="text-center" rowspan="9">
@@ -123,7 +129,7 @@ $(function(){
        <th width=20% class="text-center">신청일</th>
        <td width="50%" id="regdate"></td>
       </tr>
-    </table> --%>
+    </table> 
    </div>
   </main>
 </div>

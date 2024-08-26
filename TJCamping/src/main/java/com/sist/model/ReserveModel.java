@@ -304,32 +304,29 @@ public class ReserveModel {
 	  public void mypage_reserve_info(HttpServletRequest request,HttpServletResponse response)
 	  {
 		  String rno=request.getParameter("rno");
-		  // 데이터베이스 연동 
-		  /*
-		   *   rno,day,pr.time,inwon,pf.name,pf.poster,pf.address,phone,theme,score,content,
-			           TO_CHAR(redate,'YYYY-MM-DD HH24:MI:SS') as dbday
-		   */
-		  ReserveVO vo=CampDAO.campReserveMyPageData(Integer.parseInt(rno));
-		  // {rno:1....} => JSON:JavaScript Object Notation
-		  // 자바 = 자바스크립트 호환 => RestFul 
-		  JSONObject obj=new JSONObject();
-		  obj.put("rno", vo.getRno());
-		  obj.put("day", vo.getDay());
-		  obj.put("time", vo.getTime());
-		  obj.put("inwon", vo.getInwon());
-		  obj.put("name",vo.getCvo().getCamp_name());
-		  obj.put("poster",vo.getCvo().getImage1());
-		  obj.put("price",vo.getCvo().getCamp_price());
-		  obj.put("address",vo.getCvo().getCamp_addr());
-		  obj.put("phone",vo.getCvo().getCamp_phone());
-		  obj.put("regdate",vo.getDbday());
-		  // Ajax 값을 전송 
-		  try
-		  {
-			  response.setContentType("text/plain;charset=UTF-8");
-			  // => text/html(HTML) , text/xml(XML) , text/plain(JSON)
-			  PrintWriter out=response.getWriter();
-			  out.write(obj.toJSONString());
-		  }catch(Exception ex) {}
+		  ReserveVO rmvo = ReserveDAO.myReserveData(Integer.parseInt(rno));
+		  
+		  JSONObject obj = new JSONObject();
+		    obj.put("rno", rmvo.getRno());
+		    obj.put("day", rmvo.getDay());
+		    obj.put("time", rmvo.getTime());
+		    obj.put("inwon", rmvo.getInwon());
+		    obj.put("name", rmvo.getCvo().getCamp_name());
+		    obj.put("poster", rmvo.getCvo().getImage1());
+		    obj.put("price", rmvo.getCvo().getCamp_price());
+		    obj.put("address", rmvo.getCvo().getCamp_addr());
+		    obj.put("phone", rmvo.getCvo().getCamp_phone());
+		    obj.put("regdate", rmvo.getDbday());
+		    
+		    try {
+		        // 응답 타입 설정 (JSON으로 전송)
+		        response.setContentType("application/json;charset=UTF-8");
+		        PrintWriter out = response.getWriter();
+		        
+		        // JSON 객체를 문자열로 변환 후 전송
+		        out.write(obj.toJSONString());
+		    } catch (Exception ex) {
+		        ex.printStackTrace();
+		    }
 	  }
 }

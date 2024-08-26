@@ -13,10 +13,12 @@ import com.sist.controller.RequestMapping;
 import com.sist.dao.AllJjimDAO;
 import com.sist.dao.FoodDAO;
 import com.sist.dao.MemberDAO;
+import com.sist.dao.ReserveDAO;
 import com.sist.vo.CampGoodsVO;
 import com.sist.vo.FoodVO;
 import com.sist.vo.MemberVO;
 import com.sist.vo.RecipeVO;
+import com.sist.vo.ReserveVO;
 
 public class MyPageModel {
 	@RequestMapping("mypage/mypage_main.do")
@@ -171,10 +173,22 @@ public class MyPageModel {
 	}
 	@RequestMapping("mypage/mypage_reserve.do")
 	public String mypage_reserve(HttpServletRequest request, HttpServletResponse response) {
+		HttpSession session = request.getSession();
+		String id = (String) session.getAttribute("id");
 		
+		List<ReserveVO> rList = ReserveDAO.campReserveMyPageData(id);
+		
+		request.setAttribute("rList", rList);
 		request.setAttribute("mypage_jsp", "../mypage/mypage_reserve.jsp");
 		request.setAttribute("main_jsp", "../mypage/mypage_main.jsp");
 		return "../main/main.jsp";
 	}
-
+	@RequestMapping("mypage/mypage_reserve_cancel.do")
+	public String mypage_reserve_cancel(HttpServletRequest request,HttpServletResponse response)
+	  {
+		  String rno=request.getParameter("rno");
+		  // 데이터베이스 연동 => 삭제 
+		  ReserveDAO.reserveCancel(Integer.parseInt(rno));
+		  return "redirect:../mypage/mypage_reserve.do";
+	  }
 }

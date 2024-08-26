@@ -135,4 +135,64 @@ public class ReserveDAO {
 		
 		return times;
 	}
+	public static ReserveVO myReserveData(int rno)
+	{
+		ReserveVO vo = new ReserveVO();
+		SqlSession session=null;
+		
+		try
+		{
+			session=ssf.openSession();
+			vo=session.selectOne("myReserveData",rno);
+		}catch(Exception ex)
+		{
+			System.out.println("myReserveData 오류 3");
+			ex.printStackTrace();
+		}
+		finally
+		{
+			if(session!=null)
+				session.close();
+		}
+		
+		return vo;
+	}
+	public static void reserveCancel(int rno) {
+		SqlSession session=null;
+		
+		try
+		{
+			session=ssf.openSession();
+			session.delete("reserveCancel",rno);
+			session.commit();
+		}catch(Exception ex)
+		{
+			System.out.println("reserveCancel 오류 6");
+			ex.printStackTrace();
+		}
+		finally
+		{
+			if(session!=null)
+				session.close();
+		}
+	}
+	public static void reserveOk(int rno) {
+		SqlSession session=null;
+		
+		try
+		{
+			session=ssf.openSession();
+			session.update("reserveOk",rno);
+			session.commit();
+		}catch(Exception ex)
+		{
+			System.out.println("reserveOk 오류 6");
+			ex.printStackTrace();
+		}
+		finally
+		{
+			if(session!=null)
+				session.close();
+		}
+	}
 }
