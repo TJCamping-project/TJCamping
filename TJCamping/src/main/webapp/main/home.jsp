@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<div>
 	<!-- 롤링배너 Start -->
 	<div class="carousel-header">
 		<div id="carouselId" class="carousel slide" data-bs-ride="carousel">
@@ -94,7 +95,7 @@
 
 
 	<!-- About Start -->
-<div class="container-fluid about py-5" style="transform: translateX(110px);">
+<div class="container-fluid about py-5">
     <div class="container py-5">
         <div class="row g-5 align-items-center">
             <div class="col-lg-5">
@@ -272,8 +273,6 @@
 					</div>
 				</div>
 			</div>
-		</div>
-	</div>
 	<!-- Explore Tour End -->
 
 
@@ -873,7 +872,7 @@
 	</div>
 
 	<!-- 후기 End -->
-
+</div>
 
 </body>
 </html>
