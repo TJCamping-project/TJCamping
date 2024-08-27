@@ -62,7 +62,7 @@ a.pagetagcolor{color: yellow; background: ;}
 					</td>
 				</tr>
 			</table>
-			<table class="table">
+			<table class="table" style="font-size: 18px;">
 				<tr>
 					<th width=10% class="text-center boardtitlecolor">번호</th>
 					<th width=50% class="text-center boardtitlecolor">제목</th>
@@ -75,18 +75,21 @@ a.pagetagcolor{color: yellow; background: ;}
 				<tr>
 					<td width=10% class="boardlistsytle" >${count }
 					</td>
-					<td width=50% style="text-align: center;">
+					<td width=50% style="text-align: center; margin: auto;">
 						<c:if test="${15<vo.hit }">
-							<sup><img src="../img/" width="20px" height="20px" align="left"></sup>	<!-- 새 글 뒤에 이미지 아이콘 -->
+							<sup><img src="../img/thumb_up.png" width="25px" height="25px" align="left"></sup>	<!-- 새 글 뒤에 이미지 아이콘 -->
 					 	</c:if>
 						<a class="boardlistsytle" href="../boardcamp/detail.do?no=${vo.no }">${vo.subject }</a>
 						&nbsp;
-						<c:if test="${today==vo.dbday }">
-							<sup><img src="../img/new.gif" width="20px" height="20px"></sup>	<!-- 새 글 뒤에 이미지 아이콘 -->
-					 	</c:if>
+						
 					</td>
 					<td width=15% class="text-center boardlistsytle" >${vo.name }</td>
-					<td width=15% class="text-center boardlistsytle" >${vo.dbday }</td>
+					<td width=15% class="text-center boardlistsytle" >
+						<c:if test="${today==vo.dbday }">
+							<sup><img src="../img/new.gif" width="25px" height="25px"></sup>	<!-- 새 글 뒤에 이미지 아이콘 -->
+					 	</c:if>
+						${vo.dbday }
+					</td>
 					<td width=10% class="text-center boardlistsytle" >${vo.hit }</td>
 				</tr>
 				<c:set var="count" value="${count-1 }"/>
