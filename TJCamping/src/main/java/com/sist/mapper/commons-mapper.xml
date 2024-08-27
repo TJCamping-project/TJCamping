@@ -10,8 +10,8 @@
 		WHERE ROWNUM=1
 	</select>
 	<select id="commonsTodayFood" resultType="FoodVO">
-		SELECT fno,poster,name,type,address
-		FROM (SELECT fno,poster,name,type,address
+		SELECT fno,poster,name,address
+		FROM (SELECT fno,poster,name,address
 		FROM food_house
 		WHERE fno>=1
 		ORDER BY DBMS_RANDOM.VALUE)

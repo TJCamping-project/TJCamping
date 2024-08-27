@@ -44,7 +44,7 @@
                     <div class="col">
                         <div class="footer-item d-flex flex-column align-items-center">
                             <h4 class="mb-3 text-white">오늘의 맛집</h4>
-                            <a href="../food/detail.do?fno=${bbb.fno }&type=${bbb.type }">
+                            <a href="../food/detail.do?fno=${bbb.fno }&type=1">
                             	<img src="http://menupan.com${bbb.poster }" style="height:200px;width:230px">
                             </a>
                         </div>
