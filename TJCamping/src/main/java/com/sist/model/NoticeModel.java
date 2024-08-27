@@ -5,6 +5,7 @@ import java.util.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.sist.commons.CommonsModel;
 //import com.sist.commons.CommonsModel;
 import com.sist.controller.RequestMapping;
 import com.sist.dao.*;
@@ -38,8 +39,9 @@ public class NoticeModel {
 		request.setAttribute("count", count);
 		request.setAttribute("noticeList", list);
 		
+		CommonsModel.footerPrint(request);
+		
 		request.setAttribute("main_jsp", "../notice/list.jsp");
-		//CommonsModel.footerPrint(request);
 		return"../main/main.jsp";
 	}
 	// 상세보기
@@ -50,9 +52,10 @@ public class NoticeModel {
 		NoticeVO vo = NoticeDAO.noticeDetailData(Integer.parseInt(no));
 		vo.setNotice_type(types[vo.getType()]);
 		
+		CommonsModel.footerPrint(request);
+		
 		request.setAttribute("vo", vo);
 		request.setAttribute("main_jsp", "../notice/detail.jsp");
-		//CommonsModel.footerPrint(request);
 		return "../main/main.jsp";
 	}
 	

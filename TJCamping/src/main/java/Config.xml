@@ -49,6 +49,6 @@
 		<mapper resource="com/sist/mapper/replyboard-mapper.xml"/>
 		<mapper resource="com/sist/mapper/reserve-mapper.xml"/>
 		<mapper resource="com/sist/mapper/recipe-mapper.xml"/>
-		
+		<mapper resource="com/sist/mapper/commons-mapper.xml"/>
 	</mappers>
 </configuration>

@@ -349,19 +349,21 @@ geocoder.addressSearch('${vo.camp_addr}', function(result, status) {
 <div class="container-fluid packages py-5">
     <div class="container py-5">
         <div class="mx-auto text-center mb-5" style="max-width: 900px;">
-            <h5 class="section-title px-3">Campsite Map</h5>
-            <h1 class="mb-0">캠핑장</h1>
+            <h5 class="section-title px-3">Near Campsite</h5>
+            <h1 class="mb-0">주변 캠핑장</h1>
         </div>
         <div class="packages-carousel owl-carousel">
             <c:forEach var="nvo" items="${nList}" varStatus="s">
                 <div class="packages-item">
                     <div class="packages-img">
-                        <img src="${nvo.image1}" class="img-fluid w-100 rounded-top" alt="Image">
-                        <div class="text-center packages-price py-2 px-4">Best</div>
+                        <img src="${nvo.image1}" style="height:280px;width:420px" class="rounded-top">
+                    <div class="text-center packages-price py-2 px-4">Near</div>
                     </div>
                     <div class="packages-content bg-light">
                         <div class="p-4 pb-0">
-                            <h5 class="mb-0 truncate-text">${nvo.camp_name}</h5>
+                        	<a href="../camp/detail.do?camp_no=${nvo.camp_no }"/>
+                            	<h5 class="mb-0 truncate-text">${nvo.camp_name}</h5>
+                            </a>
                             <p class="mb-4"></p>
                         </div>
                         <div class="row bg-primary rounded-bottom mx-0">

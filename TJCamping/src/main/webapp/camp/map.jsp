@@ -134,7 +134,6 @@ $(function(){
     });
 });
 */
-*
 /*	$('#deleteBtn').click(function(){
 		let pwd=$('#del_pwd').val()
 		if(pwd.trim()==="")
@@ -168,7 +167,6 @@ $(function(){
 			}
 		})
 	}) */
-})
 </script>
 
     </head>
@@ -225,7 +223,7 @@ $(function(){
   </main>
 </div>
 
-
+<!-- 
 <div class="container text-center mt-5">
     <ul class="nav nav-pills d-inline-flex justify-content-center mb-5">
         <li class="nav-item">
@@ -256,10 +254,10 @@ $(function(){
     
     <div id="sub-button-container" class="sub-buttons"></div>
 </div>
-
+ -->
 
 <script>
-
+<!--
     document.addEventListener('DOMContentLoaded', function() {
         // Elements
         const gyeonggiBtn = document.getElementById('btn-gyeonggi');
@@ -302,7 +300,7 @@ $(function(){
         }
     });
 
-
+-->
 $(function(){
 	$('.rebtn').click(function(){
 		let no=$(this).attr("data-no");
@@ -324,7 +322,7 @@ $(function(){
 
 
 </div>
-		
+	
 		<!-- 검색 기능 End -->
 		
 
@@ -365,6 +363,44 @@ $(function(){
 			</div>
 		</div>
 	</div>
+
+<div class="container-fluid packages py-5">
+    <div class="container py-5">
+        <div class="mx-auto text-center mb-5" style="max-width: 900px;">
+            <h5 class="section-title px-3">Recently visited campsites</h5>
+            <h1 class="mb-0">최근 둘러본 캠핑장</h1>
+        </div>
+        <div class="packages-carousel owl-carousel">
+            <c:forEach var="coovo" items="${cookieList}" varStatus="s">
+                <div class="packages-item">
+                    <div class="packages-img">
+                        <img src="${coovo.image1}" style="height:280px;width:420px" class="rounded-top">
+                    <div class="text-center packages-price py-2 px-4">Visit</div>
+                    </div>
+                    <div class="packages-content bg-light">
+                        <div class="p-4 pb-0">
+                        	<a href="../camp/detail.do?camp_no=${coovo.camp_no }"/>
+                            	<h5 class="mb-0 truncate-text">${coovo.camp_name}</h5>
+                            </a>
+                            <p class="mb-4"></p>
+                        </div>
+                        <div class="row bg-primary rounded-bottom mx-0">
+                            <div class="col-6 text-start px-0">
+                                <a href="#" class="btn-hover btn text-white py-2 px-4"></a>
+                            </div>
+                            <div class="col-6 text-end px-0">
+                                <a href="#" class="btn-hover btn text-white py-2 px-4">${coovo.camp_price}원</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </c:forEach>
+        </div>
+    </div>
+</div>
+
+
+
 
         <div class="wrapper row3">
 	  <main class="container clear"> 

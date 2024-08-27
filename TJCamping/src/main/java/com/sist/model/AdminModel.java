@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.sist.commons.CommonsModel;
 //import com.sist.commons.CommonsModel;
 import com.sist.controller.RequestMapping;
 import com.sist.dao.*;
@@ -14,6 +15,8 @@ public class AdminModel {
    @RequestMapping("adminpage/adminpage_main.do")
    public String adminpage_main(HttpServletRequest request,HttpServletResponse response)
    {
+	   CommonsModel.footerPrint(request);
+	   
 	   request.setAttribute("title", "관리자페이지 홈");
 	   request.setAttribute("admin_jsp", "../adminpage/adminpage_home.jsp");
 	   request.setAttribute("main_jsp", "../adminpage/adminpage_main.jsp");
@@ -23,6 +26,8 @@ public class AdminModel {
    @RequestMapping("adminpage/member_list.do")
    public String member_list(HttpServletRequest request,HttpServletResponse response)
    {
+	   CommonsModel.footerPrint(request);
+	   
 	   request.setAttribute("title", "회원관리");
 	   request.setAttribute("admin_jsp", "../adminpage/member_list.jsp");
 	   request.setAttribute("main_jsp", "../adminpage/adminpage_main.jsp");
@@ -32,6 +37,8 @@ public class AdminModel {
    @RequestMapping("adminpage/notice_list.do")
    public String notice_list(HttpServletRequest request,HttpServletResponse response)
    {
+	   CommonsModel.footerPrint(request);
+	   
 	   request.setAttribute("title", "공지사항");
 	   String page=request.getParameter("page");
 	   if(page==null)
@@ -68,6 +75,8 @@ public class AdminModel {
    @RequestMapping("adminpage/notice_insert.do")
    public String notice_insert(HttpServletRequest request,HttpServletResponse response)
    {
+	   CommonsModel.footerPrint(request);
+	   
 	   request.setAttribute("admin_jsp", "../notice/notice_insert.jsp");
 	   request.setAttribute("main_jsp", "../adminpage/adminpage_main.jsp");
 //	   CommonsModel.footerPrint(request);
@@ -95,6 +104,8 @@ public class AdminModel {
    @RequestMapping("adminpage/notice_update.do")
    public String notice_update(HttpServletRequest request,HttpServletResponse response)
    {
+	   CommonsModel.footerPrint(request);
+	   
 	   String no=request.getParameter("no");
 	   NoticeVO vo=NoticeDAO.noticeUpdateData(Integer.parseInt(no));
 	   request.setAttribute("vo", vo);
@@ -136,6 +147,8 @@ public class AdminModel {
    @RequestMapping("adminpage/reply_list.do")
    public String reply_list(HttpServletRequest request,HttpServletResponse response)
    {
+	   CommonsModel.footerPrint(request);
+	   
 	   request.setAttribute("title", "QnA");
 	   String page=request.getParameter("page");
 	   if(page==null)
@@ -167,6 +180,8 @@ public class AdminModel {
    @RequestMapping("adminpage/reply_insert.do")
    public String reply_insert(HttpServletRequest request,HttpServletResponse response)
    {
+	   CommonsModel.footerPrint(request);
+	   
 	   String no=request.getParameter("no");
 	   request.setAttribute("no", no);
 	   request.setAttribute("admin_jsp", "../adminpage/adminpage_reply_insert.jsp");

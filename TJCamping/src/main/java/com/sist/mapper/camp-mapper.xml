@@ -47,8 +47,8 @@
 		WHERE rownum&lt;=12
 	</select>
 	<select id="campNearListData" resultType="CampVO" parameterType="string">
-		SELECT camp_no,camp_name,image1,camp_addr,rownum
-		FROM (SELECT camp_no,camp_name,image1,camp_addr
+		SELECT camp_no,camp_name,image1,camp_addr,camp_price,rownum
+		FROM (SELECT camp_no,camp_name,image1,camp_addr,camp_price
 		FROM camp
 		WHERE camp_addr LIKE '%'||#{ss}||'%'
 		ORDER BY camp_no ASC)
@@ -67,11 +67,6 @@
 		FROM camp
 		WHERE camp_addr LIKE '%'||#{a}||'%'
 	</select>
-	<select id="campFindCount" resultType="int" parameterType="string">
-		SELECT COUNT(*)
-		FROM camp
-		WHERE camp_addr LIKE '%'||#{a}||'%'
-	</select>
 	<select id="campPetData" resultType="CampVO" parameterType="hashmap">
 		SELECT camp_no,camp_name,image1,num
 		FROM (SELECT camp_no,camp_name,image1,rownum as num
@@ -87,7 +82,7 @@
 		WHERE camp_animal='y'
 	</select>
 	<select id="campReserveData" resultType="CampVO" parameterType="int">
-		SELECT camp_no,camp_name,image1,camp_phone,camp_price,camp_addr,rdays
+		SELECT camp_name,image1,camp_phone,camp_price,camp_addr
 		FROM camp
 		WHERE camp_no=#{camp_no}
 	</select>
@@ -103,5 +98,4 @@
   	SELECT time FROM reserve_time
   	WHERE tno=#{tno}
   </select>
-	
 </mapper>

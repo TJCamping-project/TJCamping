@@ -104,6 +104,8 @@
         <!-- Explore Tour Start -->
         
 
+           
+           
                 
         
         <div class="container-fluid destination py-5">
@@ -112,6 +114,18 @@
 				<h5 class="section-title px-3">campsite</h5>
 				<h1 class="mb-0">캠핑장</h1>
 			</div>
+			<table class="table">
+			     <tr>
+			      <td class="text-right inline">
+			      <form method="post" action="../camp/find.do">
+			       <input type="checkbox" value="N" name="fs">이름
+			       <input type="checkbox" value="P" name="fs">가격
+			       <input type=text name=ss size=15 class="input-sm">
+			       <input type=submit value="검색" class="btn btn-sm btn-success">
+			       </form>
+			      </td>
+			     </tr>
+			</table>
 			<div class="tab-class text-center">
 				<div class="tab-content">
 					<div id="tab-1" class="tab-pane fade show p-0 active">
@@ -129,7 +143,7 @@
 												<h4 class="mb-2 mt-3"
 								  style="color:white;background-color:rgb(37,105,73);font-size:23px;font-family:'휴먼모음T'">
 												  ${vo.camp_name }</h4>
-												<a href="../camp/detail.do?camp_no=${vo.camp_no }"
+												<a href="../camp/detail_before.do?camp_no=${vo.camp_no }"
 			class="btn-hover" style="color:white;background-color:rgb(37,105,73);font-size:15px;font-family:'휴먼모음T'">자세히 보기
 													<i class="fa fa-arrow-right ms-2"></i>
 												</a>
@@ -152,6 +166,43 @@
 			</div>
 		</div>
 	</div>
+	
+
+
+<div class="container-fluid packages py-5">
+    <div class="container py-5">
+        <div class="mx-auto text-center mb-5" style="max-width: 900px;">
+            <h5 class="section-title px-3">Recently visited campsites</h5>
+            <h1 class="mb-0">최근 둘러본 캠핑장</h1>
+        </div>
+        <div class="packages-carousel owl-carousel">
+            <c:forEach var="coovo" items="${cookieList}" varStatus="s">
+                <div class="packages-item">
+                    <div class="packages-img">
+                        <img src="${coovo.image1}" style="height:280px;width:420px" class="rounded-top">
+                    <div class="text-center packages-price py-2 px-4">Visit</div>
+                    </div>
+                    <div class="packages-content bg-light">
+                        <div class="p-4 pb-0">
+                        	<a href="../camp/detail.do?camp_no=${coovo.camp_no }"/>
+                            	<h5 class="mb-0 truncate-text">${coovo.camp_name}</h5>
+                            </a>
+                            <p class="mb-4"></p>
+                        </div>
+                        <div class="row bg-primary rounded-bottom mx-0">
+                            <div class="col-6 text-start px-0">
+                                <a href="#" class="btn-hover btn text-white py-2 px-4"></a>
+                            </div>
+                            <div class="col-6 text-end px-0">
+                                <a href="#" class="btn-hover btn text-white py-2 px-4">${coovo.camp_price}원</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </c:forEach>
+        </div>
+    </div>
+</div>
 
         <div class="wrapper row3">
 	  <main class="container clear"> 

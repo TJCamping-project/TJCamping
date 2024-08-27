@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.sist.commons.CommonsModel;
 import com.sist.controller.RequestMapping;
 import com.sist.dao.*;
 import com.sist.vo.*;
@@ -85,6 +86,8 @@ public class CampGoodsModel {
 	    request.setAttribute("crList", crList);
 	    request.setAttribute("bbList", bbList);
 	    request.setAttribute("ltList", ltList);
+	    
+	    CommonsModel.footerPrint(request);
 		
 		request.setAttribute("main_jsp", "../campgoods/list.jsp");
 		return "../main/main.jsp";
@@ -140,6 +143,8 @@ public class CampGoodsModel {
 	        request.setAttribute("check", bCheck);
 	    }
 	    
+	    CommonsModel.footerPrint(request);
+	    
 	    request.setAttribute("numericPrice", numericPrice); 
 	    request.setAttribute("gList", gList);
 	    request.setAttribute("vo", vo);
@@ -181,6 +186,8 @@ public class CampGoodsModel {
 		request.setAttribute("gno", gno);
 		request.setAttribute("title", titles[Integer.parseInt(gno)]);
 		request.setAttribute("brandList", brandList);
+		
+		CommonsModel.footerPrint(request);
 		
 		request.setAttribute("main_jsp", "../campgoods/list_brand.jsp");
 		return "../main/main.jsp";
@@ -228,6 +235,8 @@ public class CampGoodsModel {
 	    request.setAttribute("gno", gno);
 	    request.setAttribute("ss", ss);
 	    request.setAttribute("brandList", brandList); 
+	    
+	    CommonsModel.footerPrint(request);
 
 	    request.setAttribute("main_jsp", "../campgoods/list_find.jsp");
 	    return "../main/main.jsp";
