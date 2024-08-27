@@ -8,14 +8,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.sist.commons.CommonsModel;
 //import com.sist.commons.CommonsModel;
 import com.sist.controller.RequestMapping;
 import com.sist.dao.AllJjimDAO;
+import com.sist.dao.CartDAO;
 import com.sist.dao.FoodDAO;
 import com.sist.dao.MemberDAO;
 import com.sist.dao.ReserveDAO;
 import com.sist.vo.CampGoodsVO;
+import com.sist.vo.CartVO;
 import com.sist.vo.FoodVO;
 import com.sist.vo.MemberVO;
 import com.sist.vo.RecipeVO;
@@ -24,11 +25,10 @@ import com.sist.vo.ReserveVO;
 public class MyPageModel {
 	@RequestMapping("mypage/mypage_main.do")
 	public String mypage_main(HttpServletRequest request, HttpServletResponse response) {
-		CommonsModel.footerPrint(request);
 		request.setAttribute("title", "마이페이지 홈");
 		request.setAttribute("mypage_jsp", "../mypage/mypage_home.jsp");
 		request.setAttribute("main_jsp", "../mypage/mypage_main.jsp");
-		
+		// CommonsModel.footerPrint(request);
 		return "../main/main.jsp";
 	}
 
@@ -45,7 +45,7 @@ public class MyPageModel {
 		request.setAttribute("title", "회원 수정");
 		request.setAttribute("mypage_jsp", "../member/join_update.jsp");
 		request.setAttribute("main_jsp", "../mypage/mypage_main.jsp");
-		CommonsModel.footerPrint(request);
+		// CommonsModel.footerPrint(request);
 		return "../main/main.jsp";
 	}
 
@@ -90,9 +90,6 @@ public class MyPageModel {
 	public String mypage_jjim(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("id");
-		
-		CommonsModel.footerPrint(request);
-		
 		request.setAttribute("title", "찜 목록");
 		request.setAttribute("mypage_jsp", "../mypage/mypage_jjim.jsp");
 		request.setAttribute("main_jsp", "../mypage/mypage_main.jsp");
@@ -105,9 +102,6 @@ public class MyPageModel {
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("id");
 		List<FoodVO> fhlist = AllJjimDAO.fhjjimListData(id);
-		
-		CommonsModel.footerPrint(request);
-		
 		request.setAttribute("title", "맛집찜");
 		request.setAttribute("fhList", fhlist);
 		request.setAttribute("jjim_jsp", "../mypage/my_fhjjim.jsp");
@@ -120,9 +114,6 @@ public class MyPageModel {
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("id");
 		List<CampGoodsVO> cglist = AllJjimDAO.cgjjimListData(id);
-		
-		CommonsModel.footerPrint(request);
-		
 		request.setAttribute("title", "캠핑용품");
 		request.setAttribute("cgList", cglist);
 		request.setAttribute("jjim_jsp", "../mypage/my_cgjjim.jsp");
@@ -135,9 +126,6 @@ public class MyPageModel {
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("id");
 		List<RecipeVO> reclist = AllJjimDAO.recjjimListData(id);
-		
-		CommonsModel.footerPrint(request);
-		
 		request.setAttribute("title", "레시피");
 		request.setAttribute("recList", reclist);
 		request.setAttribute("jjim_jsp", "../mypage/my_recjjim.jsp");
@@ -145,13 +133,11 @@ public class MyPageModel {
 		request.setAttribute("main_jsp", "../mypage/mypage_main.jsp");
 		return "../main/main.jsp";
 	}
+	
 	@RequestMapping("mypage/alljjim_list.do")
 	public String all_jjim(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("id");
-		
-		CommonsModel.footerPrint(request);
-		
 		List<RecipeVO> reclist = AllJjimDAO.recjjimListData(id);
 		List<CampGoodsVO> cglist = AllJjimDAO.cgjjimListData(id);
 		List<FoodVO> fhlist = AllJjimDAO.fhjjimListData(id);
@@ -188,14 +174,48 @@ public class MyPageModel {
 		
 		return "redirect:../mypage/alljjim_list.do";
 	}
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	@RequestMapping("mypage/mypage_buy.do")
+	public String mypage_buy(HttpServletRequest request, HttpServletResponse response) {
+		HttpSession session = request.getSession();
+		String id = (String) session.getAttribute("id");
+		request.setAttribute("title", "구매 목록");
+		request.setAttribute("mypage_jsp", "../mypage/mypage_buyList.jsp");
+		request.setAttribute("main_jsp", "../mypage/mypage_main.jsp");
+		System.out.println(id);
+		return "../main/main.jsp";
+	}
+	
+	@RequestMapping("mypage/mypage_buyList.do")
+	public String mypage_buyList(HttpServletRequest request, HttpServletResponse response) {
+		HttpSession session = request.getSession();
+		//int cno=(int) request.getAttribute("cno");
+		String id = (String) session.getAttribute("id");
+		System.out.println("saddsa");
+		List<CartVO> glist = CartDAO.goodsBuyList(id);
+		int gtotal = CartDAO.goodsBuytotal(id);
+		int ctotal= CartDAO.campBuytotal(id);
+		System.out.println(ctotal);
+		List<CartVO> clist = CartDAO.campBuyList(id);
+		//System.out.println(cno+"s");
+		//request.setAttribute("cno", cno);
+		request.setAttribute("ctotal", ctotal);
+		request.setAttribute("gtotal", gtotal);
+		request.setAttribute("glist", glist);
+		request.setAttribute("clist", clist);
+		request.setAttribute("mypage_jsp", "../mypage/mypage_buyList.jsp");
+		request.setAttribute("main_jsp", "../mypage/mypage_main.jsp");
+		return "../main/main.jsp";
+	}
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
 	@RequestMapping("mypage/mypage_reserve.do")
 	public String mypage_reserve(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("id");
 		
 		List<ReserveVO> rList = ReserveDAO.campReserveMyPageData(id);
-		
-		CommonsModel.footerPrint(request);
 		
 		request.setAttribute("rList", rList);
 		request.setAttribute("mypage_jsp", "../mypage/mypage_reserve.jsp");

@@ -12,7 +12,29 @@
 }
 </style>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 <script type="text/javascript">
+let sel=0;
+	var IMP = window.IMP; 
+	IMP.init("imp68206770"); 
+
+	function requestPay(json,name,price) {
+	    IMP.request_pay({
+	        pg: "html5_inicis",
+	        pay_method: "card",
+	        merchant_uid: "ORD20180131-0000011",   // 주문번호
+	        name: name,
+	        amount: price,         // 숫자 타입
+	        buyer_email: json.email,
+	        buyer_name: json.name,
+	        buyer_tel: json.phone,
+	        buyer_addr: json.address,
+	        buyer_postcode: json.post
+	    }, function (rsp) { // callback
+	    	location.href='http://localhost/TJCamping/mypage/mypage_main.do'
+	        
+	    });
+	}
 $(function(){
 	
 	$('.infos').click(function(){
@@ -35,10 +57,30 @@ $(function(){
 		        $('#rtime').text(json.time);
 		        $('#rinwon').text(json.inwon);
 		        $('#regdate').text(json.regdate);
+		        $('#buy').show();
 		    },
 
 			error:function(request,status,error){
 				console.log(error)
+			}
+		})
+	})
+	$('#buy').click(function(){
+		
+		let campno=$('#camp_no').val()
+		alert(campno)
+		let price=$('#camp_price').val()
+		let account=$('#camp_inwon').text()
+		account = account.replace('명', '');
+		price=price*account
+		let name = $('#name').text()
+		$.ajax({
+			type:'post',
+			url:'../mypage/camp_buy_insert.do',
+			data:{"campno":campno,"price":price,"account":account},
+			success:function(result){
+				let json=JSON.parse(result)
+				requestPay(json,name,price)
 			}
 		})
 	})
@@ -65,6 +107,7 @@ $(function(){
      <input type="hidden" id="camp_price" value="${rvo.cvo.camp_price }">
      <input type="hidden" id="camp_phone" value="${rvo.cvo.camp_phone}">
      <input type="hidden" id="camp_regdate" value="${rvo.regdate }">
+      <input type="hidden" id="camp_no" value="${rvo.cno }">
        <tr>
           <td class="text-center" id="camp_rno">${rvo.rno }</td>
 	      <td class="text-center">
@@ -88,13 +131,12 @@ $(function(){
     </table>
     <div style="height: 10px"></div>
     <table class="table" style="display:none" id="info">
-      <caption><h4>예약 정보</h4></caption>
       <tr>
         <td width=30% class="text-center" rowspan="9">
           <img src="" style="width: 100%" id="poster">
         </td>
         <td colspan="2">
-         <h3><span id="name"></span>&nbsp;<span id="score" style="color:orange;"></span></h3>
+         <h3><span id="name"></span></h3>
         </td>
       </tr>
       <tr>
@@ -127,9 +169,10 @@ $(function(){
       </tr>
       <tr>
        <th width=20% class="text-center">신청일</th>
-       <td width="50%" id="regdate"></td>
+       <td width="40%" id="regdate"></td>
       </tr>
     </table> 
+       <input type="button" value="결제하기" id="buy"  class="btn-sm" width=20px; style="display:none; background-color:green;">
    </div>
   </main>
 </div>
