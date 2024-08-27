@@ -41,9 +41,9 @@
     </select>
     <!-- 브랜드 찾기 -->
     <select id="goodsFindListData" resultType="CampGoodsVO" parameterType="map">
-    SELECT cno, name, poster, num
-    FROM (SELECT cno, name, poster, rownum AS num
-    FROM (SELECT /*+ INDEX_ASC(camp_goods_all cg_cno_pk) */ cno, name, poster
+    SELECT cno, name, price, poster, num
+    FROM (SELECT cno, name, price, poster, rownum AS num
+    FROM (SELECT /*+ INDEX_ASC(camp_goods_all cg_cno_pk) */ cno, name, price, poster
     FROM camp_goods_all
     WHERE brand LIKE '%' || #{ss} || '%'))
     WHERE num BETWEEN #{start} AND #{end}
