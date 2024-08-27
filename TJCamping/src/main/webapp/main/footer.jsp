@@ -33,7 +33,7 @@
                             <a href="../camp/detail_before.do?camp_no=${aaa.camp_no }">
                             	<img src="${aaa.image1 }" style="height:200px;width:230px">
                             </a>
-                        </div>
+                        </div> 
                         <div style="height:11px"></div>
                         <div>
                         	<p class="wow">${aaa.camp_name }</p>
