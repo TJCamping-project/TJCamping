@@ -502,7 +502,7 @@
 <!-- 캠핑용품 End -->
 
 
-	<!-- 맛집 Start -->
+<!-- 맛집 Start -->
 	<div class="container-fluid destination py-5">
 		<div class="container py-5">
 			<div class="mx-auto text-center mb-5" style="max-width: 900px;">
@@ -552,7 +552,7 @@
 							<div class="col-xl-4">
 								<div class="destination-img h-100">
 									<img class="img-fluid rounded w-150 h-150"
-										src="http://menupan.com${fvo.poster }"
+										src="http://bluer.co.kr${fvo.poster }"
 										style="object-fit: cover; min-height: 400px;" alt="">
 									<div class="destination-overlay p-4">
 										<h4 class="text-white mb-2 mt-3 " >${fvo.name }</h4>
@@ -777,7 +777,6 @@
 		</div>
 
 	<!-- 맛집 추천 End -->
-	
 	
 	<!-- 레시피 Start -->
 	<div class="container-fluid packages py-5">

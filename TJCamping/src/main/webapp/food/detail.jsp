@@ -276,15 +276,15 @@ function replyList(cno)
          <table class="table">
             <tr>
                <td width="30%" class="text-center" rowspan="6"><img
-                  src="http://menupan.com${vo.poster }" style="width: 100%" ></td>
+                  src="https://www.bluer.co.kr${vo.poster }" style="width: 100%" ></td>
                <td colspan="2">
-                  <h3>${vo.name }&nbsp;<span style="color: orange">${vo.score }</span>
+                  <h3>${vo.name }&nbsp;<span style="color: orange">${vo.tag }</span>
                   </h3>
                </td>
             </tr>
             <tr>
                <td class="text-right" style="color: gray" width="5%">업종</td>
-               <td width="65%">${vo.type }</td>
+               <td width="65%">${vo.theme }</td>
             </tr>
             <tr>
                <td class="text-right" style="color: gray" width="5%">전화</td>
@@ -312,7 +312,7 @@ function replyList(cno)
                            <li style="margin-right: 10px;">
                               <figure>
                                  <img class="radius-10 btmspace-10"
-                                    src="http://menupan.com${image }"
+                                    src="https://www.bluer.co.kr/${image }"
                                     style="width: 80px; height: 80px;">
                               </figure>
                            </li>
@@ -335,7 +335,7 @@ function replyList(cno)
          </table>
          <table class="table">
             <tr>
-               <td>${vo.content }</td>
+               <td>${vo.review }</td>
             </tr>
          </table>
 
@@ -449,7 +449,7 @@ function replyList(cno)
                               <div class="packages-item">
                                  <div class="packages-img">
                                  
-                                    <img src="http://menupan.com${rvo.poster}"
+                                    <img src="https://www.bluer.co.kr${rvo.poster}"
                                        class="img-fluid w-10  rounded-top" alt="${rvo.name}" title="${rvo.address}">
                                        
                                     <div

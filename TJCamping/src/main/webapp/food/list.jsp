@@ -110,7 +110,7 @@ main {
 									<div class="col-lg-3 col-md-6 col-sm-12">
 										<div class="packages-item">
 											<div class="packages-img">
-												<img src="http://menupan.com${flvo.poster}"
+												<img src="https://www.bluer.co.kr${flvo.poster}"
 													class="img-fluid w-100 rounded-top" alt="${flvo.name}">
 												<div
 													class="packages-info d-flex border border-start-0 border-end-0 position-absolute"
@@ -119,7 +119,7 @@ main {
 														class="text-white flex-fill text-center border-end py-2 text-decoration-none">
 														<i class="text-white fa fa-map-marker-alt me-2"></i>저장하기</a>
 												</div>
-												<div class="text-center packages-price py-2 px-4">★${flvo.score }</div> <!-- 매퍼에서 연결해야함~ -->
+												<div class="text-center packages-price py-2 px-4">★${flvo.tag }</div> <!-- 매퍼에서 연결해야함~ -->
 											</div>
 											<div class="packages-content bg-light">
 												<div class="p-4 pb-0">
