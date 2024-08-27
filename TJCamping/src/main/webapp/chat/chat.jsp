@@ -30,8 +30,7 @@
 
 let websocket;
 //서버연결 
-function connection()
-{
+function connection(){
 	// 소켓연결 
 	websocket=new WebSocket("ws://localhost/TJCamping/chat/chat-ws")
 	websocket.onopen=onOpen
@@ -39,66 +38,55 @@ function connection()
 	websocket.onmessage=onMessage
 }
 //연결처리 => Callback 
-function onOpen(event)
-{
-	 alert("채팅 서버와 연결되었습니다...")
+function onOpen(event){
+	alert("1대1 상담을 시작합니다. 해당 창을 나갈 경우 상담이 자동으로 종료됩니다.")
+}	
+function onClose(event){
+	alert("1대1 상담을 종료합니다.")
 }
-function onClose(event)
-{
-	  alert("채팅 서버와 연결 해제되었습니다...")
-}
-function onMessage(event)
-{
-	 let data=event.data // 전송된 데이터 
+function onMessage(event){
+	let data=event.data // 전송된 데이터 
 	 
-	 if(data.substring(0,3)==="my:") // oto , makeroom  ==> 100 200 300...
+	if(data.substring(0,3)==="my:") // oto , makeroom  ==> 100 200 300...
+	// msg:[이름] 메세지
+	{
+	 appendMyMessage(data.substring(3))
+	}
+	if(data.substring(0,4)==="you:"){ // oto , makeroom  ==> 100 200 300...
 	 // msg:[이름] 메세지
-	 {
-		 appendMyMessage(data.substring(3))
-	 }
-	 if(data.substring(0,4)==="you:") // oto , makeroom  ==> 100 200 300...
-		 // msg:[이름] 메세지
-  {
-		 appendYouMessage(data.substring(4))
-	 }
-	 if(data.substring(0,4)==="msg:") // oto , makeroom  ==> 100 200 300...
-		 // msg:[이름] 메세지
-  {
-		 appendMsgMessage(data.substring(4))
-	 }
+		appendYouMessage(data.substring(4))
+	}
+	if(data.substring(0,4)==="msg:"){ // oto , makeroom  ==> 100 200 300...
+	// msg:[이름] 메세지
+		appendMsgMessage(data.substring(4))
+	}
 }
-function disConnection()
-{
+function disConnection(){
 	websocket.close()
 }
 //퇴장처리 => Callback
 //메세지 전송 => Callback
-function appendMsgMessage(msg)
-{
+function appendMsgMessage(msg){
 	 $('#recvMsg').append("<font color=red>"+msg+"</font><br>")
 	 let ch=$('#chatArea').height()
 	 let m=$('#recvMsg').height()-ch
 	 $('#chatArea').scrollTop(m)
 }
-function appendMyMessage(msg)
-{
+function appendMyMessage(msg){
 	 $('#recvMsg').append("<font color=blue>"+msg+"</font><br>")
 	 let ch=$('#chatArea').height()
 	 let m=$('#recvMsg').height()-ch
 	 $('#chatArea').scrollTop(m)
 }
-function appendYouMessage(msg)
-{
-	 $('#recvMsg').append(msg+"<br>")
+function appendYouMessage(msg){
+	 $('#recvMsg').append("<font color=white>"+msg+"<br>")
 	 let ch=$('#chatArea').height()
 	 let m=$('#recvMsg').height()-ch
 	 $('#chatArea').scrollTop(m)
 }
-function send()
-{	
+function send(){	
 	let msg=$('#sendMsg').val()
-	if(msg.trim()==="")
-	{
+	if(msg.trim()===""){
 		$('#sendMsg').focus()
 		return 
 	}
@@ -114,6 +102,7 @@ $(function(){
 	})
 	$('#outputBtn').click(function(){
 		disConnection()
+		location.href="../main/main.do"
 	})
 	$('#sendBtn').click(function(){
 		send()
@@ -127,19 +116,16 @@ $(function(){
 })
 
 //로그인 
-/*
 $(function(){
-	$('#logBtn').on('click',function(){
-		let id=$('#id').val()
-		if(id.trim()==="")
-		{
-			$('#id').focus()
+	$('#logBtn1').on('click',function(){
+		let id1=$('#id1').val()
+		if(id1.trim()===""){
+			$('#id1').focus()
 			return
 		}
-		let pwd=$('#pwd').val()
-		if(pwd.trim()==="")
-		{
-			$('#pwd').focus()
+		let pwd1=$('#pwd1').val()
+		if(pwd1.trim()===""){
+			$('#pwd1').focus()
 			return
 		}
 		
@@ -147,58 +133,34 @@ $(function(){
 			type:'post',
 			url:'../member/login.do',
 			// ?id=aaa&pwd=1234
-			data:{"id":id,"pwd":pwd},
-			success:function(result)
-			{
-				// 정상 수행 => status : 200
-				// NOID / NOPWD / OK
-				if(result==='NOID')
-				{
+			data:{"id1":id,"pwd1":pwd},
+			success:function(result){
+
+				if(result==='NOid'){
 					alert("아이디가 존재하지 않습니다!!")
-					$('#id').val("")
-					$('#pwd').val("")
-					$('#id').focus()
+					$('#id1').val("")
+					$('#pwd1').val("")
+					$('#id1').focus()
 				}
-				else if(result==='NOPWD')
-				{
+				else if(result==='NOpwd'){
 					alert("비밀번호가 틀립니다!!")
-					$('#pwd').val("")
-					$('#pwd').focus()
+					$('#pwd1').val("")
+					$('#pwd1').focus()
 				}
-				else
-				{
+				else{
 					location.href="../chat/chat.do"
 				}
 			},
-			error:function(request,status,error)
-			{
+			error:function(request,status,error){
 				console.log("code:"+request.status)
 				// 404 , 500 
 				console.log("message:"+request.responseText)
 				console.log("error:"+error)
 			}
-		})
-	})
-	$('#logoutBtn').click(function(){
-		$.ajax({
-			type:'post',
-			url:'../member/logout.do',
-			success:function(result)
-			{
-				location.href="../main/main.do"
-			},
-			error:function(request,status,error)
-			{
-				console.log("code:"+request.status)
-				// 404 , 500 
-				console.log("message:"+request.responseText)
-				console.log("error:"+error)
-			}
-			
 		})
 	})
 })
-*/
+
 
 </script>
 </head>
@@ -220,8 +182,8 @@ $(function(){
 					<tr>
 						<td class="inline">
 						<!-- 이름:<input type=text id="name" size=15 class="input-sm"> -->
-							<input type=button value="입장" class="btn-danger btn-sm" id="inputBtn">
-							<input type=button value="퇴장" class="btn-success btn-sm" id="outputBtn">
+							<input type=button value="채팅 시작" class="btn-danger btn-sm" id="inputBtn">
+							<input type=button value="나가기" class="btn-success btn-sm" id="outputBtn">
 						</td>
 					</tr>
 					<tr>
@@ -243,19 +205,18 @@ $(function(){
 						<td style="text-align: center; color: white; font-size: 25px; font: bold;">
 							로그인해야 이용 가능한 메뉴입니다
 						</td>
-						<td>
-							
-						</td>
 					</tr>
+					
 					<tr>
 						<td>
 							<ul style="text-align: center;">
-								<li style="display: inline-block;"><input size="15" style="margin-top:17px" type="text" id="id" class="input-sm" placeholder="아이디" required></li>
-						        <li style="display: inline-block;"><input size="15" type="password" id="pwd" class="input-sm" placeholder="비밀 번호" required></li>
-						        <li style="display: inline-block;"><input type="button" id="logBtn" class="btn btn-sm btn-primary" value="로그인">&nbsp;&nbsp;</li>
+								<li style="display: inline-block;"><input size="15" style="margin-top:17px" type="text" id="id1" class="input-sm" placeholder="아이디" required></li>
+						        <li style="display: inline-block;"><input size="15" type="password" id="pwd1" class="input-sm" placeholder="비밀 번호" required></li>
+						        <li style="display: inline-block;"><input type="button" id="logBtn1" class="btn btn-sm btn-primary" value="로그인">&nbsp;&nbsp;</li>
 				      		</ul>
 						</td>
 					</tr>
+					
 				</c:if>
 				</table>
 			</div>

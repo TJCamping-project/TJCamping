@@ -286,7 +286,7 @@ $(function(){
           <div style="text-align: center; bottom:0px;">
           		<a href="../boardcamp/list.do" class="btn btn-xs btn-info">목록으로</a>
           		&nbsp;
-				<a type="button" style="color: blue;"><img src="../img/1.jpg" width="40" height="40">추천</a>
+				<a type="button" style="color: blue; background-color: white;"><img src="../img/thumb_up.png" width="40" height="40">추천</a>
           </div>
          </td>
      </table>
@@ -296,16 +296,24 @@ $(function(){
        <td id="reply"></td>
       </tr>
      </table>
-     <c:if test="${sessionScope.id!=null }">
      <table class="table">
+     <c:if test="${sessionScope.id==null }">
+       <tr>
+        <td>
+         <textarea readonly rows="3" cols="100" id="msg" style="float: left; height: 30px;" placeholder="댓글을 입력하려면 로그인하여 주십시오."></textarea>
+        </td>
+       </tr>
+     </c:if>
+      
+     <c:if test="${sessionScope.id!=null }">
        <tr>
         <td>
          <textarea rows="3" cols="100" id="msg" style="float: left" placeholder="내용을 입력해 주십시오"></textarea>
          <input type=button value="댓글 작성" style="width: 100px; height: 85px; color:black" id="writeBtn">
         </td>
        </tr>
-     </table>	
      </c:if>
+     </table>
      </div>
      </div>
    </div>
