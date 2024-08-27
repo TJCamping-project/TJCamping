@@ -13,12 +13,12 @@ public class CommonsModel {
 
 	public static void footerPrint(HttpServletRequest request)
 	{
-		CampVO campvo=CommonsDAO.commonsTodayCampsite();
-		FoodVO foodvo=CommonsDAO.commonsTodayFood();
-		RecipeVO recipevo=CommonsDAO.commonsTodayRecipe();
+		CampVO aaa=CommonsDAO.commonsTodayCampsite();
+		FoodVO bbb=CommonsDAO.commonsTodayFood();
+		RecipeVO ccc=CommonsDAO.commonsTodayRecipe();
 		
-		request.setAttribute("campvo", campvo);
-		request.setAttribute("foodvo", foodvo);
-		request.setAttribute("recipevo", recipevo);
+		request.setAttribute("aaa", aaa);
+		request.setAttribute("bbb", bbb);
+		request.setAttribute("ccc", ccc);
 	}
 }
