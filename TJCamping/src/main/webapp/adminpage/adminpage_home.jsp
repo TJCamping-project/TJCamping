@@ -14,7 +14,7 @@
           ['남자', <c:out value="${boyPercent}"/>],
           ['여자', <c:out value="${girlPercent}"/>]
         ]);
-
+ 
         var options = {
           title: '회원 남녀성비',
           is3D: true,
