@@ -209,5 +209,18 @@ public class MemberModel {
 		request.setAttribute("count", count);
 		return "../member/pwd_Change_ok.jsp";
 	}
-	
+	@RequestMapping("adminpage/memberlist.do")
+	public String memberlist(HttpServletRequest request, HttpServletResponse response) {
+		CommonsModel.footerPrint(request);
+		
+		HttpSession session = request.getSession();
+		String id = (String)session.getAttribute("id");
+		List<MemberVO> mList = MemberDAO.memberListData();
+		
+		request.setAttribute("title", "회원 목록");
+		request.setAttribute("mList", mList);
+		request.setAttribute("admin_jsp", "../adminpage/adminpage_member.jsp");
+		request.setAttribute("main_jsp", "../adminpage/adminpage_main.jsp");
+		return "../main/main.jsp";
+	}
 }

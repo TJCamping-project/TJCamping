@@ -49,4 +49,8 @@
    content=#{content}
    WHERE id=#{id}
   </update>
+  <select id="memberListData" resultType="MemberVO">
+  	select id,name,sex,TO_CHAR(birth,'YYYY-MM-DD') as bir ,email,phone,post,addr1,NVL(addr2,' '),TO_CHAR(regdate,'YYYY-MM-DD') as reg 
+  	from member where id != 'hong'
+  </select>
 </mapper>

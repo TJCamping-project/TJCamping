@@ -258,6 +258,31 @@ public class MemberDAO {
 			if(session!=null) session.close();
 		}
 	}
+	/*
+	 * <select id="memberListData" resultType="MemberVO">
+  	select * from member where id is not 'hong'
+  </select>
+	 */
+	public static List<MemberVO> memberListData()
+	  {	
+		  List<MemberVO> list = new ArrayList<MemberVO>();
+		  SqlSession session=null;
+		  try
+		  {
+			  session=ssf.openSession(true);
+			  list=session.selectList("memberListData");
+		  }catch(Exception ex)
+		  {
+			  System.out.println("memberListData err");
+			  ex.printStackTrace();
+		  }
+		  finally
+		  {
+			  if(session!=null)
+				  session.close();
+		  }
+		  return list;
+	  }
 }
 
 
