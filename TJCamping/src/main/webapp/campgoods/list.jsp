@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <!DOCTYPE html>
 <html>
@@ -181,30 +182,29 @@
          
        <div class="tab-content">
          <div id="tab-1" class="tab-pane fade show p-0 active">
-         <div class="row">
-            <c:forEach var="vo" items="${gList }" varStatus="s">
-               <div class="col-lg-3 col-md-6 col-sm-12">
-                  <div class="packages-item">
-                     <a href="../campgoods/detail_before.do?cno=${vo.cno}&gno=${gno}&type=2" class="text-decoration-none">
-                        <div class="packages-img">
-                           <img src="${vo.poster}" class="img-fluid w-100 rounded-top" title="${vo.name}">
-                        </div>
-                     </a>
-                     <div class="packages-content bg-light">
-                        <div class="p-4 pb-0">
-                           <h5 class="mb-0 text-center small-title">${vo.name}</h5>
-                           <div class="text-center packages-price py-2 px-4">
-                              <span>${vo.price}</span>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </c:forEach>
+	         <div class="row">
+	            <c:forEach var="vo" items="${gList }" varStatus="s">
+	               <div class="col-lg-3 col-md-6 col-sm-12">
+	                  <div class="packages-item">
+	                     <a href="../campgoods/detail_before.do?cno=${vo.cno}&gno=${gno}&type=2" class="text-decoration-none">
+	                        <div class="packages-img">
+	                           <img src="${vo.poster}" class="img-fluid w-100 rounded-top" title="${vo.name}">
+	                        </div>
+	                     </a>
+	                     <div class="packages-content bg-light">
+	                        <div class="p-4 pb-0">
+	                           <h5 class="mb-0 text-center small-title">${vo.name}</h5>
+	                           <div class="text-center packages-price py-2 px-4">
+	                              <span>${vo.price}</span>
+	                           </div>
+	                        </div>
+	                     </div>
+	                  </div>
+	               </div>
+	            </c:forEach>
+	         </div>
          </div>
-         </div>
-        
-           <div id="tab-2" class="tab-pane fade show p-0">
+         <div id="tab-2" class="tab-pane fade p-0">
            <div class="row">
             <c:forEach var="vo" items="${amList }" varStatus="s">
                <div class="col-lg-3 col-md-6 col-sm-12">
@@ -227,7 +227,7 @@
             </c:forEach>
            </div>
            </div>
-           <div id="tab-3" class="tab-pane fade show p-0">
+           <div id="tab-3" class="tab-pane fade p-0">
            <div class="row">
             <c:forEach var="vo" items="${ttList }" varStatus="s">
                <div class="col-lg-3 col-md-6 col-sm-12">
@@ -250,7 +250,7 @@
             </c:forEach>
            </div>
            </div>
-           <div id="tab-4" class="tab-pane fade show p-0">
+           <div id="tab-4" class="tab-pane fade p-0">
            <div class="row">
             <c:forEach var="vo" items="${cgList }" varStatus="s">
                <div class="col-lg-3 col-md-6 col-sm-12">
@@ -296,7 +296,7 @@
             </c:forEach>
            </div>
            </div>
-           <div id="tab-6" class="tab-pane fade show p-0">
+           <div id="tab-6" class="tab-pane fade p-0">
             <div class="row">
             <c:forEach var="vo" items="${bbList }" varStatus="s">
                <div class="col-lg-3 col-md-6 col-sm-12">
@@ -319,7 +319,7 @@
             </c:forEach>
            </div>
            </div>
-           <div id="tab-7" class="tab-pane fade show p-0">
+           <div id="tab-7" class="tab-pane fade p-0">
            <div class="row">
             <c:forEach var="vo" items="${ltList }" varStatus="s">
                <div class="col-lg-3 col-md-6 col-sm-12">
@@ -344,7 +344,14 @@
             </div>
           </div>
         </div>
-        
+		
+<%-- 		<p>amList Size: ${fn:length(amList)}</p>
+        <p>ttList Size: ${fn:length(ttList)}</p>
+        <p>cgList Size: ${fn:length(cgList)}</p>
+        <p>crList Size: ${fn:length(crList)}</p>
+        <p>bbList Size: ${fn:length(bbList)}</p>
+        <p>ltList Size: ${fn:length(ltList)}</p> --%>
+	
       <nav class="pagination">
          <ul>
             <c:if test="${startPage>1 }">

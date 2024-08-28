@@ -20,24 +20,132 @@ public class CampGoodsDAO {
 		}
 	}
 	// 캠핑용품 목록
-	public static List<CampGoodsVO> campGoodsListData(Map map)
-	{
-		List<CampGoodsVO> list=new ArrayList<CampGoodsVO>();
-		SqlSession session=null;
-		try
+		public static List<CampGoodsVO> campGoodsAllListData(Map map)
 		{
-			session=ssf.openSession();
-			list=session.selectList("campGoodsListData",map);
-		}catch(Exception ex)
-		{
-			ex.printStackTrace();
-		}finally
-		{
-			if(session!=null)
-				session.close();
+			List<CampGoodsVO> list=new ArrayList<CampGoodsVO>();
+			SqlSession session=null;
+			try
+			{
+				session=ssf.openSession();
+				list=session.selectList("campGoodsAllListData",map);
+			}catch(Exception ex)
+			{
+				ex.printStackTrace();
+			}finally
+			{
+				if(session!=null)
+					session.close();
+			}
+			return list;
 		}
-		return list;
-	}
+		public static List<CampGoodsVO> campGoodsAirListData(Map map)
+		{
+			List<CampGoodsVO> list=new ArrayList<CampGoodsVO>();
+			SqlSession session=null;
+			try
+			{
+				session=ssf.openSession();
+				list=session.selectList("campGoodsAirListData",map);
+			}catch(Exception ex)
+			{
+				ex.printStackTrace();
+			}finally
+			{
+				if(session!=null)
+					session.close();
+			}
+			return list;
+		}
+		public static List<CampGoodsVO> campGoodsTentListData(Map map)
+		{
+			List<CampGoodsVO> list=new ArrayList<CampGoodsVO>();
+			SqlSession session=null;
+			try
+			{
+				session=ssf.openSession();
+				list=session.selectList("campGoodsTentListData",map);
+			}catch(Exception ex)
+			{
+				ex.printStackTrace();
+			}finally
+			{
+				if(session!=null)
+					session.close();
+			}
+			return list;
+		}
+		public static List<CampGoodsVO> campGoodsClimbListData(Map map)
+		{
+			List<CampGoodsVO> list=new ArrayList<CampGoodsVO>();
+			SqlSession session=null;
+			try
+			{
+				session=ssf.openSession();
+				list=session.selectList("campGoodsClimbListData",map);
+			}catch(Exception ex)
+			{
+				ex.printStackTrace();
+			}finally
+			{
+				if(session!=null)
+					session.close();
+			}
+			return list;
+		}
+		public static List<CampGoodsVO> campGoodsChairListData(Map map)
+		{
+			List<CampGoodsVO> list=new ArrayList<CampGoodsVO>();
+			SqlSession session=null;
+			try
+			{
+				session=ssf.openSession();
+				list=session.selectList("campGoodsChairListData",map);
+			}catch(Exception ex)
+			{
+				ex.printStackTrace();
+			}finally
+			{
+				if(session!=null)
+					session.close();
+			}
+			return list;
+		}
+		public static List<CampGoodsVO> campGoodsBarbecueListData(Map map)
+		{
+			List<CampGoodsVO> list=new ArrayList<CampGoodsVO>();
+			SqlSession session=null;
+			try
+			{
+				session=ssf.openSession();
+				list=session.selectList("campGoodsBarbecueListData",map);
+			}catch(Exception ex)
+			{
+				ex.printStackTrace();
+			}finally
+			{
+				if(session!=null)
+					session.close();
+			}
+			return list;
+		}
+		public static List<CampGoodsVO> campGoodsLanternListData(Map map)
+		{
+			List<CampGoodsVO> list=new ArrayList<CampGoodsVO>();
+			SqlSession session=null;
+			try
+			{
+				session=ssf.openSession();
+				list=session.selectList("campGoodsLanternListData",map);
+			}catch(Exception ex)
+			{
+				ex.printStackTrace();
+			}finally
+			{
+				if(session!=null)
+					session.close();
+			}
+			return list;
+		}
 	public static int campGoodsTotalPage(Map map)
 	{
 		int total=0;

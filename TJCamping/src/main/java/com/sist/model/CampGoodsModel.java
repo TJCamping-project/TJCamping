@@ -32,41 +32,17 @@ public class CampGoodsModel {
 		map.put("table_name", tables[Integer.parseInt(gno)]);
 		map.put("start", start);
 		map.put("end", end);
-		List<CampGoodsVO> gList=CampGoodsDAO.campGoodsListData(map);
+		List<CampGoodsVO> gList=CampGoodsDAO.campGoodsAllListData(map);
 		int totalpage=CampGoodsDAO.campGoodsTotalPage(map);
 		
 		// 카테고리별 리스트 준비
-	    List<CampGoodsVO> amList = new ArrayList<>();
-	    List<CampGoodsVO> ttList = new ArrayList<>();
-	    List<CampGoodsVO> cgList = new ArrayList<>();
-	    List<CampGoodsVO> crList = new ArrayList<>();
-	    List<CampGoodsVO> bbList = new ArrayList<>();
-	    List<CampGoodsVO> ltList = new ArrayList<>();
-
-	    // 카테고리별 데이터 분류
-	    for (CampGoodsVO item : gList) {
-	        switch (item.getType1()) {
-	            case 1:
-	            	amList.add(item);
-	                break;
-	            case 2:
-	            	ttList.add(item);
-	                break;
-	            case 3:
-	            	cgList.add(item);
-	                break;
-	            case 4:
-	            	crList.add(item);
-	                break;
-	            case 5:
-	            	bbList.add(item);
-	                break;
-	            case 6:
-	            	ltList.add(item);
-	                break;
-	        }
-	    }
-		
+		List<CampGoodsVO> amList = CampGoodsDAO.campGoodsAirListData(map);
+		List<CampGoodsVO> ttList = CampGoodsDAO.campGoodsTentListData(map);
+		List<CampGoodsVO> cgList = CampGoodsDAO.campGoodsClimbListData(map);
+		List<CampGoodsVO> crList = CampGoodsDAO.campGoodsChairListData(map);
+		List<CampGoodsVO> bbList = CampGoodsDAO.campGoodsBarbecueListData(map);
+		List<CampGoodsVO> ltList = CampGoodsDAO.campGoodsLanternListData(map);
+	    
 		final int BLOCK=10;
 		int startPage=((curpage-1)/BLOCK*BLOCK)+1;
 		int endPage=((curpage-1)/BLOCK*BLOCK)+BLOCK;
@@ -86,8 +62,6 @@ public class CampGoodsModel {
 	    request.setAttribute("crList", crList);
 	    request.setAttribute("bbList", bbList);
 	    request.setAttribute("ltList", ltList);
-	    
-	    CommonsModel.footerPrint(request);
 		
 		request.setAttribute("main_jsp", "../campgoods/list.jsp");
 		return "../main/main.jsp";

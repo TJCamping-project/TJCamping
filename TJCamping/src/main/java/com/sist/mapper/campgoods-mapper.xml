@@ -9,13 +9,54 @@
         WHERE rownum&lt;=12
     </select>
 
-    <!-- 캠핑용품 목록 출력 -->
-    <select id="campGoodsListData" resultType="CampGoodsVO" parameterType="java.util.Map">
-        SELECT cno, name, price, poster, num
-        FROM (SELECT cno, name, price, poster, rownum AS num
-              FROM (SELECT cno, name, price, poster
-                    FROM ${table_name} ORDER BY cno ASC))
-        WHERE num BETWEEN #{start} AND #{end}
+    <select id="campGoodsAllListData" resultType="CampGoodsVO" parameterType="java.util.Map">
+    SELECT cno, name, price, poster, type1, num
+    FROM (SELECT cno, name, price, poster, type1, rownum as num
+          FROM (SELECT cno, name, price, poster, type1
+                FROM ${table_name} ORDER BY cno ASC))
+    WHERE num BETWEEN #{start} AND #{end}
+    </select>
+    <select id="campGoodsAirListData" resultType="CampGoodsVO" parameterType="java.util.Map">
+    SELECT cno, name, price, poster, type1, num
+    FROM (SELECT cno, name, price, poster, type1, rownum as num
+          FROM (SELECT cno, name, price, poster, type1
+                FROM ${table_name} WHERE type1=1 ORDER BY cno ASC))
+    WHERE num BETWEEN #{start} AND #{end}
+    </select>
+    <select id="campGoodsTentListData" resultType="CampGoodsVO" parameterType="java.util.Map">
+    SELECT cno, name, price, poster, type1, num
+    FROM (SELECT cno, name, price, poster, type1, rownum as num
+          FROM (SELECT cno, name, price, poster, type1
+                FROM ${table_name} WHERE type1=2 ORDER BY cno ASC))
+    WHERE num BETWEEN #{start} AND #{end}
+    </select>
+    <select id="campGoodsClimbListData" resultType="CampGoodsVO" parameterType="java.util.Map">
+    SELECT cno, name, price, poster, type1, num
+    FROM (SELECT cno, name, price, poster, type1, rownum as num
+          FROM (SELECT cno, name, price, poster, type1
+                FROM ${table_name} WHERE type1=3 ORDER BY cno ASC))
+    WHERE num BETWEEN #{start} AND #{end}
+    </select>
+    <select id="campGoodsChairListData" resultType="CampGoodsVO" parameterType="java.util.Map">
+    SELECT cno, name, price, poster, type1, num
+    FROM (SELECT cno, name, price, poster, type1, rownum as num
+          FROM (SELECT cno, name, price, poster, type1
+                FROM ${table_name} WHERE type1=4 ORDER BY cno ASC))
+    WHERE num BETWEEN #{start} AND #{end}
+    </select>
+    <select id="campGoodsBarbecueListData" resultType="CampGoodsVO" parameterType="java.util.Map">
+    SELECT cno, name, price, poster, type1, num
+    FROM (SELECT cno, name, price, poster, type1, rownum as num
+          FROM (SELECT cno, name, price, poster, type1
+                FROM ${table_name} WHERE type1=5 ORDER BY cno ASC))
+    WHERE num BETWEEN #{start} AND #{end}
+    </select>
+    <select id="campGoodsLanternListData" resultType="CampGoodsVO" parameterType="java.util.Map">
+    SELECT cno, name, price, poster, type1, num
+    FROM (SELECT cno, name, price, poster, type1, rownum as num
+          FROM (SELECT cno, name, price, poster, type1
+                FROM ${table_name} WHERE type1=6 ORDER BY cno ASC))
+    WHERE num BETWEEN #{start} AND #{end}
     </select>
 
     <select id="campGoodsTotalPage" resultType="int" parameterType="java.util.Map">
