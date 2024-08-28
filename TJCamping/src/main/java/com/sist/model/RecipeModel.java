@@ -37,11 +37,29 @@ public class RecipeModel {
 	   if(endPage>totalpage)
 		   endPage=totalpage;
 	   
+	   Cookie[] cookies=request.getCookies();
+	    List<RecipeVO> cookieList=new ArrayList<RecipeVO>();
+	    // Cookie cookie=new Cookie("food_"+fno, fno);
+	    if(cookies!=null)
+	    {
+	    	for(int i=cookies.length-1;i>=0;i--)
+	    	{
+	    		if(cookies[i].getName().startsWith("recipe_"))
+	    		{
+	    			String no=cookies[i].getValue();
+	    			RecipeVO vo=RecipeDAO.recipeDetailData(Integer.parseInt(no));
+	    			cookieList.add(vo);
+	    		}
+	    	}
+	    }
+	   
+	   
 	   request.setAttribute("reList", reList);
 	   request.setAttribute("curpage", curpage);
 	   request.setAttribute("totalpage", totalpage);
 	   request.setAttribute("startPage", startPage);
 	   request.setAttribute("endPage", endPage);
+	   request.setAttribute("cookieList", cookieList);
 	   // DB연동 => 출력할 데이터 전송 
 	   int count=RecipeDAO.recipeListCount();
 	   request.setAttribute("count", count);

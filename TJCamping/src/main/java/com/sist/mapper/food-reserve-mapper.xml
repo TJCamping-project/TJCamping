@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.sist.mapper.reserve-mapper">
+<mapper namespace="com.sist.mapper.food-reserve-mapper">
 <!--
 RNO     NOT NULL NUMBER       
 ID               VARCHAR2(20) 
@@ -11,9 +11,9 @@ INWON   NOT NULL VARCHAR2(20)
 REGDATE          DATE         
 ISOK             CHAR(1) 
 	-->
-	<insert id="FoodReserveInsert" parameterType="com.sist.vo.FoodReserveVO">
-		INSERT INTO food_reserve(frno,id,fno,day,time,inwon)
-		VALUES(fre_frno_seq.nextval,#{id},#{fno},#{day},#{time},#{inwon})
+	<insert id="FoodReserveInsert" parameterType="FoodReserveVO">
+		INSERT INTO food_reserve(frno,id,fno,day,time,inwon, isok)
+		VALUES(fre_frno_seq.nextval,#{id},#{fno},#{day},#{time},#{inwon},'n')
 	</insert>
 	<resultMap type="com.sist.vo.FoodReserveVO" id="FoodreserveMap">
 		<result property="fvo.name" column="name"/>
@@ -42,6 +42,11 @@ ISOK             CHAR(1)
 		ORDER BY frno DESC
 	</select>
 	
+	<select id="FoodReserveDayData" resultType="String" parameterType="int">
+		SELECT rdays
+		FROM food_blue
+		WHERE fno=#{fno}
+	</select>
 	
 	<select id="FoodReserveTimeData" resultType="String" parameterType="int">
 		SELECT time
@@ -56,25 +61,27 @@ ISOK             CHAR(1)
 		WHERE ftno=#{ftno}
 	</select>
 	
-	<!--
-	<select id="FoodReserveDayData" resultType="String" parameterType="int">
-		SELECT rdays
-		FROM food_blue
-		WHERE fno=#{fno}
-	</select>
-	   admin = 승인 -->
+	
+	   <!-- admin = 승인 -->
+ <update id="FoodreserveOk" parameterType="int">
+   UPDATE food_reserve SET
+   isok='y'
+   WHERE frno=#{frno}
+  </update>
+  
+  <!-- mypage = 취소 -->
+  <delete id="FoodreserveCancel" parameterType="int">
+   DELETE FROM food_reserve
+   WHERE frno=#{frno}
+  </delete>
 
 
   <select id="myFoodReserveData" parameterType="int" resultMap="FoodreserveMap">
   		select poster,name,address , phone,frno,day,time,inwon,TO_CHAR(regdate,'YYYY-MM-DD') as dbday 
 		FROM food_reserve fre,food_blue fb
-		where frno=#{frno} and fb.fno=fre.fno
+		where frno=#{frno} and fre.fno=fb.fno
   </select>
   
   
-  <update id="FoodreserveOk" parameterType="int">
-   UPDATE food_reserve SET
-   isok='y'
-   WHERE frno=#{frno}
-  </update>
+ 
 </mapper>

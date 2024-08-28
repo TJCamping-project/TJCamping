@@ -157,13 +157,13 @@ public class FoodReserveDAO {
 		
 		return vo;
 	}
-	public static void FoodreserveCancel(int rno) {
+	public static void FoodreserveCancel(int frno) {
 		SqlSession session=null;
 		
 		try
 		{
 			session=ssf.openSession();
-			session.delete("FoodreserveCancel",rno);
+			session.delete("FoodreserveCancel",frno);
 			session.commit();
 		}catch(Exception ex)
 		{
@@ -176,13 +176,13 @@ public class FoodReserveDAO {
 				session.close();
 		}
 	}
-	public static void FoodreserveOk(int rno) {
+	public static void FoodreserveOk(int frno) {
 		SqlSession session=null;
 		
 		try
 		{
 			session=ssf.openSession();
-			session.update("FoodreserveOk",rno);
+			session.update("FoodreserveOk",frno);
 			session.commit();
 		}catch(Exception ex)
 		{

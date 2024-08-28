@@ -64,11 +64,11 @@
 
 	</update>
 	<!-- 맛집 찜목록 -->
-	<select id="fhjjimListData" resultType="FoodVO"
+	<select id="fbjjimListData" resultType="FoodVO"
 		parameterType="string">
 		SELECT fh.fno , poster , name ,aj.type
-		FROM food_house fh , all_jjim aj
-		WHERE fh.fno=aj.cno AND aj.type LIKE 1 and aj.id=#{id}
+		FROM food_blue fb , all_jjim aj
+		WHERE fb.fno=aj.cno AND aj.type LIKE 1 and aj.id=#{id}
 	</select>
 	<!-- 캠핑용품 찜목록 -->
 	<select id="cgjjimListData" resultType="CampGoodsVO"

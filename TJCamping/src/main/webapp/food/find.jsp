@@ -25,6 +25,7 @@
 <style></style>
 </head>
 <body>
+<div class="container-fluid whitezzz" style="height:100px;"></div>
   <div class="wrapper row3">
   <main class="container clear"> 
     <!-- main body --> 
@@ -39,7 +40,7 @@
           </header>
           <ul class="nospace clear">
            <c:forEach var="vo" items="${fList }" varStatus="s">
-            <li class="one_quarter ${ s.index%4==0?'first':''}"><a href="../food/detail_before.do?fno=${vo.fno }&type=1"><img src="http://menupan.com${vo.poster }" title="${vo.name }"></a></li>
+            <li class="one_quarter ${ s.index%4==0?'first':''}"><a href="../food/detail_before.do?fno=${vo.fno }&type=1"><img src="https://www.bluer.co.kr${vo.poster }" title="${vo.name }"></a></li>
            </c:forEach>
           </ul>
         </figure>

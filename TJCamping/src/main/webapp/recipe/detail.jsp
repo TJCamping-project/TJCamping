@@ -503,7 +503,7 @@ function replyList(cno)
 							<!-- 매퍼에서 연결해야함~ -->
 						</div>
 						<div class="packages-content bg-light">
-							<div class="p-4 pb-0">
+							<div class="p-4 pb-1">
 						
 								<!-- 회색박스 -->
 								<a href="../recipe/detail_before.do?no=${revo.no}&type=3">

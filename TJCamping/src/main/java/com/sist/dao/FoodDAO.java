@@ -186,40 +186,16 @@ public class FoodDAO {
 	
 	
 	
-	public static FoodVO FoodReserveData(int fno){
-		FoodVO vo=new FoodVO();
-		SqlSession session=null;
-		
-		try
-		{
-			session=ssf.openSession();
-			vo=session.selectOne("FoodReserveData",fno);
-		}catch(Exception ex)
-		{
-			System.out.println("FoodDAO 오류 11");
-			ex.printStackTrace();
-		}
-		finally
-		{
-			// connection 반환 (DBCP) => 재사용(반환 시 가능)
-			if(session!=null)
-				session.close();
-		}
-		
-		return vo;
-	}
-	
-	   public static String FoodReserveDayData1(int fno)
+	  public static String foodReserveDayData(int fno)
 	   {
 		   String rdays="";
 		   SqlSession session=null; //Connection
 		   try
 		   {
 			   session=ssf.openSession();
-			   rdays=session.selectOne("FoodReserveDayData1", fno);
+			   rdays=session.selectOne("foodReserveDayData", fno);
 		   }catch(Exception ex)
 		   {
-			   System.out.println("FoodReserveDayData1 err");
 			   ex.printStackTrace();
 		   }
 		   finally
@@ -229,18 +205,26 @@ public class FoodDAO {
 		   }
 		   return rdays;
 	   }
-	   
-	   public static String FoodTimeSelectData1(int ftno)
+	   /*
+	    *   <select id="foodReserveTimeData" resultType="String" parameterType="int">
+			    SELECT time FROM reserve_date
+			    WHERE dno=#{dno}
+			  </select>
+			  <select id="foodTimeSelectData" resultType="String" parameterType="int">
+			    SELECT time FROM reserve_time
+			    WHERE tno=#{tno}
+			  </select>
+	    */
+	   public static String foodTimeSelectData(int tno)
 	   {
 		   String times="";
 		   SqlSession session=null; //Connection
 		   try
 		   {
 			   session=ssf.openSession();
-			   times=session.selectOne("FoodTimeSelectData", ftno);
+			   times=session.selectOne("foodTimeSelectData", tno);
 		   }catch(Exception ex)
 		   {
-			   System.out.println("FoodTimeSelectData err");
 			   ex.printStackTrace();
 		   }
 		   finally
@@ -251,18 +235,40 @@ public class FoodDAO {
 		   return times;
 	   }
 	   
-	   
-	  
-	   public static void FoodReserveInsert(FoodReserveVO vo)
+	   public static String foodReserveTimeData(int dno)
+	   {
+		   String times="";
+		   SqlSession session=null; //Connection
+		   try
+		   {
+			   session=ssf.openSession();
+			   times=session.selectOne("foodReserveTimeData", dno);
+		   }catch(Exception ex)
+		   {
+			   ex.printStackTrace();
+		   }
+		   finally
+		   {
+			   if(session!=null)
+				   session.close();
+		   }
+		   return times;
+	   }
+	   /*
+	    *   <insert id="reserveInsert" parameterType="FoodReserveVO">
+			   INSERT INTO project_reserve(frno,id,fno,day,time,inwon)
+			   VALUES(pre_frno_seq.nextval,#{id},#{fno},#{day},#{time},#{inwon})
+			  </insert>
+	    */
+	   public static void reserveInsert(FoodReserveVO vo)
 	   {
 		   SqlSession session=null; //Connection
 		   try
 		   {
 			   session=ssf.openSession(true);
-			   session.insert("FoodReserveInsert", vo);
+			   session.insert("reserveInsert", vo);
 		   }catch(Exception ex)
 		   {
-			   System.out.println("FoodReserveInsert err");
 			   ex.printStackTrace();
 		   }
 		   finally
@@ -271,18 +277,25 @@ public class FoodDAO {
 				   session.close();
 		   }
 	   }
-	   
-	   public static List<FoodReserveVO> FoodReserveMyPageData(String id)
+	   /*
+	    * <select id="reserveMyPageData" resultType="FoodReserveVO" parameterType="string">
+		   SELECT frno,pr.fno,day,time,inwon,isok,pf.name,pf.poster,pf.address,pf.phone,
+		          TO_CHAR(regdate,'YYYY-MM-DD') as dbday
+		   FROM project_reserve pr,project_food_house pf
+		   WHERE pr.fno=pf.fno
+		   AND id=#{id}
+		  </select>
+	    */
+	   public static List<FoodReserveVO> reserveMyPageData(String id)
 	   {
 		   List<FoodReserveVO> list=new ArrayList<FoodReserveVO>();
 		   SqlSession session=null; //Connection
 		   try
 		   {
 			   session=ssf.openSession(true);
-			   list=session.selectList("FoodReserveMyPageData", id);
+			   list=session.selectList("reserveMyPageData", id);
 		   }catch(Exception ex)
 		   {
-			   System.out.println("FoodReserveMyPageData err");
 			   ex.printStackTrace();
 		   }
 		   finally
@@ -292,18 +305,25 @@ public class FoodDAO {
 		   }
 		   return list;
 	   }
-	   
-	   public static List<FoodReserveVO> FoodReserveAdminPageData()
+	   /*
+	    *   <select id="reserveAdminPageData" resultMap="reserveMap">
+			   SELECT frno,pr.fno,id,day,pr.time,inwon,isok,pf.name,pf.poster,pf.address,pf.phone,
+			          TO_CHAR(redate,'YYYY-MM-DD') as dbday
+			   FROM project_reserve pr,project_food_house pf
+			   WHERE pr.fno=pf.fno
+			   ORDER BY frno DESC
+			  </select>
+	    */
+	   public static List<FoodReserveVO> reserveAdminPageData()
 	   {
 		   List<FoodReserveVO> list=new ArrayList<FoodReserveVO>();
 		   SqlSession session=null; //Connection
 		   try
 		   {
 			   session=ssf.openSession(true);
-			   list=session.selectList("FoodReserveAdminPageData");
+			   list=session.selectList("reserveAdminPageData");
 		   }catch(Exception ex)
 		   {
-			   System.out.println("FoodReserveAdminPageData err");
 			   ex.printStackTrace();
 		   }
 		   finally
@@ -313,17 +333,22 @@ public class FoodDAO {
 		   }
 		   return list;
 	   }
-	   
-	   public static void FoodreserveOk(int rno)
+	   /*
+	    *   <update id="reserveOk" parameterType="int">
+			   UPDATE project_reserve SET
+			   isok='y'
+			   WHERE frno=#{frno}
+			  </update>
+	    */
+	   public static void reserveOk(int frno)
 	   {
 		   SqlSession session=null; //Connection
 		   try
 		   {
 			   session=ssf.openSession(true);
-			   session.update("FoodreserveOk",rno);
+			   session.update("reserveOk",frno);
 		   }catch(Exception ex)
 		   {
-			   System.out.println("FoodreserveOk err");
 			   ex.printStackTrace();
 		   }
 		   finally
@@ -332,17 +357,21 @@ public class FoodDAO {
 				   session.close();
 		   }
 	   }
-	   
-	   public static void FoodreserveCancel(int rno)
+	   /*
+	    *   <delete id="reserveCancel" parameterType="int">
+			   DELETE FROM project_reserve
+			   WHERE frno=#{frno}
+			  </delete>
+	    */
+	   public static void reserveCancel(int frno)
 	   {
 		   SqlSession session=null; //Connection
 		   try
 		   {
 			   session=ssf.openSession(true);
-			   session.delete("FoodreserveCancel",rno);
+			   session.delete("reserveCancel",frno);
 		   }catch(Exception ex)
 		   {
-			   System.out.println("FoodreserveCancel err");
 			   ex.printStackTrace();
 		   }
 		   finally
@@ -351,18 +380,25 @@ public class FoodDAO {
 				   session.close();
 		   }
 	   }
-	   
-	   public static FoodReserveVO FoodReserveMyPageData(int rno)
+	   /*
+	    *   <select id="mypageReserveInfoData" resultMap="reserveMap" parameterType="int">
+			    SELECT frno,day,pr.time,inwon,pf.name,pf.poster,pf.address,phone,theme,score,content,
+			           TO_CHAR(redate,'YYYY-MM-DD HH24:MI:SS') as dbday
+			    FROM project_reserve pr , project_food_house pf
+			    WHERE pr.fno=pf.fno
+			    AND frno=#{frno}
+			  </select>
+	    */
+	   public static FoodReserveVO mypageReserveInfoData(int frno)
 	   {
 		   FoodReserveVO vo=new FoodReserveVO();
 		   SqlSession session=null; //Connection
 		   try
 		   {
 			   session=ssf.openSession();
-			   vo=session.selectOne("FoodReserveMyPageData",rno);
+			   vo=session.selectOne("mypageReserveInfoData",frno);
 		   }catch(Exception ex)
 		   {
-			   System.out.println("FoodReserveMyPageData err");
 			   ex.printStackTrace();
 		   }
 		   finally
@@ -372,5 +408,5 @@ public class FoodDAO {
 		   }
 		   return vo;
 	   }
+	}
 	
-}

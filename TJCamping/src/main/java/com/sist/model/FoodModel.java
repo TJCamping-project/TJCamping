@@ -36,11 +36,30 @@ public class FoodModel {
 	   if(endPage>totalpage)
 		   endPage=totalpage;
 	   
+	   
+	   Cookie[] cookies=request.getCookies();
+	    List<FoodVO> cookieList=new ArrayList<FoodVO>();
+	    // Cookie cookie=new Cookie("food_"+fno, fno);
+	    if(cookies!=null)
+	    {
+	    	for(int i=cookies.length-1;i>=0;i--)
+	    	{
+	    		if(cookies[i].getName().startsWith("food_"))
+	    		{
+	    			String fno=cookies[i].getValue();
+	    			FoodVO vo=FoodDAO.foodDetailData(Integer.parseInt(fno));
+	    			cookieList.add(vo);
+	    		}
+	    	}
+	    }
+	    
+	    
 	   request.setAttribute("fList", fList);
 	   request.setAttribute("curpage", curpage);
 	   request.setAttribute("totalpage", totalpage);
 	   request.setAttribute("startPage", startPage);
 	   request.setAttribute("endPage", endPage);
+	   request.setAttribute("cookieList", cookieList);
 	   // DB연동 => 출력할 데이터 전송 
 	   int count=FoodDAO.foodListCount();
 	   request.setAttribute("count", count);
@@ -50,6 +69,9 @@ public class FoodModel {
 	   request.setAttribute("main_jsp", "../food/list.jsp");
 	   return "../main/main.jsp";
    }
+   
+   
+   
    @RequestMapping("food/detail_before.do")
    public String food_detail_before(HttpServletRequest request,HttpServletResponse response)
    {
@@ -78,21 +100,11 @@ public class FoodModel {
 	   String addr2=addr1.substring(0,addr1.indexOf(" "));
        List<FoodVO> rList=FoodDAO.foodRearListData(addr2);
        
-		/*
-		 * List<String> iList=new ArrayList<String>();
-		 * String[]temp=vo.getImages().split("\n");
-		 * 
-		 * for(String imgs:temp) { StringTokenizer st = new StringTokenizer(imgs,",\n");
-		 * iList.add(st.nextToken()); } request.setAttribute("imgsList", iList);
-		 */
        
        request.setAttribute("rList", rList);
 	   request.setAttribute("vo", vo);
 	   request.setAttribute("type", type);
-	   /*
-	    *   맛집(1) / 레시피(2) / 서울 여행(3) / 상품(4)  
-	    *   
-	    */
+
 	   CommonsModel.footerPrint(request);
 	   
 	   request.setAttribute("main_jsp", "../food/detail.jsp");
@@ -133,6 +145,7 @@ public class FoodModel {
 	   int endPage=((curpage-1)/BLOCK*BLOCK)+BLOCK;
 	   if(endPage>totalpage)
 		   endPage=totalpage;
+	  
 	   
 	   request.setAttribute("curpage", curpage);
 	   request.setAttribute("totalpage", totalpage);
@@ -147,4 +160,16 @@ public class FoodModel {
 	   request.setAttribute("main_jsp", "../food/find.jsp");
 	   return "../main/main.jsp";
    }
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
 }

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sist.mapper.food-mapper">
 	<select id="foodHitTopData" resultType="FoodVO">
 		SELECT fno , name , poster , rownum 
@@ -56,44 +58,39 @@
 		WHERE rownum &lt;=12
 	</select>
 	<!--  맛집 찾기 -->
-	<select id="foodFindListData" resultType="FoodVO" parameterType="hashmap">
-		SELECT fno , name , poster , num
-		FROM (SELECT fno , name , poster , rownum as num 
-				  FROM (SELECT /*+ INDEX_ASC(food_blue fb_no_PK)*/ fno , name , poster 
-				  		    FROM food_blue WHERE address LIKE '%'||#{ss}||'%'))
+	
+	
+	<select id="FoodFindListData" resultType="FoodVO" parameterType="hashmap">
+		SELECT fno,name,poster,num
+		FROM (SELECT fno,name,poster,rownum as num
+		FROM (SELECT fno,name,poster
+		FROM food_blue
+		WHERE address LIKE '%'||#{a}||'%'))
 		WHERE num BETWEEN #{start} AND #{end}
 	</select>
-	<select id="foodFindTotalPage" resultType="int">
-		SELECT CEIL(COUNT(*)/20.0)  
-		FROM food_blue  
-		WHERE address LIKE '%'||#{ss}||'%' 
-	</select>
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<select id="FoodReserveData" resultType="FoodVO" parameterType="int">
-		SELECT name,poster,phone,address
-		FROM food_blue
-		WHERE fno=#{fno}
-	</select>
-	<select id="FoodReserveDayData1" resultType="String" parameterType="int">
+  <select id="foodFindTotalPage" resultType="int">
+    SELECT CEIL(COUNT(*)/20.0) FROM food_blue
+    WHERE address LIKE '%'||#{ss}||'%'
+  </select>
+  <!-- 예약 관련 -->
+  <select id="foodTypeAllData" resultType="FoodVO" parameterType="string">
+    SELECT fno,poster,name,phone 
+    FROM food_blue
+    WHERE type LIKE '%'||#{type}||'%'
+    ORDER BY fno ASC
+  </select>
+  <select id="foodReserveDayData" resultType="String" parameterType="int">
     SELECT rdays FROM food_blue
     WHERE fno=#{fno}
   </select>
-  <select id="FoodReserveTimeData1" resultType="String" parameterType="int">
-  	SELECT time FROM food_reserve_date
-  	WHERE fdno=#{fdno}
+  <select id="foodReserveTimeData" resultType="String" parameterType="int">
+    SELECT time FROM food_reserve_date
+    WHERE dno=#{dno}
   </select>
-  <select id="FoodTimeSelectData1" resultType="String" parameterType="int">
-  	SELECT time FROM food_reserve_time
-  	WHERE ftno=#{ftno}
+  <select id="foodTimeSelectData" resultType="String" parameterType="int">
+    SELECT time FROM food_reserve_time
+    WHERE tno=#{tno}
   </select>
 </mapper>

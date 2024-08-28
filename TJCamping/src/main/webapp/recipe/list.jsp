@@ -70,17 +70,52 @@
     text-overflow: ellipsis; /* 넘치는 텍스트를 "..."로 표시 */
     text-align: center; /* 텍스트를 가운데 정렬 */
 }
+
+.pagination {
+    display: flex;
+    justify-content: center; /* 페이지 버튼을 중앙에 정렬 */
+    margin-top: 20px; /* 페이지 버튼 위쪽 여백 */
+}
+
+.pagination .page-link {
+    border: 1px solid #ddd; /* 페이지 버튼 테두리 설정 */
+    border-radius: 5px; /* 페이지 버튼 모서리 둥글게 설정 */
+}
+
+
+.search-container {
+    display: flex; /* 자식 요소들을 가로 방향으로 배치 */
+    justify-content: center; /* 가로 방향 중앙 정렬 */
+    align-items: center; /* 세로 방향 중앙 정렬 */
+    margin: 20px; /* 상하좌우 여백 추가 */
+}
+
+/* 검색 폼 스타일 */
+.search-form {
+    display: flex; /* 자식 요소들을 가로 방향으로 배치 */
+    gap: 10px; /* 검색창과 버튼 사이의 간격 */
+}
+
+/* 검색창 스타일 */
+.search-input {
+    width: 300px; /* 검색창 너비 설정 */
+    padding: 10px; /* 안쪽 여백 */
+    border: 1px solid #ced4da; /* 테두리 스타일 */
+    border-radius: 4px; /* 모서리 둥글게 */
+    font-size: 16px; /* 글자 크기 */
+}
+
 </style>
 </head>
 <body>
 <!-- Header Start -->
-<div class="container-fluid bg-breadcrumb">
-    <div class="container text-center py-5" style="max-width: 900px;">
+<div class="container-fluid whitezzz" style="height:100px;"></div>
+    <!-- <div class="container text-center py-5" style="max-width: 900px;">
         <h3 class="text-white display-3 mb-4">레시피 목록</h3>
         <ol class="breadcrumb justify-content-center mb-0">
         </ol>    
     </div>
-</div>
+</div> -->
 <!-- Header End -->
 <div class="wrapper row3">
     <main class="container clear"> 
@@ -92,6 +127,15 @@
                             <h5 class="section-title px-3">레시피 리스트</h5>
                             <h1 class="mb-0">${count}개의 레시피</h1>
                         </div>
+                        
+                        
+                         <!-- 검색 폼 추가 -->
+                          <div class="search-container">
+        <form action="../recipe/find.do" method="post" class="search-form">
+            <input type="text" name="query" placeholder="계란" class="search-input">
+            <button type="submit" class="btn btn-primary">검색</button>
+        </form>
+    </div>
                         
                         <div class="row">
                             <c:forEach var="vo" items="${reList }" varStatus="s">
@@ -135,6 +179,48 @@
                                 </c:if>
                             </ul>
                         </nav>
+                        
+                        
+                        
+                        
+                        <div class="container-fluid packages py-5">
+         <div class="container py-5 ">
+         
+                <div class="mx-auto text-center mb-5" style="max-width: 900px;">
+                    <h5 class="section-title px-3">Recent Recipe</h5>
+                     <h2 class="sectiontitle">최근 본 레시피</h2>
+                </div>
+      
+            
+         <div class="packages-carousel owl-carousel">
+         
+                        <c:forEach var="vo" items="${cookieList }" varStatus="s">
+                              <div class="packages-item">
+                                 <div class="packages-img">
+                                 
+                                    <img src="https://ottogi.okitchen.co.kr/${vo.poster}"
+                                       class="img-fluid w-10  rounded-top" alt="${vo.title}">
+                                       
+                                    <div
+                                       class="packages-info d-flex border border-start-0 border-end-0 position-absolute"
+                                       style="width: 100%; bottom: 0; left: 0; z-index: 5;"><!-- 밑에 얇은줄 -->
+                                       
+                                    </div>
+                                
+                                 </div>
+                                 <div class="packages-content bg-light">
+                                    <div class="p-4 pb-1"><!-- 회색박스 -->
+                                    <a href="../recipe/detail_before.do?no=${vo.no}&type=3">
+                                       <h5 class="mb-0 text-center">${vo.title}</h5>
+                                       </a>
+                                       <p class="mb-4"></p>
+                                    </div>
+                              </div>
+                           </div>
+                        </c:forEach>
+                     </div>
+                     </div>
+                     </div>
                     </div>
                 </div>   
             </div>

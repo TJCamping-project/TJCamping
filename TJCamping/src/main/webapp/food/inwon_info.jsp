@@ -11,18 +11,17 @@
 $(function(){
 	$('.inwons').click(function(){
 		let inwon=$(this).text()
-		$('#inwon_data').text(inwon)
+		$('#food_inwon_data').text(inwon)
 		$('#reserveBtn').show()
-		
 		$('#r_inwon').val(inwon)
 	})
 })
 </script>
 </head>
 <body>
-	<c:forEach var="i" begin="1" end="5">
-		<span class="btn btn-xs btn-danger inwons">${i }명</span>
-	</c:forEach>
-		<span class="btn btn-xs btn-danger inwons">단체</span>
+  <c:forEach var="i" begin="1" end="5">
+    <span class="btn btn-xs btn-warning inwons">${i }명</span>
+  </c:forEach>
+    <span class="btn btn-xs btn-warning inwons">단체</span>
 </body>
 </html>

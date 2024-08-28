@@ -97,14 +97,14 @@ public class MyPageModel {
 		return "../main/main.jsp";
 	}
 
-	@RequestMapping("mypage/fhjjim_list.do")
+	@RequestMapping("mypage/fbjjim_list.do")
 	public String food_jjim(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("id");
-		List<FoodVO> fhlist = AllJjimDAO.fhjjimListData(id);
+		List<FoodVO> fblist = AllJjimDAO.fbjjimListData(id);
 		request.setAttribute("title", "맛집찜");
-		request.setAttribute("fhList", fhlist);
-		request.setAttribute("jjim_jsp", "../mypage/my_fhjjim.jsp");
+		request.setAttribute("fbList", fblist);
+		request.setAttribute("jjim_jsp", "../mypage/my_fbjjim.jsp");
 		request.setAttribute("mypage_jsp", "../mypage/mypage_jjim.jsp");
 		request.setAttribute("main_jsp", "../mypage/mypage_main.jsp");
 		return "../main/main.jsp";
@@ -140,11 +140,11 @@ public class MyPageModel {
 		String id = (String) session.getAttribute("id");
 		List<RecipeVO> reclist = AllJjimDAO.recjjimListData(id);
 		List<CampGoodsVO> cglist = AllJjimDAO.cgjjimListData(id);
-		List<FoodVO> fhlist = AllJjimDAO.fhjjimListData(id);
+		List<FoodVO> fblist = AllJjimDAO.fbjjimListData(id);
 		request.setAttribute("title", "전체");
 		request.setAttribute("recList", reclist);
 		request.setAttribute("cgList", cglist);
-		request.setAttribute("fhList", fhlist);
+		request.setAttribute("fbList", fblist);
 		request.setAttribute("jjim_jsp", "../mypage/my_alljjim.jsp");
 		request.setAttribute("mypage_jsp", "../mypage/mypage_jjim.jsp");
 		request.setAttribute("main_jsp", "../mypage/mypage_main.jsp");

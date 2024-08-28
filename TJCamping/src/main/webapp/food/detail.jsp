@@ -46,11 +46,7 @@
 <script src="../lib/lightbox/js/lightbox.min.js"></script>
 <script type="text/javascript"></script>
 <style>
- .bg-breadcrumb {
-   background-image: url('blank.jpg');
-   background-size: cover; /* 이미지가 요소를 덮도록 설정 */
-   background-position: center; /* 이미지가 중앙에 위치하도록 설정 */
-}
+
 .owl-nav{
    display:flex;
 }
@@ -84,7 +80,12 @@ main {
     text-overflow: ellipsis; /* 넘치는 텍스트를 "..."로 표시 */
     text-align: center; /* 텍스트를 가운데 정렬 */
 }
+
+
+
 </style>
+<link href="https://cdn.jsdelivr.net/npm/lightbox2@2.11.3/dist/css/lightbox.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/lightbox2@2.11.3/dist/js/lightbox-plus-jquery.min.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
 
@@ -129,7 +130,7 @@ $(function(){
 
       $.ajax({
          type:'post',
-         url:'../all_jjim/insert.do' ,
+         url:'../mypage/my_fbjjim.do' ,
          data:{"cno":cno,"type":1} ,
          success:function(result){
             if(result==="OK"){
@@ -260,20 +261,29 @@ function replyList(cno)
 </head>
 <body>
 	<!-- Header Start -->
-	<div class="container-fluid bg-breadcrumb">
+	<div class="container-fluid whitezzz" style="height:100px;"></div>
+
+			<h3 class="text-black display-3 mb-4 text-center " style="margin-top:20px" >${vo.name }</h3>
+	<!-- <div class="container-fluid bg-breadcrumb">
 		<div class="container text-center py-5" style="max-width: 900px;">
-			<h3 class="text-black display-3 mb-4">${vo.name }</h3>
 			<ol class="breadcrumb justify-content-center mb-0">
 			</ol>
 		</div>
-	</div>
+	</div> -->
 	<!-- Header End -->
    <div class="wrapper row3">
       <main class="container clear">
          <%-- 상세보기 / 댓글 --%>
          <table class="table">
+           
+            <tr class="text-center" style="margin-bottom:20px;">
+      <td colspan="2" style="margin-top:-30px"><img src="https://www.bluer.co.kr${vo.poster }" style="width: auto; height: auto;"></td>
+    </tr>
+    <tr>
+    <h1>  </h1>
+ 	</tr>
             <tr>
-               <td colspan="1">
+            <td colspan="1">
                 <h3>
 				    <span style="color: orange">
 				        <c:forTokens items="${vo.tag}" delims=" " var="tag">
@@ -282,12 +292,8 @@ function replyList(cno)
 				    </span>
 				</h3>
                </td>
-               <td width="auto" height="auto" class="text-center" rowspan="1"><img
-                  src="https://www.bluer.co.kr${vo.poster }" style="width: 100%" ></td>
-            </tr>
-            <tr>
-            <td colspan="1"><h3></h3></td>
-               <td colspan="12" class="text-right" style="text-align:right;">
+            
+               <td colspan="11" class="text-right" style="text-align:right;">
                
                   <div class="flexslider carousel basiccarousel btmspace-80">
                      <ul class="slides"
@@ -295,17 +301,28 @@ function replyList(cno)
                          <c:set var="cleanImages" value="${fn:replace(vo.images, ' ', '')}" />
 							<c:forTokens items="${cleanImages}" delims="," var="image">
 							    <li style="margin-right: 10px;">
-							        <figure>
-							            <img class="radius-10 btmspace-10"
-									     src="https://www.bluer.co.kr/${image}"
-									     style="width: 270px !important; height: 250px !important;">
-							        </figure>
-							    </li>
+    <figure>
+    <a href="https://www.bluer.co.kr/${image}" data-lightbox="image-gallery" data-title="Image description">
+        <img class="radius-10 btmspace-10"
+             src="https://www.bluer.co.kr/${image}"
+             style="width: auto !important; height: 100px !important; object-fit: cover; border-radius: 10px;">
+    </a>
+</figure>
+</li>
 							</c:forTokens>
                      </ul>
                   </div> 
                    </td>
             </tr>
+             <tr>
+             <td class="text-right" style="color: gray" width="5%">${vo.name } 정보</td>
+             <td></td>
+            </tr>
+            <tr>
+            <td class="text-right" style="color: gray" width="5%">한줄평</td>
+            <td>${vo.review }</td>
+            </tr>
+         
             <tr>
                <td class="text-right" style="color: gray" width="5%">업종</td>
                <td width="65%">${vo.theme }</td>
@@ -353,10 +370,9 @@ function replyList(cno)
                   <input type="button" class="btn btn-xs btn-success" value="목록"onclick="javascript:history.back()">
                   </td>
             </tr>
-            <tr>
-            <td>${vo.review }</td>
-            </tr>
-         </table>
+            </table>
+            
+           
 
          <div style="height: 10px"></div>
          <div id="map" style="width: 100%; height: 350px;"></div>
@@ -479,7 +495,7 @@ function replyList(cno)
                                     <div class="text-center packages-price py-2 px-4">★${rvo.hit }</div> <!-- 매퍼에서 연결해야함~ -->
                                  </div>
                                  <div class="packages-content bg-light">
-                                    <div class="p-4 pb-0"><!-- 회색박스 -->
+                                    <div class="p-4 pb-1"><!-- 회색박스 -->
                                     <a href="../food/detail_before.do?fno=${rvo.fno}&type=1">
                                        <h5 class="mb-0 text-center">${rvo.name}</h5>
                                        </a>

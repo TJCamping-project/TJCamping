@@ -107,20 +107,20 @@ public class AllJjimDAO {
 		}
 		return reclist;
 	}
-	public static List<FoodVO> fhjjimListData(String id){
-		List<FoodVO> fhlist = new ArrayList<FoodVO>();
+	public static List<FoodVO> fbjjimListData(String id){
+		List<FoodVO> fblist = new ArrayList<FoodVO>();
 		SqlSession session=null;
 		try {
 			session=ssf.openSession();
-			fhlist = session.selectList("fhjjimListData",id);
+			fblist = session.selectList("fbjjimListData",id);
 		}catch(Exception ex) {
-			System.out.println("fhjjimListData err");
+			System.out.println("fbjjimListData err");
 			ex.printStackTrace();
 		}finally {
 			if(session!=null)
 				session.close();
 		}
-		return fhlist;
+		return fblist;
 	}
 	
 	
