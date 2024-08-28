@@ -16,11 +16,11 @@
       <th class="text-center">이름</th>
       <th class="text-center">찜유무</th>
     </tr>
-    <c:forEach var="fvo" items="${fhList }">
+    <c:forEach var="fvo" items="${fbList }">
     <tr>
        <td class="text-center">1</td>
        <td class="text-center">
-        <img src="http://menupan.com${fvo.poster }" style="width: 30px;height: 30px">
+        <img src="http://www.bluer.co.kr${fvo.poster }" style="width: 30px;height: 30px">
        </td>
        <td>${fvo.name }</td>
        <td class="text-center">

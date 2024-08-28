@@ -6,5 +6,5 @@ import lombok.Data;
 @Data
 public class FoodVO {
 	private int fno, score, jjimcount, likecount, hit;
-	private String name, tag, phone, address, theme, poster, images, time, parking, review, rdays;
+	private String name, tag, phone, menu, address, theme, poster, images, time, parking, review, rdays;
 }

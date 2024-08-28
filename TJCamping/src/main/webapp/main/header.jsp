@@ -164,7 +164,7 @@ $(function(){
                         </div>
                         
                         <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                            <a href="../recipe/list.do" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                             &nbsp;&nbsp;&nbsp;레시피&맛집&nbsp;&nbsp;&nbsp;</a>
                             <div class="dropdown-menu m-0">
                                 <a href="../recipe/list.do" class="dropdown-item">레시피 목록</a>

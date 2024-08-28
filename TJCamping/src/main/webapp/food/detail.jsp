@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -269,22 +270,53 @@ function replyList(cno)
 	<!-- Header End -->
    <div class="wrapper row3">
       <main class="container clear">
-         <h2 class="sectiontitle">상세보기</h2>
-
-
          <%-- 상세보기 / 댓글 --%>
          <table class="table">
             <tr>
-               <td width="30%" class="text-center" rowspan="6"><img
-                  src="https://www.bluer.co.kr${vo.poster }" style="width: 100%" ></td>
-               <td colspan="2">
-                  <h3>${vo.name }&nbsp;<span style="color: orange">${vo.tag }</span>
-                  </h3>
+               <td colspan="1">
+                <h3>
+				    <span style="color: orange">
+				        <c:forTokens items="${vo.tag}" delims=" " var="tag">
+				            #${fn:trim(tag)}<br>
+				        </c:forTokens>
+				    </span>
+				</h3>
                </td>
+               <td width="auto" height="auto" class="text-center" rowspan="1"><img
+                  src="https://www.bluer.co.kr${vo.poster }" style="width: 100%" ></td>
+            </tr>
+            <tr>
+            <td colspan="1"><h3></h3></td>
+               <td colspan="12" class="text-right" style="text-align:right;">
+               
+                  <div class="flexslider carousel basiccarousel btmspace-80">
+                     <ul class="slides"
+                        style="display: flex; padding: 0; margin: 0; list-style: none;">
+                         <c:set var="cleanImages" value="${fn:replace(vo.images, ' ', '')}" />
+							<c:forTokens items="${cleanImages}" delims="," var="image">
+							    <li style="margin-right: 10px;">
+							        <figure>
+							            <img class="radius-10 btmspace-10"
+									     src="https://www.bluer.co.kr/${image}"
+									     style="width: 270px !important; height: 250px !important;">
+							        </figure>
+							    </li>
+							</c:forTokens>
+                     </ul>
+                  </div> 
+                   </td>
             </tr>
             <tr>
                <td class="text-right" style="color: gray" width="5%">업종</td>
                <td width="65%">${vo.theme }</td>
+            </tr>
+            <tr>
+               <td class="text-right" style="color: gray" width="5%">시간</td>
+               <td width="65%">${vo.time }</td>
+            </tr>
+            <tr>
+               <td class="text-right" style="color: gray" width="15%">주메뉴</td>
+               <td width="65%">${vo.menu}</td>
             </tr>
             <tr>
                <td class="text-right" style="color: gray" width="5%">전화</td>
@@ -302,40 +334,27 @@ function replyList(cno)
                <td class="text-right" style="color: gray" width="15%">주차</td>
                <td width="65%">${vo.parking }</td>
             </tr>
+            
+         </table>
+         <table class="table">
             <tr>
                <td colspan="3" class="text-right">
-               
-                  <div class="flexslider carousel basiccarousel btmspace-80">
-                     <ul class="slides"
-                        style="display: flex; padding: 0; margin: 0; list-style: none;">
-                        <c:forTokens items="${vo.images}" delims="^" var="image">
-                           <li style="margin-right: 10px;">
-                              <figure>
-                                 <img class="radius-10 btmspace-10"
-                                    src="https://www.bluer.co.kr/${image }"
-                                    style="width: 80px; height: 80px;">
-                              </figure>
-                           </li>
-                        </c:forTokens>
-                     </ul>
-                  </div> 
-                  <c:if test="${sessionScope.id!=null }">
+               <c:if test="${sessionScope.id!=null }">
                      <a href="#" class="btn btn-xs btn-success">좋아요</a>
                      <c:if test="${check==false }">
-                        <input type=button class="btn btn-xs btn-warning" value="찜하기"
+                        <input type=button class="btn btn-xs btn-success" value="찜하기"
                            id="jjimBtn" data-cno="${vo.fno }">
                      </c:if>
                      <c:if test="${check==true }">
                         <span class="btn btn-xs btn-default">찜하기</span>
                      </c:if>
-                     <a href="#" class="btn btn-xs btn-info">예약하기</a>
+                     <a href="../food/food_reserve.do?fno=${vo.fno }" class="btn btn-xs btn-success">예약하기</a>
                   </c:if>
-                  <input type="button" class="btn btn-xs btn-danger" value="목록"onclick="javascript:history.back()"></td>
+                  <input type="button" class="btn btn-xs btn-success" value="목록"onclick="javascript:history.back()">
+                  </td>
             </tr>
-         </table>
-         <table class="table">
             <tr>
-               <td>${vo.review }</td>
+            <td>${vo.review }</td>
             </tr>
          </table>
 
@@ -382,7 +401,7 @@ function replyList(cno)
           } 
       });    
       </script>
-         <h2 class="sectiontitle">댓글</h2>
+         <h2 class="sectiontitle" style="margin-top:50px;">댓글</h2>
          <table class="table" id="reply_table">
             <tbody>
                <tr>
@@ -457,7 +476,7 @@ function replyList(cno)
                                        style="width: 100%; bottom: 0; left: 0; z-index: 5;"><!-- 밑에 얇은줄 -->
                                        
                                     </div>
-                                    <div class="text-center packages-price py-2 px-4">★${rvo.score }</div> <!-- 매퍼에서 연결해야함~ -->
+                                    <div class="text-center packages-price py-2 px-4">★${rvo.hit }</div> <!-- 매퍼에서 연결해야함~ -->
                                  </div>
                                  <div class="packages-content bg-light">
                                     <div class="p-4 pb-0"><!-- 회색박스 -->

@@ -17,7 +17,7 @@ aa{
   <main class="container clear">
   <table class="table aa">
 	<a href="../mypage/alljjim_list.do" class="btn btn-xs btn-danger"  id="all" style="margin-left:20px">전체</a>
-	<a href="../mypage/fhjjim_list.do" class="btn btn-xs btn-info"  id="fh">맛집</a>
+	<a href="../mypage/fhjjim_list.do" class="btn btn-xs btn-info"  id="fb">맛집</a>
 	<a href="../mypage/cgjjim_list.do" class="btn btn-xs btn-primary"  id="cg">캠핑용품</a>
 	<a href="../mypage/recjjim_list.do" class="btn btn-xs btn-warning" id="cmp">레시피</a>
 </table>

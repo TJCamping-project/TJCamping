@@ -167,4 +167,210 @@ public class FoodDAO {
 		}
 		return list;
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public static FoodVO FoodReserveData(int fno){
+		FoodVO vo=new FoodVO();
+		SqlSession session=null;
+		
+		try
+		{
+			session=ssf.openSession();
+			vo=session.selectOne("FoodReserveData",fno);
+		}catch(Exception ex)
+		{
+			System.out.println("FoodDAO 오류 11");
+			ex.printStackTrace();
+		}
+		finally
+		{
+			// connection 반환 (DBCP) => 재사용(반환 시 가능)
+			if(session!=null)
+				session.close();
+		}
+		
+		return vo;
+	}
+	
+	   public static String FoodReserveDayData1(int fno)
+	   {
+		   String rdays="";
+		   SqlSession session=null; //Connection
+		   try
+		   {
+			   session=ssf.openSession();
+			   rdays=session.selectOne("FoodReserveDayData1", fno);
+		   }catch(Exception ex)
+		   {
+			   System.out.println("FoodReserveDayData1 err");
+			   ex.printStackTrace();
+		   }
+		   finally
+		   {
+			   if(session!=null)
+				   session.close();
+		   }
+		   return rdays;
+	   }
+	   
+	   public static String FoodTimeSelectData1(int ftno)
+	   {
+		   String times="";
+		   SqlSession session=null; //Connection
+		   try
+		   {
+			   session=ssf.openSession();
+			   times=session.selectOne("FoodTimeSelectData", ftno);
+		   }catch(Exception ex)
+		   {
+			   System.out.println("FoodTimeSelectData err");
+			   ex.printStackTrace();
+		   }
+		   finally
+		   {
+			   if(session!=null)
+				   session.close();
+		   }
+		   return times;
+	   }
+	   
+	   
+	  
+	   public static void FoodReserveInsert(FoodReserveVO vo)
+	   {
+		   SqlSession session=null; //Connection
+		   try
+		   {
+			   session=ssf.openSession(true);
+			   session.insert("FoodReserveInsert", vo);
+		   }catch(Exception ex)
+		   {
+			   System.out.println("FoodReserveInsert err");
+			   ex.printStackTrace();
+		   }
+		   finally
+		   {
+			   if(session!=null)
+				   session.close();
+		   }
+	   }
+	   
+	   public static List<FoodReserveVO> FoodReserveMyPageData(String id)
+	   {
+		   List<FoodReserveVO> list=new ArrayList<FoodReserveVO>();
+		   SqlSession session=null; //Connection
+		   try
+		   {
+			   session=ssf.openSession(true);
+			   list=session.selectList("FoodReserveMyPageData", id);
+		   }catch(Exception ex)
+		   {
+			   System.out.println("FoodReserveMyPageData err");
+			   ex.printStackTrace();
+		   }
+		   finally
+		   {
+			   if(session!=null)
+				   session.close();
+		   }
+		   return list;
+	   }
+	   
+	   public static List<FoodReserveVO> FoodReserveAdminPageData()
+	   {
+		   List<FoodReserveVO> list=new ArrayList<FoodReserveVO>();
+		   SqlSession session=null; //Connection
+		   try
+		   {
+			   session=ssf.openSession(true);
+			   list=session.selectList("FoodReserveAdminPageData");
+		   }catch(Exception ex)
+		   {
+			   System.out.println("FoodReserveAdminPageData err");
+			   ex.printStackTrace();
+		   }
+		   finally
+		   {
+			   if(session!=null)
+				   session.close();
+		   }
+		   return list;
+	   }
+	   
+	   public static void FoodreserveOk(int rno)
+	   {
+		   SqlSession session=null; //Connection
+		   try
+		   {
+			   session=ssf.openSession(true);
+			   session.update("FoodreserveOk",rno);
+		   }catch(Exception ex)
+		   {
+			   System.out.println("FoodreserveOk err");
+			   ex.printStackTrace();
+		   }
+		   finally
+		   {
+			   if(session!=null)
+				   session.close();
+		   }
+	   }
+	   
+	   public static void FoodreserveCancel(int rno)
+	   {
+		   SqlSession session=null; //Connection
+		   try
+		   {
+			   session=ssf.openSession(true);
+			   session.delete("FoodreserveCancel",rno);
+		   }catch(Exception ex)
+		   {
+			   System.out.println("FoodreserveCancel err");
+			   ex.printStackTrace();
+		   }
+		   finally
+		   {
+			   if(session!=null)
+				   session.close();
+		   }
+	   }
+	   
+	   public static FoodReserveVO FoodReserveMyPageData(int rno)
+	   {
+		   FoodReserveVO vo=new FoodReserveVO();
+		   SqlSession session=null; //Connection
+		   try
+		   {
+			   session=ssf.openSession();
+			   vo=session.selectOne("FoodReserveMyPageData",rno);
+		   }catch(Exception ex)
+		   {
+			   System.out.println("FoodReserveMyPageData err");
+			   ex.printStackTrace();
+		   }
+		   finally
+		   {
+			   if(session!=null)
+				   session.close();
+		   }
+		   return vo;
+	   }
+	
 }

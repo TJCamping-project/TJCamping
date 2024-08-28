@@ -8,8 +8,8 @@
 		WHERE rownum &lt;=12
 	</select> 
 	<select id="foodLikeTopData" resultType="FoodVO">
-		SELECT fno , name , poster , rownum 
-		FROM (SELECT fno , name , poster 
+		SELECT fno , name , poster , hit, tag, rownum 
+		FROM (SELECT fno , name , poster , hit ,tag
 				  FROM food_blue ORDER BY likecount DESC )
 		WHERE rownum &lt;=9
 	</select>
@@ -24,9 +24,9 @@
 	</select>
 	<!--  맛집 목록 출력 -->
 	<select id="foodListData" resultType="FoodVO" parameterType="hashmap">
-		SELECT fno , name , poster , tag ,num
-		FROM (SELECT fno , name , poster , tag , rownum as num 
-				  FROM (SELECT /*+ INDEX_ASC(food_blue fb_no_PK)*/ fno , name , poster ,tag 
+		SELECT fno , name , poster , hit ,num
+		FROM (SELECT fno , name , poster , hit , rownum as num 
+				  FROM (SELECT /*+ INDEX_ASC(food_blue fb_no_PK)*/ fno , name , poster ,hit 
 				  		    FROM food_blue ))
 		WHERE num BETWEEN #{start} AND #{end}
 	</select>
@@ -50,8 +50,8 @@
 	<!--  댓글 -->
 	<!--  인근 맛집 출력 -->
 	<select id="foodRearListData" resultType="FoodVO" parameterType="string">
-		SELECT fno , name , poster , address , rownum 
-		FROM (SELECT fno , name , poster ,address
+		SELECT fno , name , poster , address , hit, rownum 
+		FROM (SELECT fno , name , poster ,address, hit
 				  FROM food_blue WHERE address LIKE '%'||#{ss}||'%'  ORDER BY fno ASC)
 		WHERE rownum &lt;=12
 	</select>
@@ -68,4 +68,32 @@
 		FROM food_blue  
 		WHERE address LIKE '%'||#{ss}||'%' 
 	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<select id="FoodReserveData" resultType="FoodVO" parameterType="int">
+		SELECT name,poster,phone,address
+		FROM food_blue
+		WHERE fno=#{fno}
+	</select>
+	<select id="FoodReserveDayData1" resultType="String" parameterType="int">
+    SELECT rdays FROM food_blue
+    WHERE fno=#{fno}
+  </select>
+  <select id="FoodReserveTimeData1" resultType="String" parameterType="int">
+  	SELECT time FROM food_reserve_date
+  	WHERE fdno=#{fdno}
+  </select>
+  <select id="FoodTimeSelectData1" resultType="String" parameterType="int">
+  	SELECT time FROM food_reserve_time
+  	WHERE ftno=#{ftno}
+  </select>
 </mapper>
