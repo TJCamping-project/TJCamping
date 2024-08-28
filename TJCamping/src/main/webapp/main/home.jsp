@@ -395,280 +395,40 @@
 
 
 <!-- 맛집 Start -->
-	<div class="container-fluid destination py-5">
-		<div class="container py-5">
-			<div class="mx-auto text-center mb-5" style="max-width: 900px;">
-				<h5 class="section-title px-3">foodie map</h5>
-				<h1 class="mb-0">맛집</h1>
-			</div>
-			<div class="tab-class text-center">
-				<ul class="nav nav-pills d-inline-flex justify-content-center mb-5">
-					<li class="nav-item"><a
-						class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill active"
-						data-bs-toggle="pill" href="#tab-1"> <span class="text-dark"
-							style="width: 150px;">전체</span>
-					</a></li>
-					<li class="nav-item"><a
-						class="d-flex py-2 mx-3 border border-primary bg-light rounded-pill"
-						data-bs-toggle="pill" href="#tab-2"> <span class="text-dark"
-							style="width: 150px;">한식</span>
-					</a></li>
-					<li class="nav-item"><a
-						class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill"
-						data-bs-toggle="pill" href="#tab-3"> <span class="text-dark"
-							style="width: 150px;">일식</span>
-					</a></li>
-					<li class="nav-item"><a
-						class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill"
-						data-bs-toggle="pill" href="#tab-4"> <span class="text-dark"
-							style="width: 150px;">중식</span>
-					</a></li>
-					<li class="nav-item"><a
-						class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill"
-						data-bs-toggle="pill" href="#tab-5"> <span class="text-dark"
-							style="width: 150px;">양식</span>
-					</a></li>
-					<li class="nav-item"><a
-						class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill"
-						data-bs-toggle="pill" href="#tab-6"> <span class="text-dark"
-							style="width: 150px;">퓨전식</span>
-					</a></li>
-				</ul>
-				<div class="tab-content">
-					<div id="tab-1" class="tab-pane fade show p-0 active">
-						<div class="row g-4">
-						<c:forEach var="fvo" items="${likeList}" varStatus="status"> <!-- ---------------------------------------------------------------------------- -->
-							<c:if test="${status.index % 3 == 0}">
-					            <div class="row">
-					        </c:if>
-							<div class="col-xl-4">
-								<div class="destination-img h-100">
-									<img class="img-fluid rounded w-150 h-150"
-										src="http://bluer.co.kr${fvo.poster }"
-										style="object-fit: cover; min-height: 400px;" alt="">
-									<div class="destination-overlay p-4">
-										<h4 class="text-white mb-2 mt-3 " >${fvo.name }</h4>
-										<a href="#" class="btn-hover text-white ">바로가기<i
-											class="fa fa-arrow-left ms-2"></i></a>
-									</div>
-									<div class="search-icon">
-										<a href="http://menupan.com${fvo.poster }" data-lightbox="destination-4"><i
-											class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
-									</div>
-								</div>
-							</div>
-							<c:if test="${status.index % 3 == 2 || status.last}">
-							<h2></h2>
-					            </div>
-					        </c:if>
-						</c:forEach> <!-- ---------------------------------------------------------------------------- -->
-						</div>
-					</div>
-					<div id="tab-2" class="tab-pane fade show p-0">
-						<div class="row g-4">
-							<div class="col-lg-6">
-								<div class="destination-img">
-									<img class="img-fluid rounded w-100"
-										src="../img/5.jpg" alt="">
-									<div class="destination-overlay p-4">
-										<a href="#"
-											class="btn btn-primary text-white rounded-pill border py-2 px-3">20
-											Photos</a>
-										<h4 class="text-white mb-2 mt-3">San francisco</h4>
-										<a href="#" class="btn-hover text-white">View All Place <i
-											class="fa fa-arrow-right ms-2"></i></a>
-									</div>
-									<div class="search-icon">
-										<a href="../img/5.jpg" data-lightbox="destination-5"><i
-											class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-6">
-								<div class="destination-img">
-									<img class="img-fluid rounded w-100"
-										src="../img/6.jpg" alt="">
-									<div class="destination-overlay p-4">
-										<a href="#"
-											class="btn btn-primary text-white rounded-pill border py-2 px-3">20
-											Photos</a>
-										<h4 class="text-white mb-2 mt-3">San francisco</h4>
-										<a href="#" class="btn-hover text-white">View All Place <i
-											class="fa fa-arrow-right ms-2"></i></a>
-									</div>
-									<div class="search-icon">
-										<a href="../img/6.jpg" data-lightbox="destination-6"><i
-											class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div id="tab-3" class="tab-pane fade show p-0">
-						<div class="row g-4">
-							<div class="col-lg-6">
-								<div class="destination-img">
-									<img class="img-fluid rounded w-100"
-										src="../img/5.jpg" alt="">
-									<div class="destination-overlay p-4">
-										<a href="#"
-											class="btn btn-primary text-white rounded-pill border py-2 px-3">20
-											Photos</a>
-										<h4 class="text-white mb-2 mt-3">San francisco</h4>
-										<a href="#" class="btn-hover text-white">View All Place <i
-											class="fa fa-arrow-right ms-2"></i></a>
-									</div>
-									<div class="search-icon">
-										<a href="../img/5.jpg" data-lightbox="destination-5"><i
-											class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-6">
-								<div class="destination-img">
-									<img class="img-fluid rounded w-100"
-										src="../img/6.jpg" alt="">
-									<div class="destination-overlay p-4">
-										<a href="#"
-											class="btn btn-primary text-white rounded-pill border py-2 px-3">20
-											Photos</a>
-										<h4 class="text-white mb-2 mt-3">San francisco</h4>
-										<a href="#" class="btn-hover text-white">View All Place <i
-											class="fa fa-arrow-right ms-2"></i></a>
-									</div>
-									<div class="search-icon">
-										<a href="../img/6.jpg" data-lightbox="destination-6"><i
-											class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div id="tab-4" class="tab-pane fade show p-0">
-						<div class="row g-4">
-							<div class="col-lg-6">
-								<div class="destination-img">
-									<img class="img-fluid rounded w-100"
-										src="../img/5.jpg" alt="">
-									<div class="destination-overlay p-4">
-										<a href="#"
-											class="btn btn-primary text-white rounded-pill border py-2 px-3">20
-											Photos</a>
-										<h4 class="text-white mb-2 mt-3">San francisco</h4>
-										<a href="#" class="btn-hover text-white">View All Place <i
-											class="fa fa-arrow-right ms-2"></i></a>
-									</div>
-									<div class="search-icon">
-										<a href="../img/5.jpg" data-lightbox="destination-5"><i
-											class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-6">
-								<div class="destination-img">
-									<img class="img-fluid rounded w-100"
-										src="../img/6.jpg" alt="">
-									<div class="destination-overlay p-4">
-										<a href="#"
-											class="btn btn-primary text-white rounded-pill border py-2 px-3">20
-											Photos</a>
-										<h4 class="text-white mb-2 mt-3">San francisco</h4>
-										<a href="#" class="btn-hover text-white">View All Place <i
-											class="fa fa-arrow-right ms-2"></i></a>
-									</div>
-									<div class="search-icon">
-										<a href="../img/6.jpg" data-lightbox="destination-6"><i
-											class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div id="tab-5" class="tab-pane fade show p-0">
-						<div class="row g-4">
-							<div class="col-lg-6">
-								<div class="destination-img">
-									<img class="img-fluid rounded w-100"
-										src="../img/5.jpg" alt="">
-									<div class="destination-overlay p-4">
-										<a href="#"
-											class="btn btn-primary text-white rounded-pill border py-2 px-3">20
-											Photos</a>
-										<h4 class="text-white mb-2 mt-3">San francisco</h4>
-										<a href="#" class="btn-hover text-white">View All Place <i
-											class="fa fa-arrow-right ms-2"></i></a>
-									</div>
-									<div class="search-icon">
-										<a href="../img/5.jpg" data-lightbox="destination-5"><i
-											class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-6">
-								<div class="destination-img">
-									<img class="img-fluid rounded w-100"
-										src="../img/6.jpg" alt="">
-									<div class="destination-overlay p-4">
-										<a href="#"
-											class="btn btn-primary text-white rounded-pill border py-2 px-3">20
-											Photos</a>
-										<h4 class="text-white mb-2 mt-3">San francisco</h4>
-										<a href="#" class="btn-hover text-white">View All Place <i
-											class="fa fa-arrow-right ms-2"></i></a>
-									</div>
-									<div class="search-icon">
-										<a href="../img/6.jpg" data-lightbox="destination-6"><i
-											class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div id="tab-6" class="tab-pane fade show p-0">
-						<div class="row g-4">
-							<div class="col-lg-6">
-								<div class="destination-img">
-									<img class="img-fluid rounded w-100"
-										src="../img/5.jpg" alt="">
-									<div class="destination-overlay p-4">
-										<a href="#"
-											class="btn btn-primary text-white rounded-pill border py-2 px-3">20
-											Photos</a>
-										<h4 class="text-white mb-2 mt-3">San francisco</h4>
-										<a href="#" class="btn-hover text-white">View All Place <i
-											class="fa fa-arrow-right ms-2"></i></a>
-									</div>
-									<div class="search-icon">
-										<a href="../img/5.jpg" data-lightbox="destination-5"><i
-											class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-6">
-								<div class="destination-img">
-									<img class="img-fluid rounded w-100"
-										src="../img/6.jpg" alt="">
-									<div class="destination-overlay p-4">
-										<a href="#"
-											class="btn btn-primary text-white rounded-pill border py-2 px-3">20
-											Photos</a>
-										<h4 class="text-white mb-2 mt-3">San francisco</h4>
-										<a href="#" class="btn-hover text-white">View All Place <i
-											class="fa fa-arrow-right ms-2"></i></a>
-									</div>
-									<div class="search-icon">
-										<a href="../img/6.jpg" data-lightbox="destination-6"><i
-											class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div> 
 
-	<!-- 맛집 추천 End -->
+<div class="container-fluid packages py-5">
+    <div class="container py-5">
+        <div class="mx-auto text-center mb-5" style="max-width: 900px;">
+            <h5 class="section-title px-3">Foodie Map</h5>
+            <h1 class="mb-0">맛집</h1>
+        </div>
+        <div class="packages-carousel owl-carousel">
+            <c:forEach var="fvo" items="${likeList}" varStatus="s">
+                <div class="packages-item" style="max-width:100%; height: 100%;">
+                    <div class="packages-imges position-relative" style="width: 100%; height: 270px;">
+                        <a href="../food/detail_before.do?fno=${fvo.fno }&type=1"><img class="img-fluid w-100 h-100 object-fit-cover rounded-top" src="https://www.bluer.co.kr${fvo.poster}" alt="Image"></a>
+                    </div>
+                    <div class="packages-content bg-light">
+                        <div class="p-2 pb-2" style="display: flex; align-items: center;">
+					    <h5 class="mb-0 truncate-text" style="flex: 1; margin-left: 20px;">#${fvo.tag}</h5>
+					    <div class="text-center packages-price py-2 px-4" style="display: flex; align-items: center;">
+					        <img src="pointer.png" style="width: 30px; height: auto; margin-right: 8px;">
+					        <span>${fvo.hit}</span>
+					    </div>
+					</div>
+                    </div>
+                    <div class="row bg-primary rounded-bottom mx-0">
+                        <div class="col-12 text-end px-0">
+                            <a href="../food/detail_before.do?fno=${fvo.fno }&type=1" class="btn-hover btn text-white py-2 px-4">${fvo.name}</a>
+                        </div>
+                    </div>
+                </div>
+            </c:forEach>
+        </div>
+    </div>
+</div>
+
+<!-- 맛집 end -->
 	
 	<!-- 레시피 Start -->
 	<div class="container-fluid packages py-5">
@@ -677,51 +437,7 @@
 				<h5 class="section-title px-3">Recipe</h5>
 				<h1 class="mb-0">레시피</h1>
 			</div>
-			<!-- <div class="packages-carousel owl-carousel"></div>  돌아가게 하는 거임 -->
-			<div class="tab-class text-center">
-				<ul class="nav nav-pills d-inline-flex justify-content-center mb-5">
-				
-					<li class="nav-item">
-					<a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill active"
-						data-bs-toggle="pill" href="#tab-1"> 
-						<span class="text-dark" style="width: 150px;">전체</span>
-					</a></li>
-					
-					<li class="nav-item">
-					<a class="d-flex py-2 mx-3 border border-primary bg-light rounded-pill"
-						data-bs-toggle="pill" href="#tab-2"> 
-						<span class="text-dark" style="width: 150px;">1인분</span>
-					</a></li>
-					
-					<li class="nav-item">
-					<a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill"
-						data-bs-toggle="pill" href="#tab-3"> 
-						<span class="text-dark" style="width: 150px;">2인분</span>
-					</a></li>
-					
-					<li class="nav-item"><a
-						class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill"
-						data-bs-toggle="pill" href="#tab-4">
-						<span class="text-dark" style="width: 150px;">3인분</span>
-					</a></li>
-					
-					<li class="nav-item">
-					<a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill"
-						data-bs-toggle="pill" href="#tab-5"> 
-						<span class="text-dark" style="width: 150px;">4인분</span>
-					</a></li>
-					
-					<li class="nav-item">
-					<a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill"
-						data-bs-toggle="pill" href="#tab-6"> 
-						<span class="text-dark" style="width: 150px;">5인분</span>
-					</a></li>
-				</ul>
-				
-				
-				
-				</div>
-
+			 <div class="packages-carousel owl-carousel"></div> 
 
 					  <!-- Blog Start -->
 			<div class="row g-4 justify-content-center">
@@ -768,7 +484,6 @@
         <!-- Blog End -->
  
 	<!-- 레시피 End -->
-
 
 	<!-- 후기 Start -->
 	<div class="container-fluid testimonial py-5">

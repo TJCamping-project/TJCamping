@@ -77,6 +77,15 @@ public class FoodModel {
 	   String addr1=addr.substring(addr.indexOf(" ")+1);
 	   String addr2=addr1.substring(0,addr1.indexOf(" "));
        List<FoodVO> rList=FoodDAO.foodRearListData(addr2);
+       
+		/*
+		 * List<String> iList=new ArrayList<String>();
+		 * String[]temp=vo.getImages().split("\n");
+		 * 
+		 * for(String imgs:temp) { StringTokenizer st = new StringTokenizer(imgs,",\n");
+		 * iList.add(st.nextToken()); } request.setAttribute("imgsList", iList);
+		 */
+       
        request.setAttribute("rList", rList);
 	   request.setAttribute("vo", vo);
 	   request.setAttribute("type", type);

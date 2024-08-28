@@ -86,13 +86,13 @@ main {
 </head>
 <body>
 	<!-- Header Start -->
-	<div class="container-fluid bg-breadcrumb">
-		<div class="container text-center py-5" style="max-width: 900px;">
+	<div class="container-fluid whitezzz" style="height:100px;"></div>
+	<!-- 	<div class="container text-center py-5" style="max-width: 900px;">
 			<h3 class="text-white display-3 mb-4">맛집 목록</h3>
 			<ol class="breadcrumb justify-content-center mb-0">
 			</ol>
 		</div>
-	</div>
+	</div> -->
 	<!-- Header End -->
 	<div class="wrapper row3">
 		<main class="container clear">
@@ -119,7 +119,7 @@ main {
 														class="text-white flex-fill text-center border-end py-2 text-decoration-none">
 														<i class="text-white fa fa-map-marker-alt me-2"></i>저장하기</a>
 												</div>
-												<div class="text-center packages-price py-2 px-4">★${flvo.tag }</div> <!-- 매퍼에서 연결해야함~ -->
+												<div class="text-center packages-price py-2 px-4">★${flvo.hit }</div> <!-- 매퍼에서 연결해야함~ -->
 											</div>
 											<div class="packages-content bg-light">
 												<div class="p-4 pb-0">
