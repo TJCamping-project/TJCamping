@@ -16,7 +16,13 @@ public class AdminModel {
    public String adminpage_main(HttpServletRequest request,HttpServletResponse response)
    {
 	   CommonsModel.footerPrint(request);
+	   int gtotal=AdminDAO.girlcheck();
+	   int btotal=AdminDAO.boycheck();
+	   int total=AdminDAO.totalcheck();
 	   
+	   request.setAttribute("boyPercent", btotal);
+	   request.setAttribute("girlPercent", gtotal);
+	   request.setAttribute("total", total);
 	   request.setAttribute("title", "관리자페이지 홈");
 	   request.setAttribute("admin_jsp", "../adminpage/adminpage_home.jsp");
 	   request.setAttribute("main_jsp", "../adminpage/adminpage_main.jsp");
