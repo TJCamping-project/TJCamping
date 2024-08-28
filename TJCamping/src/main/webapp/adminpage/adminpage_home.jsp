@@ -18,7 +18,7 @@
         var options = {
           title: '회원 남녀성비',
           is3D: true,
-        };
+        }; 
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
         chart.draw(data, options);
