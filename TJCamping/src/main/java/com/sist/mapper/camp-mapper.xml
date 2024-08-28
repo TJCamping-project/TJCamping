@@ -118,6 +118,6 @@
 		</trim>
 	</foreach>
 	</trim>
-	) AND type=1
+	) AND type=1 
 	</select>
 </mapper>
