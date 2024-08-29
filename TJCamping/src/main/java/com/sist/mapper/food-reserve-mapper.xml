@@ -16,10 +16,10 @@ ISOK             CHAR(1)
 		VALUES(fre_frno_seq.nextval,#{id},#{fno},#{day},#{time},#{inwon},'n')
 	</insert>
 	<resultMap type="com.sist.vo.FoodReserveVO" id="FoodreserveMap">
-		<result property="vo.name" column="name"/>
-		<result property="vo.poster" column="poster"/>
-		<result property="vo.address" column="address"/>
-		<result property="vo.phone" column="phone"/>
+		<result property="fvo.name" column="name"/>
+		<result property="fvo.poster" column="poster"/>
+		<result property="fvo.address" column="address"/>
+		<result property="fvo.phone" column="phone"/>
 	</resultMap>
 	
 	
