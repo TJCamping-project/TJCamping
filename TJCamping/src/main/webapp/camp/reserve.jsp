@@ -25,6 +25,23 @@
 		});
 
 	})
+	
+/*	$.ajax({
+    type: 'post',
+    url: '../camp/reserve_ok.do',
+    data: {
+        "camp_no": $('#r_camp_no').val(),
+        "date": $('#r_date').val(),
+        "time": $('#r_time').val(),
+        "inwon": $('#r_inwon').val()
+    },
+    success: function(response) {
+        // 성공 처리
+    },
+    error: function(xhr, status, error) {
+        console.log('Error:', error);
+    } */
+});
 </script>
 <style type="text/css">
 .rday_can:hover {
