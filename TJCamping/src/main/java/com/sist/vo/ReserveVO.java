@@ -16,7 +16,7 @@ ISOK             CHAR(1)
 public class ReserveVO {
 	
 	private int rno,cno;
-	private String id,day,time,inwon,isok,dbday;
+	private String id,day,time,inwon,isok,dbday,buyok;
 	private Date regdate;
 	
 	private CampVO cvo=new CampVO(); // JOIN 

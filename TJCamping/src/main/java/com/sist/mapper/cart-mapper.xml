@@ -83,7 +83,7 @@
 select * from cart where isbuy like 'y' and campno is null;
    -->
    <select id="goodsBuyList" parameterType="string" resultMap="cartMap">
-   		select name,poster,cg.price,account,c.price  
+   		select name,poster,account,c.price  
    		from cart c ,camp_goods_all cg
    		where id=#{id} and isbuy = 'y' and c.campno is null and c.gno=cg.cno
    </select>

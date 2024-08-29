@@ -186,7 +186,26 @@ public class ReserveDAO {
 			session.commit();
 		}catch(Exception ex)
 		{
-			System.out.println("reserveOk 오류 6");
+			System.out.println("reserveOk err");
+			ex.printStackTrace();
+		}
+		finally
+		{
+			if(session!=null)
+				session.close();
+		}
+	}
+	public static void resbuyOK(ReserveVO vo) {
+		SqlSession session=null;
+		
+		try
+		{
+			session=ssf.openSession();
+			session.update("resbuyOK",vo);
+			session.commit();
+		}catch(Exception ex)
+		{
+			System.out.println("resbuyOK err");
 			ex.printStackTrace();
 		}
 		finally

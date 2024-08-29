@@ -47,10 +47,10 @@ color:rgb(82,82,82);
       <th class="text-center">인원</th>
       <th class="text-center">가격</th>
     </tr>
+    <c:set var="ccnt" value="${ccnt }"/>
     <c:forEach var="ccvo" items="${clist }">
     <tr>
-    	
-       <td class="text-center">1</td>
+    	<td width="10%" class="text-center">${ccnt }</td>
        <td class="text-center">
         <img src="${ccvo.cvo.image1 }" style="width: 30px;height: 30px">
        </td>
@@ -68,6 +68,7 @@ color:rgb(82,82,82);
        </script>
        <td id="rprice"></td>
        </tr>
+       <c:set var="count" value="${ccnt-1}"/>
     </c:forEach>
         <td></td>
     <td></td>
@@ -85,18 +86,20 @@ color:rgb(82,82,82);
       <th class="text-center">수량</th>
       <th class="text-center">가격</th>
     </tr>
-   <%--  <c:forEach var="ccgvo" items="${glist }">
+    <c:set var="gcnt" value="${gcnt }"/>
+     <c:forEach var="ccgvo" items="${glist }">
     <tr>
     <input type="hidden" id="cno" value="${ccgvo.cno }">
-       <td class="text-center">1</td>
+       <td width="10%" class="text-center">${gcnt }</td>
        <td class="text-center">
         <img src="${ccgvo.gvo.poster }" style="width: 30px;height: 30px">
        </td>
-       <td>${ccgvo.gvo.name }</td>
-       <td class="text-center">${cgvo.account}</td>
-       <td >${cgvo.price }</td>
+       <td class="text-center">${ccgvo.gvo.name }</td>
+       <td class="text-center">${ccgvo.account}</td>
+       <td class="text-center">${ccgvo.price }</td>
        </tr>
-    </c:forEach> --%>
+       <c:set var="count" value="${gcnt-1}"/>
+    </c:forEach> 
     <td></td>
     <td></td>
     <td></td>

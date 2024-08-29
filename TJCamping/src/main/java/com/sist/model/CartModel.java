@@ -108,35 +108,6 @@ public class CartModel {
 		}
 	}
 
-	/*
-	 * @RequestMapping("mypage/buy_insert.do") public void
-	 * buy_insert1(HttpServletRequest request,HttpServletResponse response) { String
-	 * campno=request.getParameter("campno"); String
-	 * type=request.getParameter("type"); String
-	 * price=request.getParameter("price"); String
-	 * account=request.getParameter("account"); HttpSession
-	 * session=request.getSession(); String id=(String)session.getAttribute("id");
-	 * System.out.println("campno="+campno); System.out.println("price="+price);
-	 * System.out.println("account="+account); // DB연동 CartVO vo=new CartVO();
-	 * vo.setCampno(Integer.parseInt(campno));
-	 * vo.setAccount(Integer.parseInt(account));
-	 * vo.setPrice(Integer.parseInt(price)); vo.setId(id);
-	 * 
-	 * CartDAO.campbuyInsert(vo);
-	 * 
-	 * //JSON String name=(String)session.getAttribute("name"); String
-	 * email=(String)session.getAttribute("email"); String
-	 * address=(String)session.getAttribute("address"); String
-	 * post=(String)session.getAttribute("post"); String
-	 * phone=(String)session.getAttribute("phone");
-	 * 
-	 * JSONObject obj=new JSONObject(); obj.put("name", name); obj.put("email",
-	 * email); obj.put("address", address); obj.put("post", post); obj.put("phone",
-	 * phone);
-	 * 
-	 * PrintWriter out=null; try { out=response.getWriter();
-	 * out.write(obj.toJSONString()); }catch(Exception ex) { out.write("FAIL"); } }
-	 */
 	@RequestMapping("mypage/camp_buy_insert.do")
 	public void camp_buy_insert(HttpServletRequest request, HttpServletResponse response) {
 		String campno = request.getParameter("campno");
@@ -156,7 +127,11 @@ public class CartModel {
 		vo.setId(id);
 
 		CartDAO.campbuyInsert(vo);
-		CampDAO.reserveCancel(Integer.parseInt(campno));
+		
+		ReserveVO rvo = new ReserveVO();
+		rvo.setCno(Integer.parseInt(campno));
+		rvo.setId(id);
+		
 		// JSON
 		String name = (String) session.getAttribute("name");
 		String email = (String) session.getAttribute("email");
@@ -173,11 +148,13 @@ public class CartModel {
 
 		PrintWriter out = null;
 		try {
+			response.setContentType("text/plain;charset=UTF-8");
 			out = response.getWriter();
 			out.write(obj.toJSONString());
 		} catch (Exception ex) {
 			out.write("FAIL");
 		}
+		ReserveDAO.resbuyOK(rvo);
 	}
 
 	@RequestMapping("mypage/mypage_buy.do")

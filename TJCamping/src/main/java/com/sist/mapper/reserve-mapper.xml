@@ -24,7 +24,7 @@ ISOK             CHAR(1)
 	</resultMap>
 	<select id="campReserveMyPageData" resultMap="reserveMap" parameterType="string">
 		SELECT rno,day,time,inwon,camp_name,image1,isok,camp_price,camp_addr,camp_phone
-			,TO_CHAR(regdate,'YYYY-MM-DD') as dbday,cno
+			,TO_CHAR(regdate,'YYYY-MM-DD') as dbday,cno,buyok
 		FROM reserve re,camp ca
 		WHERE re.cno=ca.camp_no
 		AND id=#{id}
@@ -70,4 +70,9 @@ ISOK             CHAR(1)
 		from camp ca , reserve re 
 		where rno=#{rno} and ca.camp_no=re.cno
   </select>
+  <update id="resbuyOK" parameterType="ReserveVO">
+  	update reserve set
+  	buyok='y'
+  	where isok='y' and id=#{id} and cno=#{cno}
+  </update>
 </mapper>

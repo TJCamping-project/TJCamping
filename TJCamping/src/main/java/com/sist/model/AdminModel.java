@@ -195,7 +195,71 @@ public class AdminModel {
 //	   CommonsModel.footerPrint(request);
 	   return "../main/main.jsp";
    }
+   @RequestMapping("adminpage/adminpage_buy_list.do")
+   public String adminpage_buy_list(HttpServletRequest request,HttpServletResponse response)
+   {
+	   CommonsModel.footerPrint(request);
+	   
+	   
+	   
+	   String page=request.getParameter("page");
+	   if(page==null)
+		   page="1";
+	   
+	   int curpage=Integer.parseInt(page);
+	   Map map=new HashMap();
+	   int rowSize=15;
+	   int start=(rowSize*curpage)-(rowSize-1);
+	   int end=rowSize*curpage;
+	   
+	   map.put("start", start);
+	   map.put("end", end);
+	   
+	   List<CartVO> mList =  AdminDAO.buynameList(map);
+	   int count=ReplyBoardDAO.replyBoardRowCount();
+	   int totalpage=(int)(Math.ceil(count/15.0));
+	   
+	   request.setAttribute("curpage", curpage);
+	   request.setAttribute("totalpage", totalpage);
+	   request.setAttribute("count", count);
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   request.setAttribute("title", "구매리스트");
+	   request.setAttribute("mList", mList);
+	   request.setAttribute("admin_jsp", "../adminpage/adminpage_buy_list.jsp");
+	   request.setAttribute("main_jsp", "../adminpage/adminpage_main.jsp");
+//	   CommonsModel.footerPrint(request);
+	   return "../main/main.jsp";
+   }
+   @RequestMapping("adminpage/adminpage_reserve.do")
+   public String adminReserve(HttpServletRequest request,HttpServletResponse response)
+   {
+	   CommonsModel.footerPrint(request);
+	   ReserveVO vo = new ReserveVO();
+	   List<ReserveVO> recvList =  ReserveDAO.campReserveAdminPageData();
+	   request.setAttribute("title", "예약관리");
+	   request.setAttribute("recvList", recvList);
+	   request.setAttribute("admin_jsp", "../adminpage/adminpage_reserve.jsp");
+	   request.setAttribute("main_jsp", "../adminpage/adminpage_main.jsp");
+//	   CommonsModel.footerPrint(request);
+	   return "../main/main.jsp";
+   }
    
+   @RequestMapping("adminpage/adminpage_reserve_ok.do")
+   public String adminpage_reserve_ok(HttpServletRequest request,HttpServletResponse response)
+   {
+	   String no=request.getParameter("rno");
+	   ReserveDAO.reserveOk(Integer.parseInt(no));
+	   return "redirect:../adminpage/adminpage_reserve.do";
+   }
    @RequestMapping("adminpage/reply_insert_ok.do")
    public String reply_insert_ok(HttpServletRequest request,HttpServletResponse response)
    {

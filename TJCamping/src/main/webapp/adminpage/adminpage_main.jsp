@@ -18,7 +18,7 @@
 	<h3 class="sectiontitle text-center">${title }</h3>
 		<div style="height:40px;"></div>
         <main class="container clear">
-        <div class="row">
+        <div class="row" >
             <div class="col-sm-2">
                 <div class="panel panel-primary text-center">
                     <div class="panel-heading ">
@@ -28,8 +28,8 @@
                     <ul class="list-group">
                         <li class="list-group-item"><a href="../adminpage/memberlist.do">회원관리</a></li>
                         <li class="list-group-item"><a href="../adminpage/notice_list.do">공지사항관리</a></li>
-                        <li class="list-group-item"><a href="#">구매관리</a></li>
-                        <li class="list-group-item"><a href="#">예약관리</a></li>
+                        <li class="list-group-item"><a href="../adminpage/adminpage_buy_list.do">구매관리</a></li>
+                        <li class="list-group-item"><a href="../adminpage/adminpage_reserve.do">예약관리</a></li>
                         <li class="list-group-item"><a href="../adminpage/reply_list.do">QnA</a></li>
                     </ul>
                 </div>

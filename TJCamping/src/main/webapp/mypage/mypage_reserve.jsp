@@ -19,19 +19,19 @@ let sel=0;
 	IMP.init("imp68206770"); 
 
 	function requestPay(json,name,price) {
-	    IMP.request_pay({
+		IMP.request_pay({
 	        pg: "html5_inicis",
 	        pay_method: "card",
 	        merchant_uid: "ORD20180131-0000011",   // 주문번호
 	        name: name,
-	        amount: price,         // 숫자 타입
-	        buyer_email: "asd@sist.com",
-	        buyer_name: "가나다",
-	        buyer_tel: "010-1234-1234",
-	        buyer_addr: "asc",
-	        buyer_postcode: "123-456"
+	        amount: price, // 숫자 타입
+	        buyer_email: json.email,
+	        buyer_name: json.name,
+	        buyer_tel: json.phone,
+	        buyer_addr: json.address,
+	        buyer_postcode: json.post
 	    }, function (rsp) { // callback
-	    	location.href='http://localhost/TJCamping/mypage/mypage_main.do'
+	    	location.href='http://localhost/TJCamping/mypage/mypage_reserve.do'
 	        
 	    });
 	}
@@ -79,9 +79,9 @@ $(function(){
 			url:'../mypage/camp_buy_insert.do',
 			data:{"campno":campno,"price":price,"account":account},
 			success:function(result){
-				alert(result)
-				/* let json=JSON.parse(result) */
-				requestPay(result,name,price)
+				
+				 let json=JSON.parse(result)
+				requestPay(json,name,price)
 			}
 		})
 	})
@@ -120,7 +120,14 @@ $(function(){
 	      <td class="text-center" id=camp_inwon>${rvo.inwon }</td>
 	      <td class="text-center inline">
 	       <c:if test="${rvo.isok=='y' }">
-	        <span class="btn btn-success btn-xs infos" data-rno="${rvo.rno }">예약완료</span>
+	        <c:choose>
+	         <c:when test="${rvo.buyok=='y' }">
+  	          <span class="btn btn-success btn-xs infos" data-rno="${rvo.rno }">예약완료</span>
+	         </c:when>
+	         <c:otherwise>
+		        <span class="btn btn-warning btn-xs infos" data-rno="${rvo.rno }">승인완료</span>
+	         </c:otherwise>
+	        </c:choose>
 	       </c:if>
 	       <c:if test="${rvo.isok=='n' }">
 	        <span class="btn btn-default btn-xs">예약대기</span>
