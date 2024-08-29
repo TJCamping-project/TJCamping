@@ -50,7 +50,7 @@
      				let json=JSON.parse(result)
      				console.log(json)
      				requestPay(json,name,price)
-     				 
+     				  
      			}
      		})
      		
