@@ -70,6 +70,18 @@
 		FROM food_blue fb , all_jjim aj
 		WHERE fb.fno=aj.cno AND aj.type LIKE 1 and aj.id=#{id}
 	</select>
+	
+	<update id="foodJjimCountIncrement"
+		parameterType="java.util.Map">
+
+		UPDATE food_blue SET
+
+		jjimcount=(SELECT COUNT(*) FROM all_jjim WHERE type=#{type} AND cno=#{cno})
+
+		WHERE
+		fno=#{cno}
+
+	</update>
 	<!-- 캠핑용품 찜목록 -->
 	<select id="cgjjimListData" resultType="CampGoodsVO"
 		parameterType="hashmap">

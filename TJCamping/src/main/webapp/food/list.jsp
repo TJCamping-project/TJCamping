@@ -180,7 +180,8 @@ main {
 							<nav class="pagination">
 								<ul class="pagination justify-content-center">
 									<c:if test="${startPage>1}">
-										<li class="page-item"><a class="page-link"
+										<li class="page-item">
+										<a class="page-link"
 											href="../food/list.do?page=${startPage-1}">&laquo; Previous</a></li>
 									</c:if>
 									<c:forEach var="i" begin="${startPage}" end="${endPage}">

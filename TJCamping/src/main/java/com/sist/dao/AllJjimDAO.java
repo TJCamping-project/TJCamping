@@ -123,6 +123,19 @@ public class AllJjimDAO {
 		return fblist;
 	}
 	
+	public static void foodJjimCountIncrement(Map map) {
+		SqlSession session=null;
+		try {
+			session=ssf.openSession(true);
+			session.update("foodJjimCountIncrement",map);
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}finally {
+			if(session!=null)
+				session.close();
+		}
+	}
+	
 	
 	public static void camp_jjim_delete(Map map) {
 		SqlSession session=null;

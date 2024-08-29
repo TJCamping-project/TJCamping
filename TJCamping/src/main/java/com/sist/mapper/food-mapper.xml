@@ -60,12 +60,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!--  맛집 찾기 -->
 	
 	
-	<select id="FoodFindListData" resultType="FoodVO" parameterType="hashmap">
-		SELECT fno,name,poster,num
-		FROM (SELECT fno,name,poster,rownum as num
-		FROM (SELECT fno,name,poster
+	<select id="foodFindListData" resultType="FoodVO" parameterType="hashmap">
+		SELECT fno,name,poster, hit, num
+		FROM (SELECT fno,name,poster,hit, rownum as num
+		FROM (SELECT fno,name,poster, hit
 		FROM food_blue
-		WHERE address LIKE '%'||#{a}||'%'))
+		WHERE address LIKE '%'||#{ss}||'%'))
 		WHERE num BETWEEN #{start} AND #{end}
 	</select>
 	
@@ -78,19 +78,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   <select id="foodTypeAllData" resultType="FoodVO" parameterType="string">
     SELECT fno,poster,name,phone 
     FROM food_blue
-    WHERE type LIKE '%'||#{type}||'%'
+    WHERE theme LIKE '%'||#{theme}||'%'
     ORDER BY fno ASC
   </select>
-  <select id="foodReserveDayData" resultType="String" parameterType="int">
-    SELECT rdays FROM food_blue
-    WHERE fno=#{fno}
-  </select>
-  <select id="foodReserveTimeData" resultType="String" parameterType="int">
-    SELECT time FROM food_reserve_date
-    WHERE dno=#{dno}
-  </select>
-  <select id="foodTimeSelectData" resultType="String" parameterType="int">
-    SELECT time FROM food_reserve_time
-    WHERE tno=#{tno}
-  </select>
+
 </mapper>

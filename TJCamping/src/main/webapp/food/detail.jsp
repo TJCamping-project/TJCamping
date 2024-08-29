@@ -54,32 +54,92 @@ main {
    margin-top: 70px;
 }
 
+/* 포스터와 내용 구역을 왼쪽과 오른쪽으로 나누기 */
+.container-content {
+ display: flex;
+    justify-content: center; /* 중앙 정렬 */
+    gap: 20px; /* 포스터와 이미지 영역 사이의 간격 */
+  
+}
+
+.poster {
+   flex: 1; /* 왼쪽 절반을 차지하도록 설정 */
+    max-width: 50%; /* 최대 너비를 절반으로 제한 */
+    display: flex;
+    justify-content: center; /* 포스터 중앙 정렬 */
+}
+
+.poster img {
+   width: 100%; /* 포스터가 영역을 가득 차지하도록 설정 */
+   height: auto;
+   object-fit: cover; /* 이미지 크기 조절 시 비율 유지 */
+   max-height: 100%; /* 포스터가 영역을 벗어나지 않도록 설정 */
+}
+
+.details {
+    flex: 1; /* 오른쪽 절반을 차지하도록 설정 */
+    max-width: 50%; /* 최대 너비를 절반으로 제한 */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* 위쪽 정렬 */
+}
+
+.tags {
+   margin-bottom: 20px;
+}
+
+.images {
+   display: grid;
+   grid-template-columns: repeat(2, 1fr); /* 두 개씩 한 줄로 나열 */
+   gap: 10px;
+}
+
+.images img {
+ width: 100%; /* 그리드 셀의 폭에 맞게 조절 */
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover; /* 이미지가 셀에 맞게 조절되도록 설정 */
+}
+
+.images figure {
+   margin: 0; /* 기본 여백 제거 */
+}
+
+.images img {
+   width: 100%; /* 그리드 셀의 폭에 맞게 조절 */
+   height: auto;
+   border-radius: 10px;
+   object-fit: cover; /* 이미지가 셀에 맞게 조절되도록 설정 */
+}
+
 .packages-item {
-   margin-bottom: 30px; /* 각 패키지 항목 사이에 공간 추가 */
-   max-width: 100%; /* 이미지를 컨테이너 너비에 맞게 조정 */
-    overflow: hidden; /* 패키지 항목 내부의 넘치는 내용을 숨김 */
+   margin-bottom: 30px;
+   max-width: 100%;
+   overflow: hidden;
 }
 
 .packages-img {
-    width: 100%;
-    height: 300px; /* 모든 이미지 틀의 높이를 동일하게 설정 */
-    overflow: hidden; /* 넘치는 부분을 숨김 */
+   width: 100%;
+   height: 300px;
+   overflow: hidden;
 }
 
 .packages-img img {
-    width: 100%;
-    height: 100%;
-    display: block; 
-    margin: 0 auto; /* 이미지가 가운데에 위치하도록 설정 */
+   width: 100%;
+   height: 100%;
+   display: block;
+   margin: 0 auto;
+}
+
+.packages-content h5 {
+   white-space: nowrap;
+   overflow: hidden;
+   text-overflow: ellipsis;
+   text-align: center;
 }
 
 
-.packages-content h5{
-    white-space: nowrap; /* 텍스트가 한 줄로 표시되도록 설정 */
-    overflow: hidden; /* 넘치는 텍스트를 숨김 */
-    text-overflow: ellipsis; /* 넘치는 텍스트를 "..."로 표시 */
-    text-align: center; /* 텍스트를 가운데 정렬 */
-}
+
 
 
 
@@ -130,7 +190,7 @@ $(function(){
 
       $.ajax({
          type:'post',
-         url:'../mypage/my_fbjjim.do' ,
+         url:'../all_jjim/fbinsert.do' ,
          data:{"cno":cno,"type":1} ,
          success:function(result){
             if(result==="OK"){
@@ -143,12 +203,19 @@ $(function(){
          } ,
          error:function(request,status,error)
          {
-            console.log(error)
+            console.log(error+)
          }
       })
       
    }) 
 })
+
+
+
+
+
+
+
 // 삭제
 function replyDelete(rno,cno)
 {
@@ -262,8 +329,10 @@ function replyList(cno)
 <body>
 	<!-- Header Start -->
 	<div class="container-fluid whitezzz" style="height:100px;"></div>
-
-			<h3 class="text-black display-3 mb-4 text-center " style="margin-top:20px" >${vo.name }</h3>
+<div class="mx-auto text-center mb-5" style="max-width: 900px;">
+			<h5 class="section-title text-black display-6 mb-4 text-center " style="margin-top:20px" >&nbsp;상세정보&nbsp;</h5>
+	<h1 class="mb-0 display-3">${vo.name }</h1>
+	</div>
 	<!-- <div class="container-fluid bg-breadcrumb">
 		<div class="container text-center py-5" style="max-width: 900px;">
 			<ol class="breadcrumb justify-content-center mb-0">
@@ -271,93 +340,91 @@ function replyList(cno)
 		</div>
 	</div> -->
 	<!-- Header End -->
-   <div class="wrapper row3">
-      <main class="container clear">
-         <%-- 상세보기 / 댓글 --%>
-         <table class="table">
-           
-            <tr class="text-center" style="margin-bottom:20px;">
-      <td colspan="2" style="margin-top:-30px"><img src="https://www.bluer.co.kr${vo.poster }" style="width: auto; height: auto;"></td>
-    </tr>
-    <tr>
-    <h1>  </h1>
- 	</tr>
-            <tr>
-            <td colspan="1">
-                <h3>
-				    <span style="color: orange">
-				        <c:forTokens items="${vo.tag}" delims=" " var="tag">
-				            #${fn:trim(tag)}<br>
-				        </c:forTokens>
-				    </span>
-				</h3>
-               </td>
-            
-               <td colspan="11" class="text-right" style="text-align:right;">
-               
-                  <div class="flexslider carousel basiccarousel btmspace-80">
-                     <ul class="slides"
-                        style="display: flex; padding: 0; margin: 0; list-style: none;">
-                         <c:set var="cleanImages" value="${fn:replace(vo.images, ' ', '')}" />
-							<c:forTokens items="${cleanImages}" delims="," var="image">
-							    <li style="margin-right: 10px;">
-    <figure>
-    <a href="https://www.bluer.co.kr/${image}" data-lightbox="image-gallery" data-title="Image description">
-        <img class="radius-10 btmspace-10"
-             src="https://www.bluer.co.kr/${image}"
-             style="width: auto !important; height: 100px !important; object-fit: cover; border-radius: 10px;">
-    </a>
-</figure>
-</li>
-							</c:forTokens>
-                     </ul>
-                  </div> 
-                   </td>
-            </tr>
-             <tr>
-             <td class="text-right" style="color: gray" width="5%">${vo.name } 정보</td>
-             <td></td>
-            </tr>
-            <tr>
+ <div class="wrapper row3">
+   <main class="container clear">
+      <!-- 상세보기 / 댓글 -->
+<!-- 포스터와 내용 구역을 왼쪽과 오른쪽으로 나누기 -->
+<div class="container-content">
+   <!-- 포스터 -->
+    <div class="poster">
+        <img src="https://www.bluer.co.kr${vo.poster}" alt="Poster">
+    </div>
+
+   <!-- 오른쪽 내용 영역 -->
+   <div class="details">
+      
+
+      <!-- 이미지들 -->
+        <div class="images">
+            <c:set var="cleanImages" value="${fn:replace(vo.images, ' ', '')}" />
+            <c:forTokens items="${cleanImages}" delims="," var="image">
+                <figure>
+                    <a href="https://www.bluer.co.kr/${image}" data-lightbox="image-gallery" data-title="Image description">
+                        <img src="https://www.bluer.co.kr/${image}" alt="Image">
+                    </a>
+                </figure>
+            </c:forTokens>
+        </div>
+    </div>
+
+<!-- 태그 -->
+            <div class="tags">
+            <h3>
+                <span style="color: green;">
+                    <c:forTokens items="${vo.tag}" delims=" " var="tag">
+                        #${fn:trim(tag)}<br>
+                    </c:forTokens>
+                </span>
+            </h3>
+        </div>
+        
+        
+        </div>
+      <!-- 나머지 정보 유지 -->
+      <table class="table">
+         <tr>
+            <td class="text-right" style="color: gray" width="5%">${vo.name} 정보</td>
+            <td></td>
+         </tr>
+         <tr>
             <td class="text-right" style="color: gray" width="5%">한줄평</td>
-            <td>${vo.review }</td>
-            </tr>
-         
-            <tr>
-               <td class="text-right" style="color: gray" width="5%">업종</td>
-               <td width="65%">${vo.theme }</td>
-            </tr>
-            <tr>
-               <td class="text-right" style="color: gray" width="5%">시간</td>
-               <td width="65%">${vo.time }</td>
-            </tr>
-            <tr>
-               <td class="text-right" style="color: gray" width="15%">주메뉴</td>
-               <td width="65%">${vo.menu}</td>
-            </tr>
-            <tr>
-               <td class="text-right" style="color: gray" width="5%">전화</td>
-               <td width="65%">${vo.phone }</td>
-            </tr>
-            <tr>
-               <td class="text-right" style="color: gray" width="5%">주소</td>
-               <td width="65%">${vo.address }</td>
-            </tr>
-            <tr>
-               <td class="text-right" style="color: gray" width="5%">테마</td>
-               <td width="65%">${vo.theme }</td>
-            </tr>
-            <tr>
-               <td class="text-right" style="color: gray" width="15%">주차</td>
-               <td width="65%">${vo.parking }</td>
-            </tr>
-            
-         </table>
-         <table class="table">
+            <td>${vo.review}</td>
+         </tr>
+         <tr>
+            <td class="text-right" style="color: gray" width="5%">업종</td>
+            <td width="65%">${vo.theme}</td>
+         </tr>
+         <tr>
+            <td class="text-right" style="color: gray" width="5%">시간</td>
+            <td width="65%">${vo.time}</td>
+         </tr>
+         <tr>
+            <td class="text-right" style="color: gray" width="15%">주메뉴</td>
+            <td width="65%">${vo.menu}</td>
+         </tr>
+         <tr>
+            <td class="text-right" style="color: gray" width="5%">전화</td>
+            <td width="65%">${vo.phone}</td>
+         </tr>
+         <tr>
+            <td class="text-right" style="color: gray" width="5%">주소</td>
+            <td width="65%">${vo.address}</td>
+         </tr>
+         <tr>
+            <td class="text-right" style="color: gray" width="5%">테마</td>
+            <td width="65%">${vo.theme}</td>
+         </tr>
+         <tr>
+            <td class="text-right" style="color: gray" width="15%">주차</td>
+            <td width="65%">${vo.parking}</td>
+         </tr>
+      </table>
+         <table class="table" style="width: 100%; text-align: center;">
             <tr>
                <td colspan="3" class="text-right">
                <c:if test="${sessionScope.id!=null }">
                      <a href="#" class="btn btn-xs btn-success">좋아요</a>
+                     
                      <c:if test="${check==false }">
                         <input type=button class="btn btn-xs btn-success" value="찜하기"
                            id="jjimBtn" data-cno="${vo.fno }">
@@ -365,15 +432,17 @@ function replyList(cno)
                      <c:if test="${check==true }">
                         <span class="btn btn-xs btn-default">찜하기</span>
                      </c:if>
-                     <a href="../food/food_reserve.do?fno=${vo.fno }" class="btn btn-xs btn-success">예약하기</a>
+                     <a href="../food/reserve_main.do?fno=${vo.fno }&type=1" class="btn btn-xs btn-success">예약하기
+</a>
                   </c:if>
                   <input type="button" class="btn btn-xs btn-success" value="목록"onclick="javascript:history.back()">
                   </td>
+               
             </tr>
             </table>
             
            
-
+	
          <div style="height: 10px"></div>
          <div id="map" style="width: 100%; height: 350px;"></div>
 
@@ -431,7 +500,7 @@ function replyList(cno)
                   <td><textarea rows="4" cols="100" id="msg"
                         style="float: left"></textarea> <input type=button value="댓글쓰기"
                      style="width: 100px; height: 85px; background-color: green; color: black"
-                     id="writeBtn" data-cno="${vo.fno }"></td>
+                     id="writeBtn" data-fno="${vo.fno }"></td>
                </tr>
             </table>
          </c:if>

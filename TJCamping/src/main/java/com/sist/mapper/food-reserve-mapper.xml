@@ -11,19 +11,19 @@ INWON   NOT NULL VARCHAR2(20)
 REGDATE          DATE         
 ISOK             CHAR(1) 
 	-->
-	<insert id="FoodReserveInsert" parameterType="FoodReserveVO">
+	<insert id="foodReserveInsert" parameterType="FoodReserveVO">
 		INSERT INTO food_reserve(frno,id,fno,day,time,inwon, isok)
 		VALUES(fre_frno_seq.nextval,#{id},#{fno},#{day},#{time},#{inwon},'n')
 	</insert>
 	<resultMap type="com.sist.vo.FoodReserveVO" id="FoodreserveMap">
-		<result property="fvo.name" column="name"/>
-		<result property="fvo.poster" column="poster"/>
-		<result property="fvo.address" column="address"/>
-		<result property="fvo.phone" column="phone"/>
+		<result property="vo.name" column="name"/>
+		<result property="vo.poster" column="poster"/>
+		<result property="vo.address" column="address"/>
+		<result property="vo.phone" column="phone"/>
 	</resultMap>
 	
 	
-	<select id="FoodReserveMyPageData" resultMap="FoodreserveMap" parameterType="string">
+	<select id="foodReserveMyPageData" resultMap="FoodreserveMap" parameterType="string">
 		SELECT frno,day,time,inwon,name,poster,isok,address,phone
 			,TO_CHAR(regdate,'YYYY-MM-DD') as dbday,fno
 		FROM food_reserve fre,food_blue fb
@@ -34,7 +34,7 @@ ISOK             CHAR(1)
 	
 	
 	<!-- 관리자페이지 예약 출력 -->
-	<select id="FoodReserveAdminPageData" resultMap="FoodreserveMap">
+	<select id="foodReserveAdminPageData" resultMap="FoodreserveMap">
 		SELECT frno,fno,id,time,inwon,isok,name,poster,address,phone,
 			TO_CHAR(regdate,'YYYY-MM-DD') as dbday
 		FROM food_reserve fre,food_blue fb
@@ -42,35 +42,32 @@ ISOK             CHAR(1)
 		ORDER BY frno DESC
 	</select>
 	
-	<select id="FoodReserveDayData" resultType="String" parameterType="int">
-		SELECT rdays
-		FROM food_blue
-		WHERE fno=#{fno}
-	</select>
+
 	
-	<select id="FoodReserveTimeData" resultType="String" parameterType="int">
-		SELECT time
-		FROM food_reserve_date
-		WHERE fdno=#{fdno}
-	</select>
-	
-	
-	<select id="FoodTimeSelectData" resultType="String" parameterType="int">
-		SELECT time
-		FROM food_reserve_time
-		WHERE ftno=#{ftno}
-	</select>
-	
+	  <select id="foodReserveDayData" resultType="String" parameterType="int">
+    SELECT rdays FROM food_blue
+    WHERE fno=#{fno}
+  </select>
+
+
+  <select id="foodReserveTimeData" resultType="String" parameterType="int">
+    SELECT time FROM food_reserve_date
+    WHERE fdno=#{fdno}
+  </select>
+  <select id="foodTimeSelectData" resultType="String" parameterType="int">
+    SELECT time FROM food_reserve_time
+    WHERE ftno=#{ftno}
+  </select>
 	
 	   <!-- admin = 승인 -->
- <update id="FoodreserveOk" parameterType="int">
+ <update id="foodReserveOk" parameterType="int">
    UPDATE food_reserve SET
    isok='y'
    WHERE frno=#{frno}
   </update>
   
   <!-- mypage = 취소 -->
-  <delete id="FoodreserveCancel" parameterType="int">
+  <delete id="foodReserveCancel" parameterType="int">
    DELETE FROM food_reserve
    WHERE frno=#{frno}
   </delete>
@@ -82,6 +79,10 @@ ISOK             CHAR(1)
 		where frno=#{frno} and fre.fno=fb.fno
   </select>
   
-  
+  <select id="foodReserveData" resultType="FoodReserveVO" parameterType="int">
+		SELECT fno,name,poster,phone,address, NVL(parking, '주차 정보 없음') AS parking, NVL(time, '영업시간 정보 없음') AS time
+		FROM food_blue
+		WHERE fno=#{fno}
+	</select>
  
 </mapper>

@@ -22,14 +22,112 @@ public class FoodReserveDAO {
 		ssf=CreateSqlSessionFactory.getSsf();
 	}
 	
-	public static void FoodReserveInsert(FoodReserveVO vo)
+	  public static String foodReserveDayData(int fno)
+	   {
+		   String rdays="";
+		   SqlSession session=null; //Connection
+		   try
+		   {
+			   session=ssf.openSession();
+			   rdays=session.selectOne("foodReserveDayData", fno);
+		   }catch(Exception ex)
+		   {
+			   ex.printStackTrace();
+		   }
+		   finally
+		   {
+			   if(session!=null)
+				   session.close();
+		   }
+		   return rdays;
+	   }
+	   /*
+	    *   <select id="foodReserveTimeData" resultType="String" parameterType="int">
+			    SELECT time FROM reserve_date
+			    WHERE dno=#{dno}
+			  </select>
+			  <select id="foodTimeSelectData" resultType="String" parameterType="int">
+			    SELECT time FROM reserve_time
+			    WHERE tno=#{tno}
+			  </select>
+	    */
+	   public static String foodTimeSelectData(int ftno)
+	   {
+		   String times="";
+		   SqlSession session=null; //Connection
+		   try
+		   {
+			   session=ssf.openSession();
+			   times=session.selectOne("foodTimeSelectData", ftno);
+		   }catch(Exception ex)
+		   {
+			   ex.printStackTrace();
+		   }
+		   finally
+		   {
+			   if(session!=null)
+				   session.close();
+		   }
+		   return times;
+	   }
+	   
+	   public static String foodReserveTimeData(int fdno)
+	   {
+		   String times="";
+		   SqlSession session=null; //Connection
+		   try
+		   {
+			   session=ssf.openSession();
+			   times=session.selectOne("foodReserveTimeData", fdno);
+		   }catch(Exception ex)
+		   {
+			   ex.printStackTrace();
+		   }
+		   finally
+		   {
+			   if(session!=null)
+				   session.close();
+		   }
+		   return times;
+	   }
+	
+
+		/*
+			얘는 리저브 매퍼에 없음
+		*/
+	   public static FoodReserveVO mypageFoodReserveInfoData(int frno)
+	   {
+		   FoodReserveVO vo=new FoodReserveVO();
+		   SqlSession session=null; //Connection
+		   try
+		   {
+			   session=ssf.openSession();
+			   vo=session.selectOne("mypageFoodReserveInfoData",frno);
+		   }catch(Exception ex)
+		   {
+			   ex.printStackTrace();
+		   }
+		   finally
+		   {
+			   if(session!=null)
+				   session.close();
+		   }
+		   return vo;
+	   }
+	
+	
+	
+	
+
+	
+	public static void foodReserveInsert(FoodReserveVO vo)
 	{
 		SqlSession session=null;
 		
 		try
 		{
 			session=ssf.openSession(true);
-			session.insert("FoodReserveInsert",vo);
+			session.insert("foodReserveInsert",vo);
 		}catch(Exception ex)
 		{
 			System.out.println("FoodReserveDAO 오류 1");
@@ -42,7 +140,7 @@ public class FoodReserveDAO {
 		}
 	}
 	
-	public static List<FoodReserveVO> FoodReserveMyPageData(String id)
+	public static List<FoodReserveVO> foodReserveMyPageData(String id)
 	{
 		List<FoodReserveVO> list=new ArrayList<FoodReserveVO>();
 		SqlSession session=null;
@@ -50,7 +148,7 @@ public class FoodReserveDAO {
 		try
 		{
 			session=ssf.openSession();
-			list=session.selectList("FoodReserveMyPageData",id);
+			list=session.selectList("foodReserveMyPageData",id);
 		}catch(Exception ex)
 		{
 			System.out.println("FoodReserveDAO 오류 2");
@@ -65,7 +163,7 @@ public class FoodReserveDAO {
 		return list;
 	}
 	
-	public static List<FoodReserveVO> FoodReserveAdminPageData()
+	public static List<FoodReserveVO> foodReserveAdminPageData()
 	{
 		List<FoodReserveVO> list=new ArrayList<FoodReserveVO>();
 		SqlSession session=null;
@@ -73,7 +171,7 @@ public class FoodReserveDAO {
 		try
 		{
 			session=ssf.openSession();
-			list=session.selectList("FoodReserveAdminPageData");
+			list=session.selectList("foodReserveAdminPageData");
 		}catch(Exception ex)
 		{
 			System.out.println("FoodReserveDAO 오류 3");
@@ -89,52 +187,32 @@ public class FoodReserveDAO {
 	}
 	
 	
+	public static FoodReserveVO foodReserveData(int fno)
+	{
+		FoodReserveVO vo=new FoodReserveVO();
+		SqlSession session=null;
+		
+		try
+		{
+			session=ssf.openSession();
+			vo=session.selectOne("foodReserveData",fno);
+		}catch(Exception ex)
+		{
+			System.out.println("FoodReserveDAO 오류 11");
+			ex.printStackTrace();
+		}
+		finally
+		{
+			// connection 반환 (DBCP) => 재사용(반환 시 가능)
+			if(session!=null)
+				session.close();
+		}
+		
+		return vo;
+	}
 	
-	public static String FoodReserveTimeData(int dno)
-	{
-		String times="";
-		SqlSession session=null;
-		
-		try
-		{
-			session=ssf.openSession();
-			times=session.selectOne("FoodReserveTimeData",dno);
-		}catch(Exception ex)
-		{
-			System.out.println("FoodReserveDAO 오류 5");
-			ex.printStackTrace();
-		}
-		finally
-		{
-			if(session!=null)
-				session.close();
-		}
-		
-		return times;
-	}
 
-	public static String FoodTimeSelectData(int ftno)
-	{
-		String times="";
-		SqlSession session=null;
-		
-		try
-		{
-			session=ssf.openSession();
-			times=session.selectOne("FoodTimeSelectData",ftno);
-		}catch(Exception ex)
-		{
-			System.out.println("FoodReserveDAO 오류 6");
-			ex.printStackTrace();
-		}
-		finally
-		{
-			if(session!=null)
-				session.close();
-		}
-		
-		return times;
-	}
+	
 	public static FoodReserveVO myFoodReserveData(int frno)
 	{
 		FoodReserveVO vo = new FoodReserveVO();
@@ -157,17 +235,17 @@ public class FoodReserveDAO {
 		
 		return vo;
 	}
-	public static void FoodreserveCancel(int frno) {
+	public static void foodReserveCancel(int frno) {
 		SqlSession session=null;
 		
 		try
 		{
 			session=ssf.openSession();
-			session.delete("FoodreserveCancel",frno);
+			session.delete("foodReserveCancel",frno);
 			session.commit();
 		}catch(Exception ex)
 		{
-			System.out.println("FoodreserveCancel 오류 6");
+			System.out.println("foodReserveCancel 오류 6");
 			ex.printStackTrace();
 		}
 		finally
@@ -176,13 +254,13 @@ public class FoodReserveDAO {
 				session.close();
 		}
 	}
-	public static void FoodreserveOk(int frno) {
+	public static void foodReserveOk(int frno) {
 		SqlSession session=null;
 		
 		try
 		{
 			session=ssf.openSession();
-			session.update("FoodreserveOk",frno);
+			session.update("foodReserveOk",frno);
 			session.commit();
 		}catch(Exception ex)
 		{

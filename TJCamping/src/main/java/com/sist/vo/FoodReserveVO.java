@@ -14,8 +14,8 @@ import java.util.*;
 import lombok.Data;
 @Data
 public class FoodReserveVO {
-   private int frno,fno;
-   private String id,day,time,inwon,isok,dbday;
+   private int frno,fno,score, jjimcount, likecount, hit;
+   private String id,day,time,inwon,isok,dbday,name, tag, phone, menu, address, theme, poster, images, parking, review, rdays;
    private Date regdate;
    private FoodVO fvo=new FoodVO();
 }

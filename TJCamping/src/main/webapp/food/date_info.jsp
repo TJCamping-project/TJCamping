@@ -7,24 +7,26 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 $(function(){
+	
 	$('#year').change(function(){
 		let year=$('#year').val()
 		let month=$('#month').val()
 		let fno=${fno}
+		
 		$.ajax({
 		type:'post',
-		url:'../reserve/date_info.do',
+		url:'../food/date_info.do',
 		data:{"year":year,"month":month,"fno":fno},
 		success:function(result)
 		{
-			$('#rdate').html(result)
+			$('#frdate').html(result)
 		},
 		error:function(request,status,error)
 		{
-			console.log(error)
+			console.log("AJAX Error: " + error)
 		}
 	   })
 	})
@@ -32,13 +34,14 @@ $(function(){
 		let year=$('#year').val()
 		let month=$('#month').val()
 		let fno=${fno}
+		
 		$.ajax({
 		type:'post',
-		url:'../reserve/date_info.do',
+		url:'../food/date_info.do',
 		data:{"year":year,"month":month,"fno":fno},
 		success:function(result)
 		{
-			$('#rdate').html(result)
+			$('#frdate').html(result)
 		},
 		error:function(request,status,error)
 		{
@@ -55,12 +58,12 @@ $(function(){
 		$('#food_day').text(rday)
 		$.ajax({
 			type:'post',
-			url:'../reserve/time_info.do',
+			url:'../food/time_info.do',
 			data:{"day":day},
 			success:function(result)
 			{
 				$('#food_time').html(result)
-				$('#r_date').val(year+"-"+month+"-"+day)
+				$('#fr_date').val(year+"-"+month+"-"+day)
 			},
 			error:function(request,status,error)
 			{
@@ -73,22 +76,33 @@ $(function(){
 </script>
 <style type="text/css">
 .rday_can:hover{
-  cursor: pointer;
+	cursor: pointer;
+}
+.reserve {
+	background-color: rgba(141, 186, 0, .6);
+}
+
+.reservedate {
+	background-color: rgba(222, 236, 183.6);
+}
+
+.can {
+	background-color: red;
 }
 </style>
 </head>
 <body>
   <table class="table">
-   <tr>
+   <tr class="reserve">
      <td class="text-center">${year }년도 ${month }월</td>
    </tr>
-   <tr>
+   <tr class="reservedate">
      <td class="inline">
       <select name="year" id="year" class="input-sm">
        <c:forEach var="i" begin="2024" end="2030">
         <option ${i==year?"selected":""}>${i }</option>
        </c:forEach>
-      </select>년도&nbsp;
+      </select>년&nbsp;
       <select name="month" id="month" class="input-sm">
        <c:forEach var="i" begin="1" end="12">
         <option ${i==month?"selected":""}>${i }</option>
@@ -97,8 +111,8 @@ $(function(){
      </td>
    </tr>
   </table>
-  <div style="height: 10px"></div>
-  <table class="table">
+  <div style=" background-color: rgba(222, 236, 183.6);"></div>
+  <table class="table reservedate">
     <tr>
      <c:forEach var="i" items="${weeks }" varStatus="s">
        <c:choose>
@@ -126,8 +140,10 @@ $(function(){
       
       <c:if test="${rday[i]==1 }">
 	      <td class="text-center success ${day==i?'danger':'' }" height="35">
-	      <span class="rday_can" style="font-weight: bold;" 
-	      data-year="${year }" data-month="${ month}" data-day="${i }">${i }</span>
+	      <span class="rday_can" style="font-weight: bold; color:green;" 
+	      data-year="${year }" 
+	      data-month="${ month}" 
+	      data-day="${i }">${i }</span>
 	      </td>
       </c:if>
       <c:if test="${rday[i]==0 }">

@@ -93,4 +93,32 @@ public class AllJjimModel {
 			out.write(result);
 		} catch (Exception ex) {}
 	}
+	
+	@RequestMapping("all_jjim/fbinsert.do")
+	public void all_jjim_fbinsert(HttpServletRequest request , HttpServletResponse response) {
+		String cno = request.getParameter("cno");
+		String type = request.getParameter("type");
+		HttpSession session = request.getSession();
+		String id = (String)session.getAttribute("id");
+		Map map = new HashMap();
+		map.put("cno", cno);
+		map.put("type", type);
+		map.put("id", id);
+		System.out.println(cno+" "+type+" "+id);
+		String result="";
+		
+		try {
+			AllJjimDAO.allJjimInsert(map);
+			AllJjimDAO.foodJjimCountIncrement(map);
+
+			result="OK";
+		} catch (Exception ex) {
+			result=ex.getMessage();
+		}
+		// Ajax
+		try {
+			PrintWriter out = response.getWriter();
+			out.write(result);
+		} catch (Exception ex) {}
+	}
 }

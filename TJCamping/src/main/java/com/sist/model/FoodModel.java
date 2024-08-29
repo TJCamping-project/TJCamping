@@ -5,6 +5,7 @@ import java.util.*;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.sist.vo.*;
 import com.sist.commons.CommonsModel;
@@ -105,6 +106,27 @@ public class FoodModel {
 	   request.setAttribute("vo", vo);
 	   request.setAttribute("type", type);
 
+	   
+	   
+	   boolean bCheck=false;
+	   HttpSession session=request.getSession();
+	   String id=(String)session.getAttribute("id");
+	   if(id!=null)
+	   {
+		   Map map=new HashMap();
+		   map.put("cno", fno);
+		   map.put("type", type);
+		   map.put("id", id);
+		   int count=AllJjimDAO.allJjimCheck(map);
+		   if(count==1)
+			   bCheck=true;
+		   else
+			   bCheck=false;
+		   
+		   request.setAttribute("check", bCheck);
+	   }
+	   
+	   
 	   CommonsModel.footerPrint(request);
 	   
 	   request.setAttribute("main_jsp", "../food/detail.jsp");

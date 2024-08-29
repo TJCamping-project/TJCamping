@@ -16,7 +16,7 @@
    <bean id="reserve" class="com.sist.model.ReserveModel"/>
    <bean id="recipe" class="com.sist.model.RecipeModel"/>
    <bean id="chat" class="com.sist.model.ChatModel"/>
-    <!-- <bean id="commons" class="com.sist.commons.CommonsModel"/>  -->
    <bean id="cart" class="com.sist.model.CartModel"/>
    <bean id="foodreserve" class="com.sist.model.FoodReserveModel"/>
+    <!-- <bean id="commons" class="com.sist.commons.CommonsModel"/>  -->
 </beans> 

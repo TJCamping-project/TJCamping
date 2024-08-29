@@ -134,6 +134,46 @@ main {
 	margin-bottom : 100px;
 }
 
+.info-box {
+    border: 5px solid lightgray; /* 테두리 색상 및 두께 */
+    padding: 100px; /* 내부 여백 */
+    margin-top: 50px; /* 상단 여백 */
+    width: 1000px; /* 상자의 너비 */
+    background-color: #f9f9f9; /* 배경 색상 */
+    margin: 0 auto;
+}
+
+.info-box div {
+    border-bottom: 1px solid #ccc; /* 각 섹션 하단의 선 */
+    padding: 10px 0; /* 각 섹션의 상하 여백 */
+    text-align: center; /* 텍스트 중앙 정렬 */
+}
+
+
+.step-container {
+    margin-bottom: 30px; /* 각 스텝 사이의 공백 */
+}
+
+.step-container img {
+    display: block;
+    margin: 0 auto; /* 이미지 중앙 정렬 */
+}
+
+.step-container h2 {
+    margin-top: 0; /* 제목 상단 여백 제거 */
+    margin-bottom: 10px; /* 제목과 이미지 사이의 여백 */
+}
+
+.step-container p {
+    margin-top: 10px; /* 이미지와 설명 사이의 여백 */
+}
+
+.step-divider {
+    border: none; /* 기본 테두리 제거 */
+    border-top: 5px solid green; /* 초록색 두꺼운 선 */
+    margin: 20px 0; /* 상하 공백 조정 */
+}
+
 </style>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
@@ -350,6 +390,8 @@ function replyList(cno)
         </th>
     </tr>
 </table>
+
+<table class="table" style="width: 100%; text-align: center;">
 		<tr >
 			<td colspan="3" class="text-right">
 			<c:if test="${sessionScope.id!=null }">
@@ -367,6 +409,7 @@ function replyList(cno)
 				onclick="javascript:history.back()"></td>
 		</tr>
 	</div>
+	</table>
 
 
 <div>
@@ -382,59 +425,43 @@ function replyList(cno)
 
 
 
-<div>
-  <table class="detailTable" style="margin : 0 auto;">
+<div class="info-box">
+  <div class="detailTable">
     <!-- Step 1 -->
-    <tr>
-      <td colspan="2"><h2>Step 1</h2></td>
-    </tr>
-    <tr>
-      <td colspan="2"><img src="https://ottogi.okitchen.co.kr${revo.detail_poster1 }" style="width: 100%; height: auto;"></td>
-    </tr>
-    <tr>
-      <td colspan="2">${revo.detail_content2 }</td>
-    </tr>
+    <h2>Step 1</h2>
+    <img src="https://ottogi.okitchen.co.kr${revo.detail_poster1}" style="width: 100%; height: auto;">
+    <p>${revo.detail_content2}</p>
+  </div>
+
+  <div class="step-container">
     <!-- Step 2 -->
-    <tr>
-      <td colspan="2"><h2>Step 2</h2></td>
-    </tr>
-    <tr>
-      <td colspan="2"><img src="https://ottogi.okitchen.co.kr${revo.detail_poster2 }" style="width: 100%; height: auto;"></td>
-    </tr>
-    <tr>
-      <td colspan="2">${revo.detail_content4 }</td>
-    </tr>
+    <h2>Step 2</h2>
+    <img src="https://ottogi.okitchen.co.kr${revo.detail_poster2}" style="width: 100%; height: auto;">
+    <p>${revo.detail_content4}</p>
+  </div>
+
+  <div class="step-container">
     <!-- Step 3 -->
-    <tr>
-      <td colspan="2"><h2>Step 3</h2></td>
-    </tr>
-    <tr>
-      <td colspan="2"><img src="https://ottogi.okitchen.co.kr${revo.detail_poster3 }" style="width: 100%; height: auto;"></td>
-    </tr>
-    <tr>
-      <td colspan="2">${revo.detail_content6 }</td>
-    </tr>
+    <h2>Step 3</h2>
+    <img src="https://ottogi.okitchen.co.kr${revo.detail_poster3}" style="width: 100%; height: auto;">
+    <p>${revo.detail_content6}</p>
+  </div>
+
+  <div class="step-container">
     <!-- Step 4 -->
-    <tr>
-      <td colspan="2"><h2>Step 4</h2></td>
-    </tr>
-    <tr>
-      <td colspan="2"><img src="https://ottogi.okitchen.co.kr${revo.detail_poster4 }" style="width: 100%; height: auto;"></td>
-    </tr>
-    <tr>
-      <td colspan="2">${revo.detail_content8 }</td>
-    </tr>
+    <h2>Step 4</h2>
+    <img src="https://ottogi.okitchen.co.kr${revo.detail_poster4}" style="width: 100%; height: auto;">
+    <p>${revo.detail_content8}</p>
+  </div>
+
+  <div class="step-container">
     <!-- Step 5 -->
-    <tr>
-      <td colspan="2"><h2>Step 5</h2></td>
-    </tr>
-    <tr>
-      <td colspan="2"><img src="https://ottogi.okitchen.co.kr${revo.detail_poster5 }" style="width: 100%; height: auto;"></td>
-    </tr>
-    <tr>
-      <td colspan="2">${revo.detail_content10 }</td>
-    </tr>
-  </table>
+    <h2>Step 5</h2>
+    <img src="https://ottogi.okitchen.co.kr${revo.detail_poster5}" style="width: 100%; height: auto;">
+    <p>${revo.detail_content10}</p>
+    <!-- 마지막 스텝이라 hr을 생략할 수도 있습니다 -->
+    <!-- <hr class="step-divider"> -->
+  </div>
 </div>
 
 
