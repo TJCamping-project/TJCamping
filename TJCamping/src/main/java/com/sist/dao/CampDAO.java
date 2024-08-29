@@ -439,5 +439,46 @@ public class CampDAO {
 		   }
 		   return vo;
 	   }
-	
+	   
+	   public static List<CampVO> campSearchData(Map map)
+	   {
+		   List<CampVO> list=new ArrayList<CampVO>();
+		   SqlSession session=null; //Connection
+		   try
+		   {
+			   session=ssf.openSession();
+			   list=session.selectList("campSearchData",map);
+		   }catch(Exception ex)
+		   {
+			   System.out.println("campSearchData err");
+			   ex.printStackTrace();
+		   }
+		   finally
+		   {
+			   if(session!=null)
+				   session.close();
+		   }
+		   return list;
+	   }
+	   
+	   public static int campSearchTotalPage(Map map)
+	   {
+		   int total=0;
+		   SqlSession session=null;
+		   try
+		   {
+			   session=ssf.openSession();
+			   total=session.selectOne("campSearchTotalPage",map);
+		   }catch(Exception ex)
+		   {
+			   System.out.println("campSearchTotalpage err");
+			   ex.printStackTrace();
+		   }
+		   finally
+		   {
+			   if(session!=null)
+				   session.close();
+		   }
+		   return total;
+	   }
 }

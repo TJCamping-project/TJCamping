@@ -316,4 +316,52 @@ public class CampModel {
  	   request.setAttribute("main_jsp", "../camp/nearfood.jsp");
  	   return "../main/main.jsp";
     }
+    
+    @RequestMapping("camp/find.do")
+	  public String camp_find(HttpServletRequest request,HttpServletResponse response)
+	  {
+		  try
+		  {
+			  request.setCharacterEncoding("UTF-8");
+		  }catch(Exception ex) {}
+		  
+		  String page=request.getParameter("page");
+	 	   if(page==null)
+	 		   page="1";
+	 	   int curpage=Integer.parseInt(page);
+	 	   Map map=new HashMap();
+	 	   int rowSize=20;
+	 	   int start=(rowSize*curpage)-(rowSize-1);
+	 	   int end=rowSize*curpage;
+	 	   
+	 	   map.put("start", start);
+	 	   map.put("end", end);
+		  
+		  String[] fsArr=request.getParameterValues("fs");
+		  String ss=request.getParameter("ss");
+		  map.put("fsArr", fsArr);
+		  map.put("ss", ss);
+		  // 데이터베이스 연동 
+		  List<CampVO> list=CampDAO.campSearchData(map);
+		  int totalpage=CampDAO.campSearchTotalPage(map);
+		  
+		  final int BLOCK=10;
+	 	   int startPage=((curpage-1)/BLOCK*BLOCK)+1;
+	 	   int endPage=((curpage-1)/BLOCK*BLOCK)+BLOCK;
+	 	   
+	 	   if(endPage>totalpage)
+	 		   endPage=totalpage;
+		  
+		  CommonsModel.footerPrint(request);
+		  
+		  // 결과값 전송 
+		  request.setAttribute("list", list);
+		  request.setAttribute("curpage", curpage);
+	 	   request.setAttribute("totalpage", totalpage);
+	 	   request.setAttribute("startPage", startPage);
+	 	   request.setAttribute("endPage", endPage);
+		  
+		  request.setAttribute("main_jsp", "../camp/find.jsp");
+		  return "../main/main.jsp";
+	  }
 }

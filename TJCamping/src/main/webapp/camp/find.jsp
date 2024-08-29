@@ -94,7 +94,7 @@
         <!-- Header Start -->
         <div class="container-fluid bg-breadcrumb">
             <div class="container text-center py-5" style="max-width: 900px;">
-                <h3 class="text-white display-3 mb-4">캠핑장 목록</h3>
+                <h3 class="text-white display-3 mb-4">캠핑장 결과</h3>
                 <ol class="breadcrumb justify-content-center mb-0">
                 </ol>    
             </div>
@@ -167,6 +167,7 @@
 		</div>
 	</div>
 	
+
         <div class="wrapper row3">
 	  <main class="container clear"> 
 <nav class="pagination">
@@ -184,6 +185,9 @@
       </nav>
       </main>
       </div>
+      
+      <div style="height:30px"></div>
+
 
 <div class="container-fluid packages py-5">
     <div class="container py-5">
@@ -219,8 +223,6 @@
         </div>
     </div>
 </div>
-      
-      <div style="height:30px"></div>
         
         
         <!-- Copyright Start -->
