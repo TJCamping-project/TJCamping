@@ -118,10 +118,10 @@ public class CampGoodsModel {
 	    }
 	    
 	    CommonsModel.footerPrint(request);
-	    
+	   
 	    request.setAttribute("numericPrice", numericPrice); 
 	    request.setAttribute("gList", gList);
-	    request.setAttribute("vo", vo);
+	    request.setAttribute("cvo", vo);
 	    request.setAttribute("main_jsp", "../campgoods/detail.jsp");
 	    return "../main/main.jsp";
 	}

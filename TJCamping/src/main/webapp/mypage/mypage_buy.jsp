@@ -6,28 +6,43 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style type="text/css">
-aa{
-	margin:20px;
-}
-</style>
 </head>
 <body>
-<div class="wrapper row3">
-  <main class="container clear">
-   <div class="row resRow">
+  <c:if test="${count==0 }">
     <table class="table">
-      <tr>
-          <td>
-         <div class="container " style="padding-left: 30px;">
-         	<div style="height:10px;"></div>
-            <jsp:include page="${buy_jsp }"></jsp:include>
-         </div>
-          </td>
-        </tr>
+     <tr>
+      <td class="text-center">
+       <h4>구매한 상품이 없습니다</h4>
+      </td>
+     </tr>
     </table>
-   </div>
-  </main>
-</div>
+  </c:if>
+  <c:if test="${count!=0 }">
+	  <table class="table">
+	   <tr>
+	    <th class="text-center">번호</th>
+	    <th class="text-center"></th>
+	    <th class="text-center">상품명</th>
+	    <th class="text-center">수량</th>
+	    <th class="text-center">가격</th>
+	   </tr>
+	   <c:forEach var="vo" items="${buyList }">
+	     <tr>
+	      <td class="text-center">${vo.cno }</td>
+	      <td class="text-center">
+	       <img src="${vo.gvo.poster }" style="width:25px;height: 25px">
+	      </td>
+	      <td class="text-center" id="gname">${vo.gvo.name }</td>
+	      <td class="text-center" id="account">${vo.account }</td>
+	      <td class="text-center" id="price">${vo.price }</td>
+	     </tr>
+	   </c:forEach>
+	   <tr>
+	     <td class="text-right" colspan="5">
+	      구매 총금액:${total}원
+	     </td>
+	   </tr>
+	  </table>
+  </c:if>
 </body>
 </html>

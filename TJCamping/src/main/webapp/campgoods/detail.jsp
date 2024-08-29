@@ -8,28 +8,30 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <meta content="" name="keywords">
 <meta content="" name="description">
-<!-- Google Web Fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600&family=Roboto&display=swap" rel="stylesheet">
-<!-- Icon Font Stylesheet -->
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
-<!-- Libraries Stylesheet -->
-<link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-<link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
-<!-- Customized Bootstrap Stylesheet -->
-<link href="css/bootstrap.min.css" rel="stylesheet">
-<!-- Template Stylesheet -->
-<link href="css/style.css" rel="stylesheet">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="../lib/easing/easing.min.js"></script>
-<script src="../lib/waypoints/waypoints.min.js"></script>
-<script src="../lib/owlcarousel/owl.carousel.min.js"></script>
-<script src="../lib/lightbox/js/lightbox.min.js"></script>
+
+
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
+let sel=0;
+var IMP = window.IMP; 
+IMP.init("imp68206770"); 
+function requestPay(json,name,price) {
+    IMP.request_pay({
+        pg: "html5_inicis",
+        pay_method: "card",
+        merchant_uid: "ORD20180131-0000011",   // 주문번호
+        name: name,
+        amount: price, // 숫자 타입
+        buyer_email: json.email,
+        buyer_name: json.name,
+        buyer_tel: json.phone,
+        buyer_addr: json.address,
+        buyer_postcode: json.post
+    }, function (rsp) { // callback
+    	location.href='http://localhost/TJCamping/mypage/mypage_main.do' 
+    });
+}
 $(function() {
     // 버튼 클릭 이벤트 처리
     $('#jjimBtn').on('click', function() {
@@ -73,8 +75,7 @@ $(function() {
             console.log(error); // 에러 로그 출력
         }
     })
-})
-$(function() {
+	
     $('#sel').change(function() {
         let account = $('#sel').val();
         console.log('Selected quantity:', account)
@@ -92,10 +93,55 @@ $(function() {
 
         let total = Number(price) * Number(account)
         console.log('Calculated total:', total)
-
         $('#total').text(total.toLocaleString() + "원")
         $('#account').val(account)
     })
+    $('.btn-buy').click(function(){
+		/* if(sel===0)
+		{
+			alert("수량을 선택하세요")
+			return
+		} */
+		
+		let gno=$('#gno').val()
+		let price = $('#sel').attr("data-price")
+		price = price.replace(/[^0-9]/g, '')
+		let account = $('#sel').val();
+		price=Number(price) * Number(account)
+		let name=$('.product-name').text()
+		alert(name)
+		$.ajax({
+			type:'post',
+			url:'../campgoods/buy_insert.do',
+			data:{"gno":gno},
+			success:function(result)
+			{
+				console.log(result)
+				let json=JSON.parse(result)
+			    console.log(json)
+				requestPay(json,name,price)
+			}
+		})
+	})
+	
+	/* $('#cart').click(function(){
+		$.ajax({
+			   type: "post",
+			   url: "../campgoods/cart_insert.do",
+			   data: {
+			      "gno": $('#gno').val(),
+			      "account": $('#account').val(),
+			      "price": $('#price').val()
+			   },
+			   success: function(response) {
+			      alert("장바구니에 추가되었습니다.")
+			       //location.href="../mypage/mypage_cart.do"; 
+			   },
+			   error: function() {
+			      alert("장바구니에 추가하는데 실패했습니다.")
+			   }
+			});
+	}) */
 })
 </script>
 <style>
@@ -250,37 +296,37 @@ $(function() {
     <main class="row">
         <div class="col-md-6">
             <div class="product-image-container">
-                <img src="${vo.poster}" alt="${vo.name}" class="img-fluid poster-img">
+                <img src="${cvo.poster}" alt="${cvo.name}" class="img-fluid poster-img">
             </div>
         </div>
         <div class="col-md-6">
             <div class="product-info-container">
-                <h3 class="product-name">${vo.name}</h3>
+                <h3 class="product-name">${cvo.name}</h3>
                 <table class="table table-borderless product-info">
                     <tbody>
                         <tr>
                             <th class="text-right">제조사</th>
-                            <td>${vo.brand}</td>
+                            <td>${cvo.brand}</td>
                         </tr>
                         <tr>
                             <th class="text-right">제조국</th>
-                            <td>${vo.origin}</td>
+                            <td>${cvo.origin}</td>
                         </tr>
                         <tr>
                             <th class="text-right">소비자가</th>
-                            <td class="text-decoration-line-through">${vo.price}</td>
+                            <td class="text-decoration-line-through">${cvo.price}</td>
                         </tr>
                         <tr>
                             <th class="text-right">판매가</th>
-                            <td class="text-primary fw-bold">${vo.saleprice}</td>
+                            <td class="text-primary fw-bold">${cvo.saleprice}</td>
                         </tr>
                         <tr>
                             <th class="text-right">배송비</th>
-                            <td>${vo.delivery}</td>
+                            <td>${cvo.delivery}</td>
                         </tr>
                         <tr>
 						    <td colspan="2">
-						        <select id="sel" data-price="${vo.price2}" style="width: 75%; padding: 10px; margin-left: auto;">
+						        <select id="sel" data-price="${cvo.price}" style="width: 75%; padding: 10px; margin-left: auto;">
 								    <option>수량선택</option>
 								    <c:forEach var="i" begin="1" end="10">
 								        <option>${i}</option>
@@ -292,7 +338,7 @@ $(function() {
 						    <td colspan="2" style="text-align: right; padding-right: 25%;">
 						        총 금액: 
 						        <span id="total" style="font-size: 1.5em; font-weight: bold;">
-						            ${vo.saleprice}
+						            ${cvo.saleprice}
 						        </span>
 						    </td>
 						</tr>
@@ -300,12 +346,12 @@ $(function() {
                 </table>
                 <div class="d-flex flex-wrap justify-content-start mt-3">
                     <c:if test="${sessionScope.id != null}">
-                    <form method="post" action="../campgoods/cart_insert.do">
-				        <input type="hidden" name="gno" value="${vo.cno}" id="gno">
-				        <input type="hidden" name="price" value="${vo.price}" id="price2">
-				        <input type="hidden" name="account" value="" id="account">
+                     <form method="post" action="../campgoods/cart_insert.do">
+				        <input type="hidden" name="gno" value="${cvo.cno}" id="gno">
+				        <input type="hidden" name="price" value="${cvo.price}" id="price">
+				        <input type="hidden" name="account" value="1" id="account">
 				        <input type="submit" class="btn btn-cart btn-custom mx-2 mb-2" value="장바구니" id="cart">
-				     </form>
+				      </form>
                         <c:if test="${check == false}">
                             <input type="button" class="btn btn-wishlist btn-custom mx-2 mb-2" value="찜하기" 
                             id="jjimBtn" data-cno="${vo.cno}">
@@ -313,7 +359,7 @@ $(function() {
                         <c:if test="${check == true}">
                             <span class="btn btn-wishlist btn-custom mx-2 mb-2 clicked">찜하기</span>
                         </c:if>
-                        <a href="#" class="btn btn-buy btn-custom mx-2 mb-2">구매하기</a>
+                        <a href="#" class="btn btn-buy btn-custom mx-2 mb-2" >구매하기</a>
                     </c:if>
                     <input type="button" class="btn btn-back btn-custom mx-2 mb-2" value="목록" onclick="javascript:history.back()">
                 </div>

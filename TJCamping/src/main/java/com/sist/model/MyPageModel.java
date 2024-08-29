@@ -176,16 +176,7 @@ public class MyPageModel {
 	}
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	@RequestMapping("mypage/mypage_buy.do")
-	public String mypage_buy(HttpServletRequest request, HttpServletResponse response) {
-		HttpSession session = request.getSession();
-		String id = (String) session.getAttribute("id");
-		request.setAttribute("title", "구매 목록");
-		request.setAttribute("mypage_jsp", "../mypage/mypage_buyList.jsp");
-		request.setAttribute("main_jsp", "../mypage/mypage_main.jsp");
-		System.out.println(id);
-		return "../main/main.jsp";
-	}
+	
 	
 	@RequestMapping("mypage/mypage_buyList.do")
 	public String mypage_buyList(HttpServletRequest request, HttpServletResponse response) {
@@ -193,7 +184,7 @@ public class MyPageModel {
 		//int cno=(int) request.getAttribute("cno");
 		String id = (String) session.getAttribute("id");
 		System.out.println("saddsa");
-		List<CartVO> glist = CartDAO.goodsBuyList(id);
+		//List<CartVO> glist = CartDAO.goodsBuyList(id);
 		int gtotal = CartDAO.goodsBuytotal(id);
 		int ctotal= CartDAO.campBuytotal(id);
 		System.out.println(ctotal);
@@ -202,7 +193,7 @@ public class MyPageModel {
 		//request.setAttribute("cno", cno);
 		request.setAttribute("ctotal", ctotal);
 		request.setAttribute("gtotal", gtotal);
-		request.setAttribute("glist", glist);
+		//request.setAttribute("glist", glist);
 		request.setAttribute("clist", clist);
 		request.setAttribute("mypage_jsp", "../mypage/mypage_buyList.jsp");
 		request.setAttribute("main_jsp", "../mypage/mypage_main.jsp");

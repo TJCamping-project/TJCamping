@@ -85,7 +85,7 @@ color:rgb(82,82,82);
       <th class="text-center">수량</th>
       <th class="text-center">가격</th>
     </tr>
-    <c:forEach var="ccgvo" items="${glist }">
+   <%--  <c:forEach var="ccgvo" items="${glist }">
     <tr>
     <input type="hidden" id="cno" value="${ccgvo.cno }">
        <td class="text-center">1</td>
@@ -93,10 +93,10 @@ color:rgb(82,82,82);
         <img src="${ccgvo.gvo.poster }" style="width: 30px;height: 30px">
        </td>
        <td>${ccgvo.gvo.name }</td>
-       <td class="text-center">${gvo.account}</td>
-       <td >${gvo.price }</td>
+       <td class="text-center">${cgvo.account}</td>
+       <td >${cgvo.price }</td>
        </tr>
-    </c:forEach>
+    </c:forEach> --%>
     <td></td>
     <td></td>
     <td></td>

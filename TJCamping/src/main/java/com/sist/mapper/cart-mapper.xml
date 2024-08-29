@@ -19,18 +19,18 @@
     @Results()
   -->
   <resultMap type="com.sist.vo.CartVO" id="cartMap">
-    <result property="cgvo.name" column="name"/>
-     <result property="cgvo.poster" column="poster"/>
-     <result property="cgvo.price" column="price"/>
+    <result property="gvo.name" column="name"/>
+     <result property="gvo.poster" column="poster"/>
+    
      <result property="cvo.camp_price" column="camp_price"/>
      <result property="cvo.image1" column="image1"/>
      <result property="cvo.camp_name" column="camp_name"/>
   </resultMap>
   <select id="cartListData" resultMap="cartMap" parameterType="string">
-    SELECT cno,goods_name,goods_poster,goods_price,account,price
-    FROM cart pc,goods_all g
+    SELECT c.cno,name,poster,c.price,account
+    FROM cart c,camp_goods_all g
     WHERE id=#{id} AND isbuy='n'
-    AND pc.gno=g.no
+    AND c.gno=g.cno
   </select>
   <select id="cartGetGnoCount" resultType="int" parameterType="hashmap">
    SELECT COUNT(*) FROM cart
@@ -51,12 +51,17 @@
      ca_cno_seq.nextval,'',#{id},#{account},#{price},'y',SYSDATE,#{campno}
     )
   </insert>
+  <insert id="buyInsert" parameterType="CartVO">
+    INSERT INTO cart VALUES(
+     pc_cno_seq.nextval,#{gno},#{id},#{account},#{price},'y',SYSDATE,''
+    )
+  </insert>
   <!-- 구매목록 : mypage-->
   <select id="buyListData" resultMap="cartMap" parameterType="string">
-    SELECT cno,goods_name,goods_poster,goods_price,account,price
-    FROM cart pc,goods_all g
+    SELECT cno,name,poster,c.price,account,g.price
+    FROM cart c,camp_goods_all g
     WHERE id=#{id} AND isbuy='y'
-    AND pc.gno=g.no
+    AND c.gno=g.cno
   </select>
   <select id="buyTotalPrice" resultType="int" parameterType="string">
     SELECT SUM(price*account) FROM cart

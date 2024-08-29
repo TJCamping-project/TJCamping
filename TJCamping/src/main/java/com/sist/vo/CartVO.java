@@ -19,5 +19,5 @@ public class CartVO {
 	private String id,isbuy,dbday;
 	private Date regdate;
 	private CampVO cvo=new CampVO();
-	private CampGoodsVO cgvo=new CampGoodsVO();
+	private CampGoodsVO gvo=new CampGoodsVO();
 }

@@ -23,9 +23,8 @@ public class CartDAO {
 	   SqlSession session=null;
 	   try
 	   {
-		   session=ssf.openSession();
+		   session=ssf.openSession(true);
 		   session.insert("cartInsert",vo);
-		   session.commit();
 	   }catch(Exception ex)
 	   {
 		   ex.printStackTrace();
