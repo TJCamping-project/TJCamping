@@ -51,7 +51,7 @@
      				console.log(json)
      				requestPay(json,name,price)
      				  
-     			}
+     			} 
      		})
      		
      	})
