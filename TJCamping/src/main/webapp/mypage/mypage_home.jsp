@@ -9,21 +9,17 @@
     .container {
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
     }
     .text-center {
-        margin: 10px 0;
+        margin: 10px auto;
     }
     .button-container {
-        display: flex;
-        align-items: center; /* 세로 정렬을 가운데로 설정 */
     }
     .btn-warning {
         background-color: #ffc107;
         border: none;
         padding: 5px 10px;
         color: #fff;
-        text-decoration: none;
         border-radius: 5px;
         margin-left: 10px; /* 버튼과 텍스트 사이의 간격 */
     }
@@ -35,7 +31,7 @@
         <div class="text-center">Tj camp입니다!</div>
         <div class="text-center">피곤하고 지친 피로감</div>
         <div class="text-center">캠핑여행, 맛집 탐방은 어떠세요~~ ?</div>
-        <div class="text-center button-container"> 궁금하신 점이 있으시면 언제든지 물어봐주세요!! <a href="#" class="btn-warning">1:1 상담</a>
+        <div class="text-center ">궁금하신 점이 있으시면 언제든지 물어봐주세요!!<a href="#" class="btn-warning button-container">1:1 상담</a>
         </div>
     </div>
 </body>
