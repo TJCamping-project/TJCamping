@@ -27,9 +27,8 @@
 								style="letter-spacing: 3px;">Explore The World</h4>
 							<h1 class="display-2 text-capitalize text-white mb-4">Let's
 								The World Together!</h1>
-							<p class="mb-5 fs-5">Lorem Ipsum is simply dummy text of the
-								printing and typesetting industry. Lorem Ipsum has been the
-								industry's standard dummy text ever since the 1500s,</p>
+							<p class="mb-5 fs-5">A good campsite makes a good trip and creates good memories.
+							Choose a good campsite with confidence through our TJ Camping.</p>
 						</div>
 					</div>
 				</div>
@@ -41,9 +40,8 @@
 								style="letter-spacing: 3px;">Explore The World</h4>
 							<h1 class="display-2 text-capitalize text-white mb-4">Find
 								Your Perfect Tour At Travel</h1>
-							<p class="mb-5 fs-5">Lorem Ipsum is simply dummy text of the
-								printing and typesetting industry. Lorem Ipsum has been the
-								industry's standard dummy text ever since the 1500s,</p>
+							<p class="mb-5 fs-5">A good campsite makes a good trip and creates good memories.
+							Choose a good campsite with confidence through our TJ Camping.</p>
 						</div>
 					</div>
 				</div>
@@ -55,9 +53,8 @@
 								style="letter-spacing: 3px;">Explore The World</h4>
 							<h1 class="display-2 text-capitalize text-white mb-4">You
 								Like To Go?</h1>
-							<p class="mb-5 fs-5">Lorem Ipsum is simply dummy text of the
-								printing and typesetting industry. Lorem Ipsum has been the
-								industry's standard dummy text ever since the 1500s,</p>
+							<p class="mb-5 fs-5">A good campsite makes a good trip and creates good memories.
+							Choose a good campsite with confidence through our TJ Camping.</p>
 						</div>
 					</div>
 				</div>
@@ -170,11 +167,12 @@
 										class="img-fluid w-100 rounded" alt="Image">
 									<div class="national-content">
 										<div class="national-info">
-											<h3 class="text-white text-uppercase mb-2">캠핑장 소개</h3>
-											<a href="#" class="btn-hover text-white">바로가기 <i
+											<h3 class="text-white text-uppercase mb-2">캠핑장</h3>
+											<a href="../camp/list.do" class="btn-hover text-white">바로가기 <i
 												class="fa fa-arrow-right ms-2"></i></a>
 										</div>
 									</div>
+									<div class="tour-offer bg-warning">추천</div>
 									<div class="national-plus-icon">
 										<a href="#" class="my-auto"><i
 											class="fas fa-link fa-2x text-white"></i></a>
@@ -187,11 +185,12 @@
 										class="img-fluid w-100 rounded" alt="Image">
 									<div class="national-content">
 										<div class="national-info">
-											<h3 class="text-white text-uppercase mb-2">캠핑장 예약 </h3>
-											<a href="../camp/list.do" class="btn-hover text-white">바로가기 <i
+											<h3 class="text-white text-uppercase mb-2">캠핑장 소개 </h3>
+											<a href="../camp/detail.do?camp_no=1" class="btn-hover text-white">바로가기 <i
 												class="fa fa-arrow-right ms-2"></i></a>
 										</div>
 									</div>
+									<div class="tour-offer bg-warning">추천</div>
 									<div class="national-plus-icon">
 										<a href="#" class="my-auto"><i
 											class="fas fa-link fa-2x text-white"></i></a>
@@ -258,7 +257,7 @@
 									<div class="national-content">
 										<div class="national-info">
 											<h3 class="text-white text-uppercase mb-2">커뮤니티</h3>
-											<a href="#" class="btn-hover text-white">바로가기 <i
+											<a href="../boardcamp/list.do" class="btn-hover text-white">바로가기 <i
 												class="fa fa-arrow-right ms-2"></i></a>
 										</div>
 									</div>
@@ -485,111 +484,7 @@
  
 	<!-- 레시피 End -->
 
-	<!-- 후기 Start -->
-	<div class="container-fluid testimonial py-5">
-		<div class="container py-5">
-			<div class="mx-auto text-center mb-5" style="max-width: 900px;">
-				<h5 class="section-title px-3">review</h5>
-				<h1 class="mb-0">후기</h1>
-			</div>
-			<div class="testimonial-carousel owl-carousel">
-				<div class="testimonial-item text-center rounded pb-4">
-					<div class="testimonial-comment bg-light rounded p-4">
-						<p class="text-center mb-5">Lorem ipsum dolor, sit amet
-							consectetur adipisicing elit. Quis nostrum cupiditate, eligendi
-							repellendus saepe illum earum architecto dicta quisquam quasi
-							porro officiis. Vero reiciendis,</p>
-					</div>
-					<div class="testimonial-img p-1">
-						<img src="../img/testimonial-1.jpg" class="img-fluid rounded-circle"
-							alt="Image">
-					</div>
-					<div style="margin-top: -35px;">
-						<h5 class="mb-0">John Abraham</h5>
-						<p class="mb-0">New York, USA</p>
-						<div class="d-flex justify-content-center">
-							<i class="fas fa-star text-primary"></i> <i
-								class="fas fa-star text-primary"></i> <i
-								class="fas fa-star text-primary"></i> <i
-								class="fas fa-star text-primary"></i> <i
-								class="fas fa-star text-primary"></i>
-						</div>
-					</div>
-				</div>
-				<div class="testimonial-item text-center rounded pb-4">
-					<div class="testimonial-comment bg-light rounded p-4">
-						<p class="text-center mb-5">Lorem ipsum dolor, sit amet
-							consectetur adipisicing elit. Quis nostrum cupiditate, eligendi
-							repellendus saepe illum earum architecto dicta quisquam quasi
-							porro officiis. Vero reiciendis,</p>
-					</div>
-					<div class="testimonial-img p-1">
-						<img src="../img/testimonial-2.jpg" class="img-fluid rounded-circle"
-							alt="Image">
-					</div>
-					<div style="margin-top: -35px;">
-						<h5 class="mb-0">John Abraham</h5>
-						<p class="mb-0">New York, USA</p>
-						<div class="d-flex justify-content-center">
-							<i class="fas fa-star text-primary"></i> <i
-								class="fas fa-star text-primary"></i> <i
-								class="fas fa-star text-primary"></i> <i
-								class="fas fa-star text-primary"></i> <i
-								class="fas fa-star text-primary"></i>
-						</div>
-					</div>
-				</div>
-				<div class="testimonial-item text-center rounded pb-4">
-					<div class="testimonial-comment bg-light rounded p-4">
-						<p class="text-center mb-5">Lorem ipsum dolor, sit amet
-							consectetur adipisicing elit. Quis nostrum cupiditate, eligendi
-							repellendus saepe illum earum architecto dicta quisquam quasi
-							porro officiis. Vero reiciendis,</p>
-					</div>
-					<div class="testimonial-img p-1">
-						<img src="../img/testimonial-3.jpg" class="img-fluid rounded-circle"
-							alt="Image">
-					</div>
-					<div style="margin-top: -35px;">
-						<h5 class="mb-0">John Abraham</h5>
-						<p class="mb-0">New York, USA</p>
-						<div class="d-flex justify-content-center">
-							<i class="fas fa-star text-primary"></i> <i
-								class="fas fa-star text-primary"></i> <i
-								class="fas fa-star text-primary"></i> <i
-								class="fas fa-star text-primary"></i> <i
-								class="fas fa-star text-primary"></i>
-						</div>
-					</div>
-				</div>
-				<div class="testimonial-item text-center rounded pb-4">
-					<div class="testimonial-comment bg-light rounded p-4">
-						<p class="text-center mb-5">Lorem ipsum dolor, sit amet
-							consectetur adipisicing elit. Quis nostrum cupiditate, eligendi
-							repellendus saepe illum earum architecto dicta quisquam quasi
-							porro officiis. Vero reiciendis,</p>
-					</div>
-					<div class="testimonial-img p-1">
-						<img src="../img/testimonial-4.jpg" class="img-fluid rounded-circle"
-							alt="Image">
-					</div>
-					<div style="margin-top: -35px;">
-						<h5 class="mb-0">John Abraham</h5>
-						<p class="mb-0">New York, USA</p>
-						<div class="d-flex justify-content-center">
-							<i class="fas fa-star text-primary"></i> <i
-								class="fas fa-star text-primary"></i> <i
-								class="fas fa-star text-primary"></i> <i
-								class="fas fa-star text-primary"></i> <i
-								class="fas fa-star text-primary"></i>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<!-- 후기 End -->
+	
 </div>
 
 </body>
