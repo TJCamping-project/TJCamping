@@ -19,19 +19,19 @@ let sel=0;
 	IMP.init("imp68206770"); 
 
 	function requestPay(json,name,price) {
-		IMP.request_pay({
+	    IMP.request_pay({
 	        pg: "html5_inicis",
 	        pay_method: "card",
 	        merchant_uid: "ORD20180131-0000011",   // 주문번호
 	        name: name,
-	        amount: price, // 숫자 타입
-	        buyer_email: json.email,
-	        buyer_name: json.name,
-	        buyer_tel: json.phone,
-	        buyer_addr: json.address,
-	        buyer_postcode: json.post
+	        amount: price,         // 숫자 타입
+	        buyer_email: "asd@sist.com",
+	        buyer_name: "가나다",
+	        buyer_tel: "010-1234-1234",
+	        buyer_addr: "asc",
+	        buyer_postcode: "123-456"
 	    }, function (rsp) { // callback
-	    	location.href='http://localhost/TJCamping/mypage/mypage_reserve.do'
+	    	location.href='http://localhost/TJCamping/mypage/mypage_main.do'
 	        
 	    });
 	}
@@ -65,11 +65,12 @@ $(function(){
 			}
 		})
 	})
+	
 	$('#buy').click(function(){
 		
-		let campno=$('#camp_no').val()
-		alert(campno)
-		let price=$('#camp_price').val()
+		let camp_no=$('.camp_no').val()
+		alert(camp_no)
+		let price=$('.camp_price').val()
 		let account=$('#camp_inwon').text()
 		account = account.replace('명', '');
 		price=price*account
@@ -77,11 +78,11 @@ $(function(){
 		$.ajax({
 			type:'post',
 			url:'../mypage/camp_buy_insert.do',
-			data:{"campno":campno,"price":price,"account":account},
+			data:{"camp_no":camp_no,"price":price,"account":account},
 			success:function(result){
-				
-				 let json=JSON.parse(result)
-				requestPay(json,name,price)
+				alert(result)
+				/* let json=JSON.parse(result) */
+				requestPay(result,name,price)
 			}
 		})
 	})
@@ -104,30 +105,23 @@ $(function(){
       <th class="text-center">상태</th>
      </tr>
      <c:forEach var="rvo" items="${rList }">
-     <input type="hidden" id="camp_addr" value="${rvo.cvo.camp_addr }">
-     <input type="hidden" id="camp_price" value="${rvo.cvo.camp_price }">
-     <input type="hidden" id="camp_phone" value="${rvo.cvo.camp_phone}">
-     <input type="hidden" id="camp_regdate" value="${rvo.regdate }">
-      <input type="hidden" id="camp_no" value="${rvo.cno }">
+     <input type="hidden" class="camp_addr" value="${rvo.cvo.camp_addr }">
+     <input type="hidden" class="camp_price" value="${rvo.cvo.camp_price }">
+     <input type="hidden" class="camp_phone" value="${rvo.cvo.camp_phone}">
+     <input type="hidden" class="camp_regdate" value="${rvo.regdate }">
+      <input type="hidden" class="camp_no" value="${rvo.cno }">
        <tr>
           <td class="text-center" id="camp_rno">${rvo.rno }</td>
 	      <td class="text-center">
 	       <img src="${rvo.cvo.image1 }" style="width: 20px;height: 20px" id="campimg">
 	      </td>
-	      <td id=camp_name>${rvo.cvo.camp_name }</td>
-	      <td class="text-center" id=camp_day>${rvo.day }</td>
-	      <td class="text-center" id=camp_time>${rvo.time }</td>
-	      <td class="text-center" id=camp_inwon>${rvo.inwon }</td>
+	      <td id="camp_name">${rvo.cvo.camp_name }</td>
+	      <td class="text-center" id="camp_day">${rvo.day }</td>
+	      <td class="text-center" id="camp_time">${rvo.time }</td>
+	      <td class="text-center" id="camp_inwon">${rvo.inwon }</td>
 	      <td class="text-center inline">
 	       <c:if test="${rvo.isok=='y' }">
-	        <c:choose>
-	         <c:when test="${rvo.buyok=='y' }">
-  	          <span class="btn btn-success btn-xs infos" data-rno="${rvo.rno }">예약완료</span>
-	         </c:when>
-	         <c:otherwise>
-		        <span class="btn btn-warning btn-xs infos" data-rno="${rvo.rno }">승인완료</span>
-	         </c:otherwise>
-	        </c:choose>
+	        <span class="btn btn-success btn-xs infos" data-rno="${rvo.rno }">예약완료</span>
 	       </c:if>
 	       <c:if test="${rvo.isok=='n' }">
 	        <span class="btn btn-default btn-xs">예약대기</span>

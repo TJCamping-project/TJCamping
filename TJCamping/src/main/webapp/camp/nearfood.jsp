@@ -103,6 +103,12 @@ main {
 							<div class="mx-auto text-center mb-5" style="max-width: 900px;">
 								<h5 class="section-title px-3">맛집 리스트</h5>
 								<h1 class="mb-0">${count}개의맛집</h1>
+								<div style="height:80px"></div> 
+								<td class="text-center">
+									<span class="btn btn-lg btn-success rebtn" data-no="1">경기</span>
+	          						<span class="btn btn-lg btn-info rebtn" data-no="2">충북</span> 
+	          						<span class="btn btn-lg btn-primary rebtn" data-no="3">충남</span>
+          						</td> 
 							</div>
 
 							<div class="row">
@@ -110,16 +116,16 @@ main {
 									<div class="col-lg-3 col-md-6 col-sm-12">
 										<div class="packages-item">
 											<div class="packages-img">
-												<img src="https://www.bluer.co.kr${fvo.poster}"
+												<img src="http://menupan.com${fvo.poster}"
 													class="img-fluid w-100 rounded-top" alt="${fvo.name}">
 												<div
 													class="packages-info d-flex border border-start-0 border-end-0 position-absolute"
 													style="width: 100%; bottom: 0; left: 0; z-index: 5;">
 													<a href=""
 														class="text-white flex-fill text-center border-end py-2 text-decoration-none">
-														<i class="text-white fa fa-map-marker-alt me-2"></i>저장하기</a>
+														</a>
 												</div>
-												<div class="text-center packages-price py-2 px-4">★${fvo.tag }</div> <!-- 매퍼에서 연결해야함~ -->
+												<div class="text-center packages-price py-2 px-4">★&nbsp;${fvo.score }</div> <!-- 매퍼에서 연결해야함~ -->
 											</div>
 											<div class="packages-content bg-light">
 												<div class="p-4 pb-0">

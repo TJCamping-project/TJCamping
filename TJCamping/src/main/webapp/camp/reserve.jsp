@@ -18,6 +18,7 @@
 		    },
 		    success: function(result) {
 		        $('#rdate').html(result).show();  // 여기서 result를 사용할 수 있음
+		        $('#r_camp_no').val(camp_no)
 		    },
 		    error: function(request, status, error) {
 		        console.log(error);
@@ -25,24 +26,8 @@
 		});
 
 	})
-	
-/*	$.ajax({
-    type: 'post',
-    url: '../camp/reserve_ok.do',
-    data: {
-        "camp_no": $('#r_camp_no').val(),
-        "date": $('#r_date').val(),
-        "time": $('#r_time').val(),
-        "inwon": $('#r_inwon').val()
-    },
-    success: function(response) {
-        // 성공 처리
-    },
-    error: function(xhr, status, error) {
-        console.log('Error:', error);
-    } */
-});
 </script>
+
 <style type="text/css">
 .rday_can:hover {
 	cursor: pointer;
@@ -81,39 +66,40 @@
      <tr>
       <td width=30% class="danger" height="400">
        <table class="table">
-	    <caption> <h4 class="text-center">캠핑장 정보</h4> </caption>
+	    <caption><h4 class="text-center">캠핑장 정보</h4></caption>
 		 <table class="table">
 		  <input type="hidden" value="${vo.camp_no }" id="camp_no1">
 		   <tr>
 			<td class="text-center dataTr" data-camp_no="${vo.camp_no }" colspan="2">
-			<img src="${vo.image1 }" style="width: 250px; height: 180px" id="camp_image"></td>
+			<img src="${vo.image1 }" style="width: 360px; height: 290px" id="camp_image"></td>
 		   </tr>
 		   <tr>
-			<td width="30%" class="text-right">업체명</td>
+			<th width="30%" class="text-right">업체명</th>
 			<td width="70%" id="camp_name">${vo.camp_name }</td>
 		   </tr>
 		   <tr>
-			<td width="30%" class="text-right">☎</td>
+			<th width="30%" class="text-right">☎</th>
 			<td width="70%" id="camp_phone">${vo.camp_phone }</td>
 		   </tr>
 		   <tr>
-			<td width="30%" class="text-right">예악일</td>
+			<th width="30%" class="text-right">예악일</th>
 			<td width="70%" id="camp_day"></td>
 		   </tr>
 		   <tr>
-			<td width="30%" class="text-right">시간</td>
+			<th width="30%" class="text-right">시간</th>
 			<td width="70%" id="camp_time_data"></td>
 		   </tr>
 		   <tr>
-			<td width="30%" class="text-right">인원</td>
+			<th width="30%" class="text-right">인원</th>
 			<td width="70%" id="camp_inwon_data"></td>
 		   </tr>
 		 </table>
 	    </table>
        </td>
+       <div style="height:60px"></div>
 	   <td width=30% class="info" height="400">
+	   <caption><h4 class="text-center">예약일 정보</h4></caption>
         <table class="table">
-         <caption><h4 class="text-center">예약일 정보</h4></caption>
          <tbody>
           <tr>
            <td id="rdate"></td>
@@ -121,7 +107,26 @@
          </tbody>
         </table>
        </td>
-       <td width=20% rowspan="2" class="success" height="500">
+       
+	   </tr>
+	   <tr>
+		<td width=30% class="default" height=100>
+		 <caption><h4 class="text-center">시간 정보</h4></caption>
+		 <table class="table">
+		   <tr>
+	        <td class="text-center" id="camp_time"></td>
+		   </tr>
+		  </table>
+		 </td>
+		 <td width=30% height=100>
+		 <caption><h4 class="text-center">인원 정보</h4></caption>
+		  <table class="table">
+			<tr>
+			 <td class="text-center" id="camp_inwon"></td>
+			</tr>
+		  </table>
+		 </td>
+		 <td width=20% rowspan="2" class="success" height="500">
 	    <table class="table">
          <tr id="reserveBtn" style="display: none">
           <td colspan="2" class="text-center">
@@ -136,24 +141,6 @@
 		 </tr>
 	    </table>
        </td>
-	   </tr>
-	   <tr>
-		<td width=30% class="default" height=100>
-		 <table class="table">
-		  <caption> <h4 class="text-center">시간 정보</h4></caption>
-		   <tr>
-	        <td class="text-center" id="camp_time"></td>
-		   </tr>
-		  </table>
-		 </td>
-		 <td width=30% height=100>
-		  <table class="table">
-		   <caption> <h4 class="text-center">인원 정보</h4></caption>
-			<tr>
-			 <td class="text-center" id="camp_inwon"></td>
-			</tr>
-		  </table>
-		 </td>
 		</tr>
 	   </table>
 	  </main>
