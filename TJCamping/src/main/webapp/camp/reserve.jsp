@@ -82,7 +82,7 @@
 			<td width="70%" id="camp_phone">${vo.camp_phone }</td>
 		   </tr>
 		   <tr>
-			<th width="30%" class="text-right">예악일</th>
+			<th width="30%" class="text-right">예약일</th>
 			<td width="70%" id="camp_day"></td>
 		   </tr>
 		   <tr>
