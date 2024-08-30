@@ -419,7 +419,7 @@ function replyList(cno)
             <td width="65%">${vo.parking}</td>
          </tr>
       </table>
-         <table class="table" style="width: 100%; text-align: center;">
+         <table class="table" style="width: 100%; text-align: right;">
             <tr>
                <td colspan="3" class="text-right">
                <c:if test="${sessionScope.id!=null }">
@@ -452,7 +452,7 @@ function replyList(cno)
       var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
           mapOption = {
               center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-              level: 3 // 지도의 확대 레벨
+              level: 5 // 지도의 확대 레벨
           };  
       
       // 지도를 생성합니다    
