@@ -97,19 +97,19 @@ public class MyPageModel {
 		System.out.println(id);
 		return "../main/main.jsp";
 	}
-
+/*
 	@RequestMapping("mypage/fbjjim_list.do")
 	public String food_jjim(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("id");
-		List<FoodVO> fblist = AllJjimDAO.fbjjimListData(id);
+		List<FoodVO> fblist = AllJjimDAO.fbJjimListData(id);
 		request.setAttribute("title", "맛집찜");
 		request.setAttribute("fbList", fblist);
 		request.setAttribute("jjim_jsp", "../mypage/my_fbjjim.jsp");
 		request.setAttribute("mypage_jsp", "../mypage/mypage_jjim.jsp");
 		request.setAttribute("main_jsp", "../mypage/mypage_main.jsp");
 		return "../main/main.jsp";
-	}
+	}*/
 	@RequestMapping("mypage/cgjjim_list.do")
 	public String camp_goods_jjim(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
@@ -134,14 +134,14 @@ public class MyPageModel {
 		request.setAttribute("main_jsp", "../mypage/mypage_main.jsp");
 		return "../main/main.jsp";
 	}
-	
+	/*
 	@RequestMapping("mypage/alljjim_list.do")
 	public String all_jjim(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("id");
 		List<RecipeVO> reclist = AllJjimDAO.recjjimListData(id);
 		List<CampGoodsVO> cglist = AllJjimDAO.cgjjimListData(id);
-		List<FoodVO> fblist = AllJjimDAO.fbjjimListData(id);
+		List<FoodVO> fblist = AllJjimDAO.fbJjimListData(id);
 		request.setAttribute("title", "전체");
 		request.setAttribute("recList", reclist);
 		request.setAttribute("cgList", cglist);
@@ -150,7 +150,7 @@ public class MyPageModel {
 		request.setAttribute("mypage_jsp", "../mypage/mypage_jjim.jsp");
 		request.setAttribute("main_jsp", "../mypage/mypage_main.jsp");
 		return "../main/main.jsp";
-	}
+	}*/
 	
 	@RequestMapping("member/camp_jjim_delete.do")
 	public String camp_jjim_delete(HttpServletRequest request, HttpServletResponse response) {

@@ -50,6 +50,17 @@ public class AllJjimDAO {
 			if(session!=null)
 				session.close();
 		}
+	}public static void foodJjimCountIncrement(Map map) {
+		SqlSession session=null;
+		try {
+			session=ssf.openSession(true);
+			session.update("JjimCountIncrement",map);
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}finally {
+			if(session!=null)
+				session.close();
+		}
 	}
 	
 	public static void campGoodjimCountIncrement(Map map) {
@@ -107,14 +118,14 @@ public class AllJjimDAO {
 		}
 		return reclist;
 	}
-	public static List<FoodVO> fbjjimListData(String id){
+	public static List<FoodVO> JjimListData(String id){
 		List<FoodVO> fblist = new ArrayList<FoodVO>();
 		SqlSession session=null;
 		try {
 			session=ssf.openSession();
-			fblist = session.selectList("fbjjimListData",id);
+			fblist = session.selectList("JjimListData",id);
 		}catch(Exception ex) {
-			System.out.println("fbjjimListData err");
+			System.out.println("JjimListData err");
 			ex.printStackTrace();
 		}finally {
 			if(session!=null)
@@ -123,19 +134,7 @@ public class AllJjimDAO {
 		return fblist;
 	}
 	
-	public static void foodJjimCountIncrement(Map map) {
-		SqlSession session=null;
-		try {
-			session=ssf.openSession(true);
-			session.update("foodJjimCountIncrement",map);
-		}catch(Exception ex) {
-			ex.printStackTrace();
-		}finally {
-			if(session!=null)
-				session.close();
-		}
-	}
-	
+
 	
 	public static void camp_jjim_delete(Map map) {
 		SqlSession session=null;

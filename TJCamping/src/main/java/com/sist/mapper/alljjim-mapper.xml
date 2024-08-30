@@ -29,7 +29,7 @@
 
 	<update id="JjimCountIncrement" parameterType="java.util.Map">
 
-		UPDATE food_house
+		UPDATE food_blue
 		SET
 
 		jjimcount=(SELECT COUNT(*) FROM all_jjim WHERE type=#{type} AND cno=#{cno})
@@ -38,6 +38,20 @@
 		fno=#{cno}
 
 	</update>
+	
+
+	<update id="foodJjimCountIncrement"
+		parameterType="java.util.Map">
+
+		UPDATE food_blue SET
+
+		jjimcount=(SELECT COUNT(*) FROM all_jjim WHERE type=#{type} AND cno=#{cno})
+
+		WHERE
+		fno=#{cno}
+
+	</update>
+	
 
 	<update id="campGoodsJjimCountIncrement"
 		parameterType="java.util.Map">
@@ -64,24 +78,14 @@
 
 	</update>
 	<!-- 맛집 찜목록 -->
-	<select id="fbjjimListData" resultType="FoodVO"
+	<select id="fbJjimListData" resultType="FoodVO"
 		parameterType="string">
 		SELECT fh.fno , poster , name ,aj.type
 		FROM food_blue fb , all_jjim aj
 		WHERE fb.fno=aj.cno AND aj.type LIKE 1 and aj.id=#{id}
 	</select>
 	
-	<update id="foodJjimCountIncrement"
-		parameterType="java.util.Map">
-
-		UPDATE food_blue SET
-
-		jjimcount=(SELECT COUNT(*) FROM all_jjim WHERE type=#{type} AND cno=#{cno})
-
-		WHERE
-		fno=#{cno}
-
-	</update>
+	
 	<!-- 캠핑용품 찜목록 -->
 	<select id="cgjjimListData" resultType="CampGoodsVO"
 		parameterType="hashmap">
