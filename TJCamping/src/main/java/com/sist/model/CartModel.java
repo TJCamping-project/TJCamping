@@ -132,6 +132,7 @@ public class CartModel {
 		rvo.setCno(Integer.parseInt(campno));
 		rvo.setId(id);
 		
+		ReserveDAO.resbuyOK(rvo);
 		// JSON
 		String name = (String) session.getAttribute("name");
 		String email = (String) session.getAttribute("email");
@@ -154,7 +155,6 @@ public class CartModel {
 		} catch (Exception ex) {
 			out.write("FAIL");
 		}
-		ReserveDAO.resbuyOK(rvo);
 	}
 
 	@RequestMapping("mypage/mypage_buy.do")

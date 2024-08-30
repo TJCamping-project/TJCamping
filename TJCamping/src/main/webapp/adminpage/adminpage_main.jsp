@@ -6,7 +6,7 @@
     <title>Insert title here</title>
     <style type="text/css">
         .sectiontitle{
-        	margin:100px;
+        	margin:80px;
         }
     </style>
 </head>
@@ -16,7 +16,6 @@
 	<!-- Header End -->
     <div class="container py-5">
 	<h3 class="sectiontitle text-center">${title }</h3>
-		<div style="height:40px;"></div>
         <main class="container clear">
         <div class="row" >
             <div class="col-sm-2">
