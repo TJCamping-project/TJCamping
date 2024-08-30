@@ -441,7 +441,7 @@ function replyList(cno)
             </tr>
             </table>
             
-            
+             
 	
          <div style="height: 10px"></div>
          <div id="map" style="width: 100%; height: 350px;"></div>
