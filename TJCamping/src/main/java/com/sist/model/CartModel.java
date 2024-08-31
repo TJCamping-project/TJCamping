@@ -47,7 +47,7 @@ public class CartModel {
 			map1.put("account", account);
 			CartDAO.cartGnoUpdate(map1);
 		}
-
+ 
 		 return "redirect:../mypage/mypage_cart.do"; 
 	}
 

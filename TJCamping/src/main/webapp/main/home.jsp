@@ -334,10 +334,10 @@
                                 <i class="fa fa-heart me-2"></i>찜하기
                             </a> -->
                     
-                            <a href="#" class="flex-fill text-center border-end py-2 text-decoration-none"
+                            <!-- <a href="#" class="flex-fill text-center border-end py-2 text-decoration-none"
                                style="color: #ffffff;"> 
                                 <i class="fa fa-shopping-cart me-2"></i>장바구니
-                            </a>
+                            </a> -->
                             <a href="../campgoods/detail.do?cno=${vo.cno}&gno=1" class="flex-fill text-center border-end py-2 text-decoration-none"
                                style="color: #ffffff;"> 
                                 <i class="fa fa-search me-2"></i>상세보기

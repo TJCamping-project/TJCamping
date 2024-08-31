@@ -121,7 +121,7 @@ public class CampGoodsModel {
 	   
 	    request.setAttribute("numericPrice", numericPrice); 
 	    request.setAttribute("gList", gList);
-	    request.setAttribute("cvo", vo);
+	    request.setAttribute("vo", vo);
 	    request.setAttribute("main_jsp", "../campgoods/detail.jsp");
 	    return "../main/main.jsp";
 	}

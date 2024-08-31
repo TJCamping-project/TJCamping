@@ -59,7 +59,7 @@
  </script>
 </head>
 <body>
-<!--  
+ 
 <c:if test="${count==0 }">
     <table class="table">
      <tr>
@@ -69,7 +69,7 @@
      </tr>
     </table>
   </c:if>
-   <c:if test="${count!=0 }">-->
+   <c:if test="${count!=0 }">
 	  <table class="table">
 	   <tr>
 	    <th class="text-center">번호</th>
@@ -95,6 +95,6 @@
 	     </tr>
 	   </c:forEach>
 	  </table>
-   <!--</c:if>-->
+   </c:if>
 </body>
 </html>

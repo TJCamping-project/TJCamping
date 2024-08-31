@@ -5,15 +5,10 @@
 <head>
 <meta charset="utf-8">
 <title>Product Detail - Travela</title>
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
-<meta content="" name="keywords">
-<meta content="" name="description">
-
-
-<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 <script type="text/javascript">
-let sel=0;
+
 var IMP = window.IMP; 
 IMP.init("imp68206770"); 
 function requestPay(json,name,price) {
@@ -32,6 +27,36 @@ function requestPay(json,name,price) {
     	location.href='http://localhost/TJCamping/mypage/mypage_main.do' 
     });
 }
+
+$(function(){
+	$('#buy').click(function(){
+	   if(sel===0)
+		{
+			alert("수량을 선택하세요")
+			return
+		}
+		
+		let gno=$('#gno').val()
+		let price = $('#price').val()	
+		price = price.replace(/[^0-9]/g, '')
+		let account = $('#account').val();	
+		price=Number(price) * Number(account)
+		let name=$('.product-name').text()
+	
+		$.ajax({
+			type:'post',
+			url:'../campgoods/buy_insert.do',
+			data:{"gno":gno,"price": price,"account": account},
+			success:function(result)
+			{
+				console.log(result)
+				let json=JSON.parse(result)
+			    console.log(json)
+				requestPay(json,name,price)
+			}
+		})
+	})
+})
 $(function() {
     // 버튼 클릭 이벤트 처리
     $('#jjimBtn').on('click', function() {
@@ -96,35 +121,8 @@ $(function() {
         $('#total').text(total.toLocaleString() + "원")
         $('#account').val(account)
     })
-    $('.btn-buy').click(function(){
-		/* if(sel===0)
-		{
-			alert("수량을 선택하세요")
-			return
-		} */
-		
-		let gno=$('#gno').val()
-		let price = $('#sel').attr("data-price")
-		price = price.replace(/[^0-9]/g, '')
-		let account = $('#sel').val();
-		price=Number(price) * Number(account)
-		let name=$('.product-name').text()
-		alert(name)
-		$.ajax({
-			type:'post',
-			url:'../campgoods/buy_insert.do',
-			data:{"gno":gno},
-			success:function(result)
-			{
-				console.log(result)
-				let json=JSON.parse(result)
-			    console.log(json)
-				requestPay(json,name,price)
-			}
-		})
-	})
 	
-	/* $('#cart').click(function(){
+	$('#cart').click(function(){
 		$.ajax({
 			   type: "post",
 			   url: "../campgoods/cart_insert.do",
@@ -134,14 +132,14 @@ $(function() {
 			      "price": $('#price').val()
 			   },
 			   success: function(response) {
-			      alert("장바구니에 추가되었습니다.")
-			       //location.href="../mypage/mypage_cart.do"; 
+			      //alert("장바구니에 추가되었습니다.")
+			       location.href="../mypage/mypage_cart.do"; 
 			   },
 			   error: function() {
 			      alert("장바구니에 추가하는데 실패했습니다.")
 			   }
 			});
-	}) */
+	}) 
 })
 </script>
 <style>
@@ -296,37 +294,37 @@ $(function() {
     <main class="row">
         <div class="col-md-6">
             <div class="product-image-container">
-                <img src="${cvo.poster}" alt="${cvo.name}" class="img-fluid poster-img">
+                <img src="${vo.poster}" alt="${vo.name}" class="img-fluid poster-img">
             </div>
         </div>
         <div class="col-md-6">
             <div class="product-info-container">
-                <h3 class="product-name">${cvo.name}</h3>
+                <h3 class="product-name">${vo.name}</h3>
                 <table class="table table-borderless product-info">
                     <tbody>
                         <tr>
                             <th class="text-right">제조사</th>
-                            <td>${cvo.brand}</td>
+                            <td>${vo.brand}</td>
                         </tr>
                         <tr>
                             <th class="text-right">제조국</th>
-                            <td>${cvo.origin}</td>
+                            <td>${vo.origin}</td>
                         </tr>
                         <tr>
                             <th class="text-right">소비자가</th>
-                            <td class="text-decoration-line-through">${cvo.price}</td>
+                            <td class="text-decoration-line-through">${vo.price}</td>
                         </tr>
                         <tr>
                             <th class="text-right">판매가</th>
-                            <td class="text-primary fw-bold">${cvo.saleprice}</td>
+                            <td class="text-primary fw-bold">${vo.saleprice}</td>
                         </tr>
                         <tr>
                             <th class="text-right">배송비</th>
-                            <td>${cvo.delivery}</td>
+                            <td>${vo.delivery}</td>
                         </tr>
                         <tr>
 						    <td colspan="2">
-						        <select id="sel" data-price="${cvo.price}" style="width: 75%; padding: 10px; margin-left: auto;">
+						        <select id="sel" data-price="${vo.price}" style="width: 75%; padding: 10px; margin-left: auto;">
 								    <option>수량선택</option>
 								    <c:forEach var="i" begin="1" end="10">
 								        <option>${i}</option>
@@ -338,7 +336,7 @@ $(function() {
 						    <td colspan="2" style="text-align: right; padding-right: 25%;">
 						        총 금액: 
 						        <span id="total" style="font-size: 1.5em; font-weight: bold;">
-						            ${cvo.saleprice}
+						            ${vo.saleprice}
 						        </span>
 						    </td>
 						</tr>
@@ -346,12 +344,12 @@ $(function() {
                 </table>
                 <div class="d-flex flex-wrap justify-content-start mt-3">
                     <c:if test="${sessionScope.id != null}">
-                     <form method="post" action="../campgoods/cart_insert.do">
-				        <input type="hidden" name="gno" value="${cvo.cno}" id="gno">
-				        <input type="hidden" name="price" value="${cvo.price}" id="price">
+                     <!-- <form method="post" action="../campgoods/cart_insert.do"> -->
+				        <input type="hidden" name="gno" value="${vo.cno}" id="gno">
+				        <input type="hidden" name="price" value="${vo.price}" id="price">
 				        <input type="hidden" name="account" value="1" id="account">
 				        <input type="submit" class="btn btn-cart btn-custom mx-2 mb-2" value="장바구니" id="cart">
-				      </form>
+				      <!-- </form> -->
                         <c:if test="${check == false}">
                             <input type="button" class="btn btn-wishlist btn-custom mx-2 mb-2" value="찜하기" 
                             id="jjimBtn" data-cno="${vo.cno}">
@@ -359,7 +357,8 @@ $(function() {
                         <c:if test="${check == true}">
                             <span class="btn btn-wishlist btn-custom mx-2 mb-2 clicked">찜하기</span>
                         </c:if>
-                        <a href="#" class="btn btn-buy btn-custom mx-2 mb-2" >구매하기</a>
+                        <!-- <a href="#" class="btn btn-buy btn-custom mx-2 mb-2" >구매하기</a> -->
+                        <input type="submit" class="btn btn-buy btn-custom mx-2 mb-2" value="구매하기" id="buy">
                     </c:if>
                     <input type="button" class="btn btn-back btn-custom mx-2 mb-2" value="목록" onclick="javascript:history.back()">
                 </div>
@@ -379,11 +378,12 @@ $(function() {
     </div>
 </section>
 
+
 <!-- 추천상품 Start -->
 <div class="container-fluid packages py-5">
     <div class="container py-5">
         <div class="mx-auto text-center mb-5" style="max-width: 900px;">
-            <h2 class="section-title px-3" style="color: black;">추천상품</h2>
+            <h2 class="section-title px-3" style="color: black;">인기상품</h2>
         </div>
 
         <div class="packages-carousel owl-carousel">
@@ -392,9 +392,9 @@ $(function() {
                     <div class="packages-img" style="background-color: white; display: flex; justify-content: center; align-items: center; height: 300px; width: 100%;">
 					    <img src="${vo.poster}" style="max-height: 100%; max-width: 100%; object-fit: contain;" class="img-fluid w-100 rounded-top" alt="Image">
 					    <div class="packages-info d-flex border border-start-0 border-end-0 position-absolute" style="width: 100%; bottom: 0; left: 0; z-index: 5;">
-					        <a href="#" class="flex-fill text-center border-end py-2 text-decoration-none" style="color: #ffffff;">
+					        <!-- <a href="#" class="flex-fill text-center border-end py-2 text-decoration-none" style="color: #ffffff;">
 					            <i class="fa fa-shopping-cart me-2"></i>장바구니
-					        </a>
+					        </a> -->
 					        <a href="../campgoods/detail.do?cno=${vo.cno}&gno=1" class="flex-fill text-center border-end py-2 text-decoration-none" style="color: #ffffff;">
 					            <i class="fa fa-search me-2"></i>상세보기
 					        </a>
@@ -447,6 +447,6 @@ $(function() {
         </div>
     </div>
 </div>
-<!— 추천상품 End —>
+<!-- 추천상품 End -->
 </body>
 </html>
