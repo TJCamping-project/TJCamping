@@ -468,12 +468,9 @@
 
 
 				</div>
-        <!-- Blog End -->
  
 	<!-- 레시피 End -->
 
-	
 </div>
-
 </body>
 </html>
