@@ -63,6 +63,8 @@ public class CampGoodsModel {
 	    request.setAttribute("bbList", bbList);
 	    request.setAttribute("ltList", ltList);
 		
+	    CommonsModel.footerPrint(request);
+	    
 		request.setAttribute("main_jsp", "../campgoods/list.jsp");
 		return "../main/main.jsp";
 	}
