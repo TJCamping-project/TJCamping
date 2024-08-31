@@ -91,16 +91,16 @@
 	<!-- Navbar & Hero End -->
 
 
-	<!-- About Start -->
+<!-- About Start -->
 <div class="container-fluid about py-5">
-    <div class="container py-5">
+    <div class="container py-5" style="transform: translateX(150px);">
         <div class="row g-5 align-items-center">
             <div class="col-lg-5">
                 <div class="h-100" style="border: 10px solid rgb(37, 103, 75);">
                     <img src="../img/about-img.jpg" class="img-fluid w-100 h-100" alt="">
                 </div>
             </div>
-            <div class="col-lg-7" style="background: linear-gradient(rgba(255, 255, 255, .8), rgba(255, 255, 255, .8)); transform: translateX(20px);">
+            <div class="col-lg-7" style="background: linear-gradient(rgba(255, 255, 255, .8), rgba(255, 255, 255, .8));">
                 <h5 class="section-about-title"></h5>
                 <h1 class="mb-4">
                     Welcome to <span class="text-primary">TJ Camping!</span>
@@ -110,7 +110,6 @@
                     캠핑장 서칭부터 예약, 용품 구매, 정보 및 팁 수집까지<br>
                     TJ 캠핑이 제공하는 원스탑 서비스를 통해 스마트한 캠핑 라이프를 즐겨보세요!
                 </p>
-                <!-- <p class="mb-4">TJ 캠핑만의 원스탑 서비스를 통해 스마트한 캠핑 라이프를 즐겨보세요!</p> -->
                 <div class="row gy-2 gx-4 mb-4">
                     <div class="col-sm-5">
                         <p class="mb-0">
@@ -151,136 +150,125 @@
 <!-- About End -->
 
 
-	<!-- Explore Tour Start -->
-	<div class="container-fluid ExploreTour py-5">
-		<div class="container py-5">
-			<div class="mx-auto text-center mb-5" style="max-width: 900px;">
-				<h5 class="section-title px-3">quick menu</h5>
-				<h1 class="mb-4">바로가기</h1>
-				</div>
-				<div class="tab-content">
-					<div id="NationalTab-1" class="tab-pane fade show p-0 active">
-						<div class="row g-4">
-							<div class="col-md-6 col-lg-4">
-								<div class="national-item">
-									<img src="../img/explore-tour-1.jpg"
-										class="img-fluid w-100 rounded" alt="Image">
-									<div class="national-content">
-										<div class="national-info">
-											<h3 class="text-white text-uppercase mb-2">캠핑장</h3>
-											<a href="../camp/list.do" class="btn-hover text-white">바로가기 <i
-												class="fa fa-arrow-right ms-2"></i></a>
-										</div>
-									</div>
-									<div class="tour-offer bg-warning">추천</div>
-									<div class="national-plus-icon">
-										<a href="#" class="my-auto"><i
-											class="fas fa-link fa-2x text-white"></i></a>
-									</div>
+<!-- Explore Tour Start -->
+<div class="container-fluid ExploreTour py-5">
+	<div class="container py-5">
+		<div class="mx-auto text-center mb-5" style="max-width: 900px;">
+			<h5 class="section-title px-3">quick menu</h5>
+			<h1 class="mb-4">바로가기</h1>
+		</div>
+		<div class="tab-content">
+			<div id="NationalTab-1" class="tab-pane fade show p-0 active">
+				<div class="row g-4">
+					<div class="col-md-6 col-lg-4">
+						<div class="national-item">
+							<img src="../img/explore-tour-1.jpg" class="img-fluid w-100 rounded" alt="Image" style="height: 250px; object-fit: cover;">
+							<div class="national-content">
+								<div class="national-info">
+									<h3 class="text-white text-uppercase mb-2">캠핑장</h3>
+									<a href="../camp/list.do" class="btn-hover text-white">바로가기 <i
+											class="fa fa-arrow-right ms-2"></i></a>
 								</div>
 							</div>
-							<div class="col-md-6 col-lg-4">
-								<div class="national-item">
-									 <img src="../img/explore-tour-2.jpg"
-										class="img-fluid w-100 rounded" alt="Image">
-									<div class="national-content">
-										<div class="national-info">
-											<h3 class="text-white text-uppercase mb-2">캠핑장 소개 </h3>
-											<a href="../camp/detail.do?camp_no=1" class="btn-hover text-white">바로가기 <i
-												class="fa fa-arrow-right ms-2"></i></a>
-										</div>
-									</div>
-									<div class="tour-offer bg-warning">추천</div>
-									<div class="national-plus-icon">
-										<a href="#" class="my-auto"><i
-											class="fas fa-link fa-2x text-white"></i></a>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-6 col-lg-4">
-								<div class="national-item">
-									<img src="../img/explore-tour-3.jpg"
-										class="img-fluid w-100 rounded" alt="Image">
-									<div class="national-content">
-										<div class="national-info">
-											<h3 class="text-white text-uppercase mb-2">캠핑용품</h3>
-											<a href="../campgoods/list.do" class="btn-hover text-white">바로가기 <i
-												class="fa fa-arrow-right ms-2"></i></a>
-										</div>
-									</div>
-									<div class="tour-offer bg-warning">추천</div>
-									<div class="national-plus-icon">
-										<a href="#" class="my-auto"><i
-											class="fas fa-link fa-2x text-white"></i></a>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-6 col-lg-4">
-								<div class="national-item">
-									<img src="../img/explore-tour-4.jpg"
-										class="img-fluid w-100 rounded" alt="Image">
-									<div class="national-content">
-										<div class="national-info">
-											<h3 class="text-white text-uppercase mb-2">맛집</h3>
-											<a href="../food/list.do" class="btn-hover text-white">바로가기 <i
-												class="fa fa-arrow-right ms-2"></i></a>
-										</div>
-									</div>
-									<div class="national-plus-icon">
-										<a href="#" class="my-auto"><i
-											class="fas fa-link fa-2x text-white"></i></a>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-6 col-lg-4">
-								<div class="national-item">
-									<img src="../img/explore-tour-5.jpg"
-										class="img-fluid w-100 rounded" alt="Image">
-									<div class="national-content">
-										<div class="national-info">
-											<h3 class="text-white text-uppercase mb-2">레시피</h3>
-											<a href="../recipe/list.do" class="btn-hover text-white">바로가기 <i
-												class="fa fa-arrow-right ms-2"></i></a>
-										</div>
-									</div>
-									<div class="tour-offer bg-warning">추천</div>
-									<div class="national-plus-icon">
-										<a href="#" class="my-auto"><i
-											class="fas fa-link fa-2x text-white"></i></a>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-6 col-lg-4">
-								<div class="national-item">
-									<img src="../img/explore-tour-6.jpg"
-										class="img-fluid w-100 rounded" alt="Image">
-									<div class="national-content">
-										<div class="national-info">
-											<h3 class="text-white text-uppercase mb-2">커뮤니티</h3>
-											<a href="../boardcamp/list.do" class="btn-hover text-white">바로가기 <i
-												class="fa fa-arrow-right ms-2"></i></a>
-										</div>
-									</div>
-									<div class="national-plus-icon">
-										<a href="#" class="my-auto"><i
-											class="fas fa-link fa-2x text-white"></i></a>
-									</div>
-								</div>
+							<!-- <div class="tour-offer bg-warning">추천</div> -->
+							<div class="national-plus-icon">
+								<a href="#" class="my-auto"><i class="fas fa-link fa-2x text-white"></i></a>
 							</div>
 						</div>
 					</div>
+					<div class="col-md-6 col-lg-4">
+						<div class="national-item">
+							<img src="../img/explore-tour-2.jpg" class="img-fluid w-100 rounded" alt="Image" style="height: 250px; object-fit: cover;">
+							<div class="national-content">
+								<div class="national-info">
+									<h3 class="text-white text-uppercase mb-2">캠핑장 소개</h3>
+									<a href="../camp/detail.do?camp_no=1" class="btn-hover text-white">바로가기 <i
+											class="fa fa-arrow-right ms-2"></i></a>
+								</div>
+							</div>
+							<!-- <div class="tour-offer bg-warning">추천</div> -->
+							<div class="national-plus-icon">
+								<a href="#" class="my-auto"><i class="fas fa-link fa-2x text-white"></i></a>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 col-lg-4">
+						<div class="national-item">
+							<img src="../img/explore-tour-3.jpg" class="img-fluid w-100 rounded" alt="Image" style="height: 250px; object-fit: cover;">
+							<div class="national-content">
+								<div class="national-info">
+									<h3 class="text-white text-uppercase mb-2">캠핑용품</h3>
+									<a href="../campgoods/list.do" class="btn-hover text-white">바로가기 <i
+											class="fa fa-arrow-right ms-2"></i></a>
+								</div>
+							</div>
+							<!-- <div class="tour-offer bg-warning">추천</div> -->
+							<div class="national-plus-icon">
+								<a href="#" class="my-auto"><i class="fas fa-link fa-2x text-white"></i></a>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 col-lg-4">
+						<div class="national-item">
+							<img src="../img/explore-tour-4.jpg" class="img-fluid w-100 rounded" alt="Image" style="height: 250px; object-fit: cover;">
+							<div class="national-content">
+								<div class="national-info">
+									<h3 class="text-white text-uppercase mb-2">맛집</h3>
+									<a href="../food/list.do" class="btn-hover text-white">바로가기 <i
+											class="fa fa-arrow-right ms-2"></i></a>
+								</div>
+							</div>
+							<!-- <div class="tour-offer bg-warning">추천</div> -->
+							<div class="national-plus-icon">
+								<a href="#" class="my-auto"><i class="fas fa-link fa-2x text-white"></i></a>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 col-lg-4">
+						<div class="national-item">
+							<img src="../img/explore-tour-5.jpg" class="img-fluid w-100 rounded" alt="Image" style="height: 250px; object-fit: cover;">
+							<div class="national-content">
+								<div class="national-info">
+									<h3 class="text-white text-uppercase mb-2">레시피</h3>
+									<a href="../recipe/list.do" class="btn-hover text-white">바로가기 <i
+											class="fa fa-arrow-right ms-2"></i></a>
+								</div>
+							</div>
+							<!-- <div class="tour-offer bg-warning">추천</div> -->
+							<div class="national-plus-icon">
+								<a href="#" class="my-auto"><i class="fas fa-link fa-2x text-white"></i></a>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 col-lg-4">
+						<div class="national-item">
+							<img src="../img/explore-tour-6.jpg" class="img-fluid w-100 rounded" alt="Image" style="height: 250px; object-fit: cover;">
+							<div class="national-content">
+								<div class="national-info">
+									<h3 class="text-white text-uppercase mb-2">커뮤니티</h3>
+									<a href="../boardcamp/list.do" class="btn-hover text-white">바로가기 <i
+											class="fa fa-arrow-right ms-2"></i></a>
+								</div>
+							</div>
+							<!-- <div class="tour-offer bg-warning">추천</div> -->
+							<div class="national-plus-icon">
+								<a href="#" class="my-auto"><i class="fas fa-link fa-2x text-white"></i></a>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
-			
-	<!-- Explore Tour End -->
+		</div>
+	</div>
+</div>
+<!-- Explore Tour End -->
 
 
 	<!-- 캠핑장 추천 Start -->
 	<div class="container-fluid packages py-5">
     <div class="container py-5">
         <div class="mx-auto text-center mb-5" style="max-width: 900px;">
-            <h5 class="section-title px-3">Campsite Map</h5>
+            <h5 class="section-title px-3">Campsite</h5>
             <h1 class="mb-0">캠핑장</h1>
         </div>
         <div class="packages-carousel owl-carousel">
@@ -288,7 +276,7 @@
                 <div class="packages-item">
                     <div class="packages-img">
                         <img src="${cvo.image1}" style="height:280px;width:420px" class="rounded-top">
-                        <div class="text-center packages-price py-2 px-4">Best</div>
+                       <!--  <div class="text-center packages-price py-2 px-4">Best</div> -->
                     </div>
                     <div class="packages-content bg-light">
                         <div class="p-4 pb-0">
