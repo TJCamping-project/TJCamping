@@ -41,34 +41,23 @@ color:rgb(82,82,82);
    	<p class="text-center title1">캠핑장</p>
    <table class="table t1">
     <tr>
-      <th class="text-center">번호</th>
-      <th class="text-center"></th>
-      <th class="text-center">이름</th>
-      <th class="text-center">인원</th>
-      <th class="text-center">가격</th>
+      <th class="text-center" width=5%>번호</th>
+      <th class="text-center" width=5%></th>
+      <th class="text-center" width=50%>이름</th>
+      <th class="text-center" width=10%>인원</th>
+      <th class="text-center" width=30%>가격</th>
     </tr>
     <c:set var="ccnt" value="${ccnt }"/>
-    <c:forEach var="ccvo" items="${clist }">
+    <c:forEach var="ccvo" items="${clist }" begin="0" end="${ccnt}" varStatus="i">
     <tr>
-    	<td width="10%" class="text-center">${ccnt }</td>
+    	<td width="10%" class="text-center">${ccnt-(i.index)}</td>
        <td class="text-center">
         <img src="${ccvo.cvo.image1 }" style="width: 30px;height: 30px">
        </td>
-       <td>${ccvo.cvo.camp_name }</td>
+       <td class="text-center">${ccvo.cvo.camp_name }</td>
        <td class="text-center">${ccvo.account}명</td>
-       <input type="hidden" id="c_account" value="${ccvo.account}">
-       <input type="hidden" id="c_price" value="${ccvo.cvo.camp_price }">
-       <script type="text/javascript">
-       $(document).ready(function() {
-       	let c_account=$('#c_account').val()
-       	let c_price=$('#c_price').val()
-       	let realprice=c_account*c_price
-       	$('#rprice').text(realprice + '원');
-       });
-       </script>
-       <td id="rprice"></td>
+       <td class="text-center">${ccvo.price }원</td>
        </tr>
-       <c:set var="count" value="${ccnt-1}"/>
     </c:forEach>
         <td></td>
     <td></td>
@@ -80,17 +69,17 @@ color:rgb(82,82,82);
     <table class="table t2">
     <tr>
     
-      <th class="text-center">번호</th>
-      <th class="text-center"></th>
-      <th class="text-center">이름</th>
-      <th class="text-center">수량</th>
-      <th class="text-center">가격</th>
+      <th class="text-center" width=5%>번호</th>
+      <th class="text-center" width=5%></th>
+      <th class="text-center" width=50%>이름</th>
+      <th class="text-center" width=10%>수량</th>
+      <th class="text-center" width=30%>가격</th>
     </tr>
     <c:set var="gcnt" value="${gcnt }"/>
-     <c:forEach var="ccgvo" items="${glist }">
+     <c:forEach var="ccgvo" items="${glist }" begin="1" end="${gcnt}" varStatus="j">
     <tr>
     <input type="hidden" id="cno" value="${ccgvo.cno }">
-       <td width="10%" class="text-center">${gcnt }</td>
+       <td width="10%" class="text-center">${gcnt-(j.index)}</td>
        <td class="text-center">
         <img src="${ccgvo.gvo.poster }" style="width: 30px;height: 30px">
        </td>
@@ -98,13 +87,12 @@ color:rgb(82,82,82);
        <td class="text-center">${ccgvo.account}</td>
        <td class="text-center">${ccgvo.price }</td>
        </tr>
-       <c:set var="count" value="${gcnt-1}"/>
     </c:forEach> 
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-        <td class="text-right">총금액:${gtotal }</td>
+    <td width=5%></td>
+    <td width=5%></td>
+    <td width=50%></td>
+    <td width=10%></td>
+    <td width=30%>총금액&nbsp;:&nbsp;${gtotal }원</td>
     </table>
    	
 </body>

@@ -33,10 +33,10 @@
 	select count(*) from cart where id='juhee' and isbuy ='y';
  -->
  <select id="campcount" resultType="int" parameterType="string">
- 	select count(*) from reserve where id=#{id} and buyok='y'
+ 	select count(*) from cart where id=#{id} and isbuy='y' and campno is not null
  </select>
  <select id="goodscount" resultType="int" parameterType="string">
- 	select count(*) from cart where id=#{id} and isbuy ='y'
+ 	select count(*) from cart where id=#{id} and isbuy ='y' and gno is not null
  </select>
  
 </mapper>

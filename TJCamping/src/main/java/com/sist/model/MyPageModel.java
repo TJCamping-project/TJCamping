@@ -199,13 +199,12 @@ public class MyPageModel {
 		HttpSession session = request.getSession();
 		//int cno=(int) request.getAttribute("cno");
 		String id = (String) session.getAttribute("id");
-		System.out.println("saddsa");
 		List<CartVO> glist = CartDAO.goodsBuyList(id);
 		int gtotal = CartDAO.goodsBuytotal(id);
 		int ctotal= CartDAO.campBuytotal(id);
 		int ccnt = AdminDAO.campcount(id);
 		int gcnt = AdminDAO.goodscount(id);
-		System.out.println(ctotal);
+		System.out.println(ccnt);
 		List<CartVO> clist = CartDAO.campBuyList(id);
 		request.setAttribute("ccnt", ccnt);
 		request.setAttribute("gcnt", gcnt);
