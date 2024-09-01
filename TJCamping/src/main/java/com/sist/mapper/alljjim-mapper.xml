@@ -80,7 +80,7 @@
 	<!-- 맛집 찜목록 -->
 	<select id="fbJjimListData" resultType="FoodVO"
 		parameterType="string">
-		SELECT fh.fno , poster , name ,aj.type
+		SELECT fb.fno , poster , name ,aj.type
 		FROM food_blue fb , all_jjim aj
 		WHERE fb.fno=aj.cno AND aj.type LIKE 1 and aj.id=#{id}
 	</select>
@@ -113,4 +113,13 @@
 		SET jjimcount=jjimcount-1
 		WHERE camp_goods_all.cno=#{cno}
 	</update>
+	<select id="fjjimcount" resultType="int" parameterType="string">
+		select count(*) from all_jjim where id=#{id} and type=1
+	</select>
+	<select id="cgjjimcount" resultType="int" parameterType="string">
+		select count(*) from all_jjim where id=#{id} and type=2
+	</select>
+	<select id="rjjimcount" resultType="int" parameterType="string">
+		select count(*) from all_jjim where id=#{id} and type=3
+	</select>
 </mapper>

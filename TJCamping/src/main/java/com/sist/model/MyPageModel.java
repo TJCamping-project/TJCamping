@@ -140,7 +140,7 @@ public class MyPageModel {
 		request.setAttribute("main_jsp", "../mypage/mypage_main.jsp");
 		return "../main/main.jsp";
 	}
-	/*
+	
 	@RequestMapping("mypage/alljjim_list.do")
 	public String all_jjim(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
@@ -148,7 +148,14 @@ public class MyPageModel {
 		List<RecipeVO> reclist = AllJjimDAO.recjjimListData(id);
 		List<CampGoodsVO> cglist = AllJjimDAO.cgjjimListData(id);
 		List<FoodVO> fblist = AllJjimDAO.fbJjimListData(id);
+		int ftotal=AllJjimDAO.fjjimcount(id);
+		int cgtotal=AllJjimDAO.cgjjimcount(id);
+		int rtotal=AllJjimDAO.rjjimcount(id);
+		
 		request.setAttribute("title", "전체");
+		request.setAttribute("ftotal", ftotal);
+		request.setAttribute("cgtotal", cgtotal);
+		request.setAttribute("rtotal", rtotal);
 		request.setAttribute("recList", reclist);
 		request.setAttribute("cgList", cglist);
 		request.setAttribute("fbList", fblist);
@@ -156,7 +163,7 @@ public class MyPageModel {
 		request.setAttribute("mypage_jsp", "../mypage/mypage_jjim.jsp");
 		request.setAttribute("main_jsp", "../mypage/mypage_main.jsp");
 		return "../main/main.jsp";
-	}*/
+	}
 	
 	@RequestMapping("member/camp_jjim_delete.do")
 	public String camp_jjim_delete(HttpServletRequest request, HttpServletResponse response) {

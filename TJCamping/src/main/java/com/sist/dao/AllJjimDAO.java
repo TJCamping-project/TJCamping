@@ -118,6 +118,21 @@ public class AllJjimDAO {
 		}
 		return reclist;
 	}
+	public static List<FoodVO> fbJjimListData(String id){
+		List<FoodVO> reclist = new ArrayList<FoodVO>();
+		SqlSession session=null;
+		try {
+			session=ssf.openSession();
+			reclist = session.selectList("fbJjimListData",id);
+		}catch(Exception ex) {
+			System.out.println("fbJjimListData err");
+			ex.printStackTrace();
+		}finally {
+			if(session!=null)
+				session.close();
+		}
+		return reclist;
+	}
 	public static List<FoodVO> JjimListData(String id){
 		List<FoodVO> fblist = new ArrayList<FoodVO>();
 		SqlSession session=null;
@@ -150,5 +165,55 @@ public class AllJjimDAO {
 			if(session!=null)
 				session.close();
 		}
+	}
+	/*
+	 * <select id="fjjimcount" resultType="int" parameterType="string">
+		select count(*) from jjimcount where id=#{id} and type=1
+	</select>
+	 */
+	public static int fjjimcount(String id){
+		int ftotal = 0;
+		SqlSession session=null;
+		try {
+			session=ssf.openSession();
+			ftotal = session.selectOne("fjjimcount",id);
+		}catch(Exception ex) {
+			System.out.println("fjjimcount err");
+			ex.printStackTrace();
+		}finally {
+			if(session!=null)
+				session.close();
+		}
+		return ftotal;
+	}
+	public static int cgjjimcount(String id){
+		int cgtotal = 0;
+		SqlSession session=null;
+		try {
+			session=ssf.openSession();
+			cgtotal = session.selectOne("cgjjimcount",id);
+		}catch(Exception ex) {
+			System.out.println("cgjjimcount err");
+			ex.printStackTrace();
+		}finally {
+			if(session!=null)
+				session.close();
+		}
+		return cgtotal;
+	}
+	public static int rjjimcount(String id){
+		int rtotal = 0;
+		SqlSession session=null;
+		try {
+			session=ssf.openSession();
+			rtotal = session.selectOne("rjjimcount",id);
+		}catch(Exception ex) {
+			System.out.println("rjjimcount err");
+			ex.printStackTrace();
+		}finally {
+			if(session!=null)
+				session.close();
+		}
+		return rtotal;
 	}
 }

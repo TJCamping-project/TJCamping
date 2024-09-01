@@ -29,8 +29,9 @@
 .t3{
 	background-color:rgba(213,226,235,.6);
 }
-.fhBtn{
+.fbBtn{
 	background-color:rgba(185,220,116,.6);
+	color: white;
 }
 .cgBtn{
 	background-color:rgba(147,197,185,.6);
@@ -38,6 +39,7 @@
 }
 .recBtn{
 	background-color:rgba(165,196,214,.6);
+	color: white;
 }
 td{
 color:rgb(82,82,82);
@@ -45,19 +47,19 @@ color:rgb(82,82,82);
 </style>
 </head>
 <body>
-  <div style="height: 10px"></div>
    	<p class="text-center title1">맛집</p>
    <table class="table t1">
     <tr>
-      <th class="text-center">번호</th>
-      <th class="text-center"></th>
-      <th class="text-center">이름</th>
-      <th class="text-center">찜유무</th>
+      <th class="text-center" width="10%">번호</th>
+      <th class="text-center" width="10%"></th>
+      <th class="text-center" width="65%">이름</th>
+      <th class="text-center" width="15%">찜유무</th>
     </tr>
-    <c:forEach var="fvo" items="${fbList }">
+    <c:set var="ffvo" value="${ftotal}" />
+    <c:forEach var="fvo" items="${fbList }" begin="1" end="${ftotal}" varStatus="i">
     <tr>
-    	
-       <td class="text-center">1</td>
+       
+       <td class="text-center">${ftotal-(i.index)}</td>
        <td class="text-center">
 		<img src="http://www.bluer.co.kr${fvo.poster }" style="width: 30px;height: 30px">       </td>
        <td>${fvo.name }</td>
@@ -71,15 +73,16 @@ color:rgb(82,82,82);
     <table class="table t2">
     <tr>
     
-      <th class="text-center">번호</th>
-      <th class="text-center"></th>
-      <th class="text-center">이름</th>
-      <th class="text-center">찜유무</th>
+      <th class="text-center" width="10%">번호</th>
+      <th class="text-center" width="10%"></th>
+      <th class="text-center" width="65%">이름</th>
+      <th class="text-center" width="15%">찜유무</th>
     </tr>
-    <c:forEach var="cvo" items="${cgList }">
+    <c:set var="cgvo" value="${cgtotal}" />
+    <c:forEach var="cvo" items="${cgList }" begin="1" end="${cgtotal}" varStatus="c">
     <tr>
     <input type="hidden" id="cno" value="${cvo.cno }">
-       <td class="text-center">1</td>
+       <td class="text-center">${cgtotal-(c.index)}</td>
        <td class="text-center">
         <img src="${cvo.poster }" style="width: 30px;height: 30px">
        </td>
@@ -93,17 +96,18 @@ color:rgb(82,82,82);
    	<p class="text-center title3">레시피</p>
     <table class="table t3">
     <tr>
-      <th class="text-center">번호</th>
-      <th class="text-center"></th>
-      <th class="text-center">이름</th>
-      <th class="text-center">찜유무</th>
+      <th class="text-center" width="10%">번호</th>
+      <th class="text-center" width="10%"></th>
+      <th class="text-center" width="65%">이름</th>
+      <th class="text-center" width="15%">찜유무</th>
     </tr>
-    <c:forEach var="rvo" items="${recList }">
+    <c:set var="rrvo" value="${rtotal}" />
+    <c:forEach var="rvo" items="${recList }" begin="1" end="${rtotal}" varStatus="r">
     <tr>
     <input type="hidden" value="${rvo.type }">
-       <td class="text-center">1</td>
+       <td class="text-center">${rtotal-(r.index)}</td>
        <td class="text-center">
-        <img src="${rvo.poster }" style="width: 30px;height: 30px">
+        <img src="https://ottogi.okitchen.co.kr${rvo.poster }" style="width: 30px;height: 30px">
        </td>
        <td>${rvo.title }</td>
        <td class="text-center">
