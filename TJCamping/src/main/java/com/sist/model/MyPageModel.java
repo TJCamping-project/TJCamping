@@ -217,7 +217,7 @@ public class MyPageModel {
 		CommonsModel.footerPrint(request);
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("id");
-		
+		 
 		List<ReserveVO> rList = ReserveDAO.campReserveMyPageData(id);
 		
 		request.setAttribute("rList", rList);
