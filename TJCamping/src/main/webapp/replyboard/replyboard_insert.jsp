@@ -7,6 +7,13 @@
 <title>Insert title here</title>
 </head>
 <body>
+<div class="container-fluid whitezzz "style="height:100px;"></div>
+		<div class="container text-center py-5" style="max-width: 200px; ">
+			<div class="mx-auto text-center mb-5" style="max-width: 200px;">
+				<h5 class="section-title py-12"></h5>
+				<h1 class="mb-0 " >QnA</h1>
+			</div>
+		</div>
 <div class="wrapper row3">
   <main class="container clear">
    <h2 class="sectiontitle">등록하기</h2>
