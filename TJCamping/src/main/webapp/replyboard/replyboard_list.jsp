@@ -6,12 +6,17 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 </head>
 <body>
+<div class="container-fluid whitezzz "style="height:100px;"></div>
+		<div class="container text-center py-5" style="max-width: 200px; ">
+			<div class="mx-auto text-center mb-5" style="max-width: 200px;">
+				<h5 class="section-title py-12"></h5>
+				<h1 class="mb-0 " >QnA</h1>
+			</div>
+		</div>
 <div class="wrapper row3">
   <main class="container clear">
-   <h2 class="sectiontitle">묻고 답하기</h2>
    <table class=table>
     <tr>
      <td> 
@@ -28,19 +33,19 @@
       <th width="10%" class="text-center">조회수</th>
     </tr>
     <c:set var="count" value="${count }"/>
-    <c:forEach var="vo" items="${rbList }">
+    <c:forEach var="rbvo" items="${rbList }">
      <tr>
       <td width="10%" class="text-center">${count }</td>
       <td width="45%">
-       <c:if test="${vo.group_step>0 }">
+       <c:if test="${rbvo.group_step>0 }">
         &nbsp;&nbsp;
         <img src="../replyboard/re_icon.png">
        </c:if>
-       ${vo.subject}
+       ${rbvo.subject}
       </td>
-      <td width="15%" class="text-center">${vo.name }</td>
-      <td width="20%" class="text-center">${vo.dbday }</td>
-      <td width="10%" class="text-center">${vo.hit }</td>
+      <td width="15%" class="text-center">${rbvo.name }</td>
+      <td width="20%" class="text-center">${rbvo.dbday }</td>
+      <td width="10%" class="text-center">${rbvo.hit }</td>
     </tr>
     <c:set var="count" value="${count-1}"/>
     </c:forEach>
