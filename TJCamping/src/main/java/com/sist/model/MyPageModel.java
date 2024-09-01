@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.sist.commons.CommonsModel;
 //import com.sist.commons.CommonsModel;
 import com.sist.controller.RequestMapping;
 import com.sist.dao.AdminDAO;
@@ -26,6 +27,7 @@ import com.sist.vo.ReserveVO;
 public class MyPageModel {
 	@RequestMapping("mypage/mypage_main.do")
 	public String mypage_main(HttpServletRequest request, HttpServletResponse response) {
+		CommonsModel.footerPrint(request);
 		request.setAttribute("title", "마이페이지 홈");
 		request.setAttribute("mypage_jsp", "../mypage/mypage_home.jsp");
 		request.setAttribute("main_jsp", "../mypage/mypage_main.jsp");
@@ -35,6 +37,7 @@ public class MyPageModel {
 
 	@RequestMapping("member/join_update.do")
 	public String mypage_join_update(HttpServletRequest request, HttpServletResponse response) {
+		CommonsModel.footerPrint(request);
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("id");
 		MemberVO vo = MemberDAO.memberUpdateData(id);
@@ -89,6 +92,7 @@ public class MyPageModel {
 
 	@RequestMapping("mypage/mypage_jjim.do")
 	public String mypage_jjim(HttpServletRequest request, HttpServletResponse response) {
+		CommonsModel.footerPrint(request);
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("id");
 		request.setAttribute("title", "찜 목록");
@@ -112,6 +116,7 @@ public class MyPageModel {
 	}*/
 	@RequestMapping("mypage/cgjjim_list.do")
 	public String camp_goods_jjim(HttpServletRequest request, HttpServletResponse response) {
+		CommonsModel.footerPrint(request);
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("id");
 		List<CampGoodsVO> cglist = AllJjimDAO.cgjjimListData(id);
@@ -124,6 +129,7 @@ public class MyPageModel {
 	}
 	@RequestMapping("mypage/recjjim_list.do")
 	public String recipe_jjim(HttpServletRequest request, HttpServletResponse response) {
+		CommonsModel.footerPrint(request);
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("id");
 		List<RecipeVO> reclist = AllJjimDAO.recjjimListData(id);
@@ -154,6 +160,7 @@ public class MyPageModel {
 	
 	@RequestMapping("member/camp_jjim_delete.do")
 	public String camp_jjim_delete(HttpServletRequest request, HttpServletResponse response) {
+		
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("id");
 		String no = request.getParameter("cno");
@@ -181,6 +188,7 @@ public class MyPageModel {
 	
 	@RequestMapping("mypage/mypage_buyList.do")
 	public String mypage_buyList(HttpServletRequest request, HttpServletResponse response) {
+		CommonsModel.footerPrint(request);
 		HttpSession session = request.getSession();
 		//int cno=(int) request.getAttribute("cno");
 		String id = (String) session.getAttribute("id");
@@ -206,6 +214,7 @@ public class MyPageModel {
 	
 	@RequestMapping("mypage/mypage_reserve.do")
 	public String mypage_reserve(HttpServletRequest request, HttpServletResponse response) {
+		CommonsModel.footerPrint(request);
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("id");
 		
