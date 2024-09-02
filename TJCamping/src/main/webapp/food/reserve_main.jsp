@@ -144,7 +144,7 @@ $(function() {
         </table>
       </div>
     </div>
-  </div>
+  </div> 
 </div>
 
 <!-- Kakao Map Script -->
