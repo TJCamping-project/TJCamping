@@ -13,7 +13,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE (num BETWEEN #{start} AND #{end}) 
 	</select>
 	
-	<select id="board_CampRowCount" resultType="int">
+	<select id="board_campRowCount" resultType="int">
 		SELECT COUNT(*) FROM board WHERE type=1
 	</select>
 	<!-- 후기 작성 -->
@@ -50,6 +50,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		hit=hit+1
 		WHERE no=#{no}
 	</update>
+	
+<!-- 	<update id="boardgaechu" parameterType="int">
+		UPDATE board SET
+		gaechu=gaechu+1
+		WHERE no=#{no}
+	</update> -->
+	
 	<!-- 상세보기 본문 -->
 	<select id="boardDetailData" resultType="boardvo" parameterType="int">
 		SELECT no,name,subject,content, TO_CHAR(regdate,'YYYY-MM-DD HH24:MI:SS') as dbday, hit,imgname, imgsize
@@ -64,11 +71,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE no=#{no}
 	</update>
 	
-	<!-- 삭제 -->
+	<!-- 비밀번호 불러오기 -->
 	<select id="boardGetPassword" resultType="string" parameterType="int">
 		SELECT pwd FROM board
 		WHERE no=#{no}
 	</select>
+	
+	<!-- 추천수 불러오기 -->
+<!-- 	<select id="boardGaechuCount" resultType="string" parameterType="int">
+		SELECT gaechu FROM board
+		WHERE no=#{no}
+	</select> -->
+	
+	<!-- 댓글수 불러오기 -->
+	<!-- <select id="boardReplyCount" resultType="string" parameterType="int">
+		SELECT COUNT(*) FROM board_reply
+		WHERE bno=#{bno}
+	</select> --> 
 	
 	<select id="boardImgInfoData" resultType="BoardVO" parameterType="int">
 		SELECT imgname,imgsize 
@@ -76,6 +95,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE no=#{no}
 	</select>	
 	
+	<!-- 삭제 -->
 	<delete id="boardDelete" parameterType="int">
 		DELETE FROM board
 		WHERE no=#{no}

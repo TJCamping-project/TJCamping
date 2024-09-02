@@ -29,13 +29,18 @@
 .boardcheckbox{color: grry;}	/* checkbox 글자 색상 */
 a.pagetagcolor{color: yellow; background: ;}
 .boardlistsytle{ text-align: center;}
+.shadowed-text {
+   color: white; /* 텍스트 색상 */
+   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* 그림자 설정 */
+   font-size: 50px !important;
+}
 </style>
 </head>
 <body>
 	<!-- header start -->
 	<div class="ccontainer-fluid bg-breadcrumb">
 		<div class="container text-center py-5" style="max-width: 900px;">
-		<h1 class="display-3 mb-4" style="color: red;">검색 결과</h1>
+		<h1 class="display-3 mb-4 shadowed-text">검색 결과</h1>
 		</div>
 	</div>
 	<!-- header end -->

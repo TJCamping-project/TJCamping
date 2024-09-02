@@ -5,6 +5,7 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.PrintWriter;
+import java.net.URL;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -20,6 +21,7 @@ import com.sist.controller.RequestMapping;
 import com.sist.dao.*;
 
 public class Board_Model {
+	//캠핑장 게시판 리스트
 	@RequestMapping("boardcamp/list.do")
 	public String board_CampList(HttpServletRequest request, HttpServletResponse response) {
 		String page=request.getParameter("page");
@@ -30,7 +32,7 @@ public class Board_Model {
 		map.put("end", (curpage*10));
 		
 		List<BoardVO> list=BoardDAO.board_CampList(map);
-		int count=BoardDAO.board_CampRowCount();
+		int count=BoardDAO.board_campRowCount();
 		int totalpage=(int)(Math.ceil(count	/10.0));
 		count=count-((curpage*10)-10);
 		
@@ -45,16 +47,46 @@ public class Board_Model {
 		CommonsModel.footerPrint(request);
 		
 		request.setAttribute("today", today);
-		request.setAttribute("main_jsp", "../boardcamp/list.jsp");
+		request.setAttribute("main_jsp", "../board/boardcamp_list.jsp");
 		return "../main/main.jsp";
 	}
+	
+	//캠핑용품 게시판 리스트
+		@RequestMapping("boardgoods/list.do")
+		public String board_GoodsList(HttpServletRequest request, HttpServletResponse response) {
+			String page=request.getParameter("page");
+			if(page==null) {page="1";}	//초기 페이지 설정
+			int curpage=Integer.parseInt(page);
+			Map map=new HashMap();
+			map.put("start", (curpage*10)-9);
+			map.put("end", (curpage*10));
+			
+			List<BoardVO> list=BoardDAO.board_GoodsList(map);
+			int count=BoardDAO.board_GoodsRowCount();
+			int totalpage=(int)(Math.ceil(count	/10.0));
+			count=count-((curpage*10)-10);
+			
+			request.setAttribute("list", list);
+			request.setAttribute("curpage", curpage);
+			request.setAttribute("totalpage", totalpage);
+			request.setAttribute("count", count);
+			SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+			Date date=new Date();
+			String today=sdf.format(date);
+			
+			CommonsModel.footerPrint(request);
+			
+			request.setAttribute("today", today);
+			request.setAttribute("main_jsp", "../board/boardgoods_list.jsp");
+			return "../main/main.jsp";
+		}
 	
 	//캠핑장 후기글 작성
 	@RequestMapping("boardcamp/insert.do") 
 	public String board_CampInsert(HttpServletRequest request, HttpServletResponse response) {
 		CommonsModel.footerPrint(request);
 		
-		request.setAttribute("main_jsp"	, "../boardcamp/insert.jsp");
+		request.setAttribute("main_jsp"	, "../board/boardcamp_insert.jsp");
 		return "../main/main.jsp";
 	}
 	@RequestMapping("boardcamp/insert_ok.do")
@@ -93,18 +125,73 @@ public class Board_Model {
 		return "redirect:../boardcamp/list.do";
 	}
 	
+	//캠핑용품 후기글 작성
+	@RequestMapping("boardgoods/insert.do") 
+	public String board_GoodsInsert(HttpServletRequest request, HttpServletResponse response) {
+		CommonsModel.footerPrint(request);
+		
+		request.setAttribute("main_jsp"	, "../boardgoods/insert.jsp");
+		return "../main/main.jsp";
+	}
+	@RequestMapping("boardgoods/insert_ok.do")
+	public String board_goodsInsert_ok(HttpServletRequest request, HttpServletResponse response) {
+		try {
+			request.setCharacterEncoding("UTF-8");
+			/*
+			URL url=this.getClass().getClassLoader().getResource(".");	//현재경로명 읽기(운영체제 상관없이)
+			File file=new File(url.toURI());
+			System.out.println(file.getPath());
+			String path=file.getPath();
+			path=path.replace("\\", File.separator);	//os에 따라 /,\ 자동변경
+			path=path.substring(0,path.lastIndexOf(File.separator));
+			path=path+File.separator+"application.xml";
+			 */
+			
+			String path="c:\\project_upload";	//파일 업로드 위치
+			String enctype="UTF-8";		//한글파일명 인코딩
+			int max_size=1024*1024*100;		//이미지파일 크기
+			MultipartRequest mr=new MultipartRequest(request, path,max_size,enctype, new DefaultFileRenamePolicy());		//중복파일명 자동변경
+			String name=mr.getParameter("name");
+			String subject=mr.getParameter("subject");
+			String content=mr.getParameter("content");
+			String pwd=mr.getParameter("pwd");
+			String imgname=mr.getFilesystemName("upload");
+			BoardVO vo=new BoardVO();
+			vo.setName(name);
+			vo.setSubject(subject);
+			vo.setContent(content);
+			vo.setPwd(pwd);
+			
+			if(imgname==null) {
+				vo.setImgname("");
+				vo.setImgsize(0);
+			}
+			else {
+				File img=new File(path+"\\"+imgname);
+				vo.setImgname(imgname);
+				vo.setImgsize((int)img.length());
+			}
+			
+			BoardDAO.board_GoodsInsert(vo);
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		return "redirect:../boardgoods/list.do";
+	}
+	
 	//게시글 상세보기
-	  @RequestMapping("boardcamp/detail.do")
-	  public String board_detail(HttpServletRequest request,HttpServletResponse response){
-		  String no=request.getParameter("no");
-		  BoardVO vo=BoardDAO.boardDetailData(Integer.parseInt(no));
-		  
-		  CommonsModel.footerPrint(request);
-		  
-		  request.setAttribute("vo", vo);
-		  request.setAttribute("main_jsp", "../boardcamp/detail.jsp");
-		  return "../main/main.jsp";
-	  }
+		  @RequestMapping("board/detail.do")
+		  public String board_detail(HttpServletRequest request,HttpServletResponse response){
+			  String no=request.getParameter("no");
+			  BoardVO vo=BoardDAO.boardDetailData(Integer.parseInt(no));
+			  
+			  CommonsModel.footerPrint(request);
+			  
+			  request.setAttribute("vo", vo);
+			  request.setAttribute("main_jsp", "../board/board_detail.jsp");
+			  return "../main/main.jsp";
+		  }
+	  
 	  @RequestMapping("boardcamp/download.do")
 	  public void board_download(HttpServletRequest request,HttpServletResponse response)
 	  {
@@ -134,7 +221,7 @@ public class Board_Model {
 	  }
 
 	  //게시글 삭제
-	  @RequestMapping("boardcamp/delete.do") // => if문 동일 
+	  @RequestMapping("board/delete.do") // => if문 동일 
 	  public void board_delete(HttpServletRequest request,HttpServletResponse response)
 	  {
 		  String no=request.getParameter("no");
@@ -161,7 +248,7 @@ public class Board_Model {
 	  }
 	  
 	  //비밀번호 체크
-	  @RequestMapping("boardcamp/password_check.do")
+	  @RequestMapping("board/password_check.do")
 	  public void board_pwd_check(HttpServletRequest request,HttpServletResponse response)
 	  {
 		  String no=request.getParameter("no");
@@ -179,7 +266,7 @@ public class Board_Model {
 		  }catch(Exception ex) {}
 	  }
 	  
-	  @RequestMapping("boardcamp/update.do")
+	  @RequestMapping("board/update.do")
 	  public String board_update(HttpServletRequest request,HttpServletResponse response)
 	  {
 		  String no=request.getParameter("no");
@@ -190,11 +277,11 @@ public class Board_Model {
 		  
 		  // 데이터를 request에 추가해서 jsp로 전송 
 		  request.setAttribute("vo", vo);
-		  request.setAttribute("main_jsp", "../boardcamp/update.jsp");
+		  request.setAttribute("main_jsp", "../board/board_update.jsp");
 		  return "../main/main.jsp";
 	  }
 	  
-	  @RequestMapping("boardcamp/update_ok.do")
+	  @RequestMapping("board/update_ok.do")
 	  public String board_update_ok(HttpServletRequest request,HttpServletResponse response){
 		  try{ 
 			  
@@ -240,10 +327,11 @@ public class Board_Model {
 			  BoardDAO.board_CampUpdate(vo);
 		  }catch(Exception ex){}
 		  return "redirect:../boardcamp/list.do";
-	  }
+	  }	  
+	  
 	  
 	  @RequestMapping("boardcamp/find.do")
-	  public String board_find(HttpServletRequest request,HttpServletResponse response)
+	  public String boardcamp_find(HttpServletRequest request,HttpServletResponse response)
 	  {
 		  try
 		  {
@@ -262,8 +350,35 @@ public class Board_Model {
 		  
 		  // 결과값 전송 
 		  request.setAttribute("list", list);
-		  request.setAttribute("main_jsp", "../boardcamp/find.jsp");
+		  request.setAttribute("main_jsp", "../board/boardcamp_find.jsp");
 		  return "../main/main.jsp";
 	  }
 	  
-	}
+	  @RequestMapping("boardgoods/find.do")
+	  public String boardgoods_find(HttpServletRequest request,HttpServletResponse response)
+	  {
+		  try
+		  {
+			  request.setCharacterEncoding("UTF-8");
+		  }catch(Exception ex) {}
+		  
+		  String[] fsArr=request.getParameterValues("fs");
+		  String ss=request.getParameter("ss");
+		  Map map=new HashMap();
+		  map.put("fsArr", fsArr);
+		  map.put("ss", ss);
+		  // 데이터베이스 연동 
+		  List<BoardVO> list=BoardDAO.boardGoodsFindData(map);
+		  
+		  CommonsModel.footerPrint(request);
+		  
+		  // 결과값 전송 
+		  request.setAttribute("list", list);
+		  request.setAttribute("main_jsp", "../board/boardgoods_find.jsp");
+		  return "../main/main.jsp";
+	  }
+	  
+	  //추천하기
+	 // @RequestMapping("board/gaechu.do")
+	  
+}

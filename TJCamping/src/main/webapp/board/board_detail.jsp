@@ -258,7 +258,7 @@ $(function(){
          </td>
        	</tr>
        <tr>
-        <th width=20% class="text-center boardtitlecolor">게시글 번호</th>
+        <th width=20% class="text-center boardtitlecolor">번호</th>
         <td width=30% class="text-center del_no boardtitlecolor">${vo.no }</td>
         <th width=20% class="text-center boardtitlecolor">작성일</th>
         <td width=30% class="text-center boardtitlecolor">${vo.dbday }</td>
@@ -289,8 +289,7 @@ $(function(){
           <pre class="text-left" style="white-space: pre-wrap; border:none; height: 200px;">${vo.content }</pre>
           <div style="text-align: center; bottom:0px;">
           		<a onclick="javascript:history.back()" class="btn btn-xs btn-info">목록으로</a>
-          		&nbsp;
-				<a type="button" style="color: blue;"><img src="../img/thumb_up.png" width="40" height="40">추천(${vo.no })</a>					
+          		<%-- &nbsp; <a type="button" style="color: blue;"><img src="../img/thumb_up.png" width="40" height="40">추천(${vo.no })</a> --%>					
           </div>
          </td>
      </table>

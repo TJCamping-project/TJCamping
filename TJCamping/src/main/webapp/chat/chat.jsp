@@ -22,7 +22,11 @@
         <!-- Libraries Stylesheet -->
 
 <style type="text/css">
-
+.shadowed-text {
+   color: white; /* 텍스트 색상 */
+   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* 그림자 설정 */
+   font-size: 50px !important;
+}
 </style>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.3.0/sockjs.min.js"></script>
@@ -32,7 +36,7 @@ let websocket;
 //서버연결 
 function connection(){
 	// 소켓연결 
-	websocket=new WebSocket("ws://localhost/TJCamping/chat/chat-ws")
+	websocket=new WebSocket("ws://##/web/chat/chat-ws")
 	websocket.onopen=onOpen
 	websocket.onclose=onClose
 	websocket.onmessage=onMessage
@@ -40,9 +44,13 @@ function connection(){
 //연결처리 => Callback 
 function onOpen(event){
 	alert("1대1 상담을 시작합니다. 해당 창을 나갈 경우 상담이 자동으로 종료됩니다.")
+	$("#disp").show();
+
 }	
 function onClose(event){
 	alert("1대1 상담을 종료합니다.")
+	$("#disp").hide();
+
 }
 function onMessage(event){
 	let data=event.data // 전송된 데이터 
@@ -67,7 +75,7 @@ function disConnection(){
 //퇴장처리 => Callback
 //메세지 전송 => Callback
 function appendMsgMessage(msg){
-	 $('#recvMsg').append("<font color=red>"+msg+"</font><br>")
+	 $('#recvMsg').append("<font color=red font=bold>"+msg+"</font><br>")
 	 let ch=$('#chatArea').height()
 	 let m=$('#recvMsg').height()-ch
 	 $('#chatArea').scrollTop(m)
@@ -79,7 +87,7 @@ function appendMyMessage(msg){
 	 $('#chatArea').scrollTop(m)
 }
 function appendYouMessage(msg){
-	 $('#recvMsg').append("<font color=white>"+msg+"<br>")
+	 $('#recvMsg').append("<font color=black>"+msg+"<br>")
 	 let ch=$('#chatArea').height()
 	 let m=$('#recvMsg').height()-ch
 	 $('#chatArea').scrollTop(m)
@@ -90,7 +98,6 @@ function send(){
 		$('#sendMsg').focus()
 		return 
 	}
-	
 	websocket.send(msg)
 	$('#sendMsg').val("")
 	$('#sendMsg').focus()
@@ -98,11 +105,13 @@ function send(){
 
 $(function(){
 	$('#inputBtn').click(function(){
-		connection() 
+		
+		connection()
+		
 	})
 	$('#outputBtn').click(function(){
 		disConnection()
-		location.href="../main/main.do"
+		/* location.href="../main/main.do" */
 	})
 	$('#sendBtn').click(function(){
 		send()
@@ -115,51 +124,6 @@ $(function(){
 	})
 })
 
-//로그인 
-$(function(){
-	$('#logBtn1').on('click',function(){
-		let id1=$('#id1').val()
-		if(id1.trim()===""){
-			$('#id1').focus()
-			return
-		}
-		let pwd1=$('#pwd1').val()
-		if(pwd1.trim()===""){
-			$('#pwd1').focus()
-			return
-		}
-		
-		$.ajax({
-			type:'post',
-			url:'../member/login.do',
-			// ?id=aaa&pwd=1234
-			data:{"id1":id,"pwd1":pwd},
-			success:function(result){
-
-				if(result==='NOid'){
-					alert("아이디가 존재하지 않습니다!!")
-					$('#id1').val("")
-					$('#pwd1').val("")
-					$('#id1').focus()
-				}
-				else if(result==='NOpwd'){
-					alert("비밀번호가 틀립니다!!")
-					$('#pwd1').val("")
-					$('#pwd1').focus()
-				}
-				else{
-					location.href="../chat/chat.do"
-				}
-			},
-			error:function(request,status,error){
-				console.log("code:"+request.status)
-				// 404 , 500 
-				console.log("message:"+request.responseText)
-				console.log("error:"+error)
-			}
-		})
-	})
-})
 
 
 </script>
@@ -168,13 +132,13 @@ $(function(){
 	<!-- header start -->
 	<div class="ccontainer-fluid bg-breadcrumb">
 		<div class="container text-center py-5" style="max-width: 900px;">
-		<h1 class="display-3 mb-4" style="color: red;">실시간 채팅</h1>
+		<h1 class="display-3 mb-4 shadowed-text">실시간 채팅</h1>
 		</div>
 	</div>
 	<!-- header end -->
 	
 	<!-- board start css -->
-	<div class="container-fluid booking py-3">
+	<div class="container-fluid py-3">
 		<div class="container py-3">
 			<div class="row1">
 				<table class="table">
@@ -188,35 +152,37 @@ $(function(){
 					</tr>
 					<tr>
 						<td>
-							<div id="chatArea">
+							<div id="chatArea" >
 							<div id="recvMsg"></div>
 							</div>
 						</td>
 					</tr>
+					
 					<tr>
-						<td class="inline">
-					 		<input type=text id="sendMsg" size=80 class="input-sm">
+						<td class="inline" style="display: none;" id="disp">
+					 		<input type=text id="sendMsg" size=80 class="input-sm" >
 							<input type=button id="sendBtn" value="전송" class="btn-sm btn-primary">
 						</td>
 					</tr>
+					<tr>	
 				</c:if>
 				<c:if test="${sessionScope.id==null }">
 					<tr>
-						<td style="text-align: center; color: white; font-size: 25px; font: bold;">
+						<td style="text-align: center; font-size: 25px; font: bold;">
 							로그인해야 이용 가능한 메뉴입니다
 						</td>
 					</tr>
-					
+					<!-- 
 					<tr>
 						<td>
 							<ul style="text-align: center;">
-								<li style="display: inline-block;"><input size="15" style="margin-top:17px" type="text" id="id1" class="input-sm" placeholder="아이디" required></li>
-						        <li style="display: inline-block;"><input size="15" type="password" id="pwd1" class="input-sm" placeholder="비밀 번호" required></li>
-						        <li style="display: inline-block;"><input type="button" id="logBtn1" class="btn btn-sm btn-primary" value="로그인">&nbsp;&nbsp;</li>
+								<li style="display: inline-block;"><input size="15" style="margin-top:17px" type="text" id="id" class="input-sm" placeholder="아이디" required></li>
+						        <li style="display: inline-block;"><input size="15" type="password" id="pwd" class="input-sm" placeholder="비밀 번호" required></li>
+						        <li style="display: inline-block;"><input type="button" id="logBtn" class="btn btn-sm btn-primary" value="로그인">&nbsp;&nbsp;</li>
 				      		</ul>
 						</td>
 					</tr>
-					
+					-->
 				</c:if>
 				</table>
 			</div>

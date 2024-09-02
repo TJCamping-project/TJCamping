@@ -28,12 +28,12 @@ public class BoardDAO {
 		}
 		return list;
 	}
-	public static int board_CampRowCount() {
+	public static int board_campRowCount() {
 		int count=0;
 		SqlSession session=null;
 		try {
 			session=ssf.openSession();
-			count=session.selectOne("board_CampRowCount");
+			count=session.selectOne("board_campRowCount");
 		}catch (Exception ex) {
 			ex.printStackTrace();
 		}finally {
@@ -68,6 +68,7 @@ public class BoardDAO {
 		}
 		return list;
 	}
+	
 	public static int board_GoodsRowCount() {
 		int count=0;
 		SqlSession session=null;
@@ -117,6 +118,8 @@ public class BoardDAO {
 		  }
 		  return vo;
 	  }
+	
+	
 	public static BoardVO boardImgInfoData(int no){
 		   // 폴더에서 파일 삭제 
 		BoardVO vo=new BoardVO();
@@ -191,7 +194,6 @@ public class BoardDAO {
 			  }
 		   return pwd;
 	   }
-	   
 	
 	//삭제하기
 	public static String boardDelete(int no,String pwd)
@@ -265,4 +267,35 @@ public class BoardDAO {
 		   return list;
 	   }
 	
+	/*
+	   public static String boardGaechuCount(int no) {
+		   String gaechu="";
+		   SqlSession session=null;
+		   try {
+			   session=ssf.openSession();
+			   gaechu=session.selectOne("boardGaechuCount", no);
+		   }catch (Exception ex) {
+			   ex.printStackTrace();
+		}finally {
+			if(session!= null) session.close();
+		}
+		return gaechu;
+	   }
+	   */
+	
+	/*
+	public static int board_replyCount() {
+		int replycount=0;
+		SqlSession session=null;
+		try {
+			session=ssf.openSession();
+			replycount=session.selectOne("boardReplyCount");
+		}catch (Exception ex) {
+			ex.printStackTrace();
+		}finally {
+			if(session!=null) session.close();
+		}
+		return replycount;
+	}
+	  */ 
 }

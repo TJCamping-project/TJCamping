@@ -50,7 +50,7 @@ a.pagetagcolor{color: yellow; background: ;}
       <tr>
        <th width=15% class="text-right">이름</th>
        <td width="85%">
-        <input type=text name=name size=20 class="input-sm" required>
+        <input type=text name=name size=20 class="input-sm" value="${vo.name }" required>
        </td>
       </tr>
       

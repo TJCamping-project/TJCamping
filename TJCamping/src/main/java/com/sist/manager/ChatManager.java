@@ -14,6 +14,7 @@ import java.util.*;
 @ServerEndpoint(value="/chat/chat-ws",configurator = HttpSessionConfigurator.class)
 public class ChatManager {
    private static Map<Session,ChatVO> users=Collections.synchronizedMap(new HashMap<Session,ChatVO>());
+   
    @OnOpen
    public void onOpen(Session session,EndpointConfig config) throws Exception
    {
@@ -21,10 +22,13 @@ public class ChatManager {
 	   HttpSession hs=(HttpSession)config.getUserProperties().get(HttpSessionConfigurator.Session);
 	     vo.setId((String)hs.getAttribute("id"));
 	     vo.setName((String)hs.getAttribute("name"));
+	     vo.setAdmin((String)hs.getAttribute("admin"));
 	     vo.setSession(session);
+	  
 	     users.put(session,vo);
-	     System.out.println("ID:"+vo.getId());
-	     System.out.println("Name:"+vo.getName());
+	   
+
+	   System.out.println("ID : "+vo.getId()+", Name : "+vo.getName()+", admin : "+vo.getAdmin() ); 
 	   Iterator<Session> it=users.keySet().iterator();
 	   while(it.hasNext())
 	   {
@@ -50,7 +54,7 @@ public class ChatManager {
 		   ChatVO vo=users.get(session);
 		   if(session.getId()==ss.getId())
 		   {
-		       ss.getBasicRemote().sendText("my:["+vo.getName()+"]"+message);
+		       ss.getBasicRemote().sendText("my:["+"나"+"]"+message);
 		   }
 		   else
 		   {
@@ -81,14 +85,6 @@ public class ChatManager {
 	   }
 	   System.out.println("클라이언트 퇴장:"+users.get(session).getName());
 	   users.remove(session);
-	   
-		/*
-		 * for(int i=0;i<users.size();i++) { ChatVO vo=users.get(i);
-		 * if(vo.getSession().getId()==session.getId()) {
-		 * System.out.println("클라이언트 퇴장...:"+vo.getUserName()); users.remove(i);
-		 * 
-		 * break; } }
-		 */
-	   
+
    }
 }

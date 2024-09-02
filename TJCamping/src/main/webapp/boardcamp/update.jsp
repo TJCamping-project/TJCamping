@@ -36,7 +36,7 @@ $(function(){
 		let pwd=$('#up_pwd').val()
 		$.ajax({
 			type:'post',
-			url:'../boardcamp/password_check.do',
+			url:'../board/password_check.do',
 			data:{"no":no,"pwd":pwd},
 			success:function(result)
 			{

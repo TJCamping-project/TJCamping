@@ -49,7 +49,7 @@ a.pagetagcolor{color: yellow; background: ;}
 			<table class="table">
 				<tr>
 					<td class="text-left inline">
-					<form method="post" action="../boardcamp/find.do">
+					<form method="post" action="../boardgoods/find.do">
 						<input type="checkbox" checked value="N" name="fs"><label class="boardcheckbox">이름</label>
 						<input type="checkbox" value="S" name="fs"><label class="boardcheckbox">제목</label>
 						<input type="checkbox" value="C" name="fs"><label class="boardcheckbox">내용</label>
@@ -58,7 +58,7 @@ a.pagetagcolor{color: yellow; background: ;}
 					</form>
 					</td>
 					<td align="right">
-						<a href="../boardcamp/insert.do" class="btn btn-sm btn-primary">새글</a>
+						<a href="../boardgoods/insert.do" class="btn btn-sm btn-primary">새글</a>
 					</td>
 				</tr>
 			</table>
@@ -73,7 +73,7 @@ a.pagetagcolor{color: yellow; background: ;}
 				<c:forEach var="vo" items="${list }">
 				<tr>
 					<td width=50% style="text-align: center;">
-						<a class="boardlistsytle" href="../boardcamp/detail.do?no=${vo.no }">${vo.subject }</a>
+						<a class="boardlistsytle" href="../boardgoods/detail.do?no=${vo.no }">${vo.subject }</a>
 					</td>
 					<td width=15% class="text-center boardlistsytle" >${vo.name }</td>
 					<td width=15% class="text-center boardlistsytle" >${vo.dbday }</td>
@@ -85,7 +85,7 @@ a.pagetagcolor{color: yellow; background: ;}
 			<table class="table" style="text-align: center;">
 				<tr>	
 					<td class="text-right">
-						<a href="../boardcamp/list.do" class="btn btn-sm btn-info pagetagcolor">목록으로</a>
+						<a href="../boardgoods/list.do" class="btn btn-sm btn-info pagetagcolor">목록으로</a>
 					</td>
 				</tr>
 			</table>
