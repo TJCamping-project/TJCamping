@@ -71,7 +71,7 @@ public class MyPageModel {
 		String content = request.getParameter("content");
 		String phone1 = request.getParameter("phone1");
 		String phone2 = request.getParameter("phone2");
-
+		CommonsModel.footerPrint(request);
 		MemberVO vo = new MemberVO();
 		vo.setId(id);
 		vo.setPwd(pwd);
@@ -151,7 +151,7 @@ public class MyPageModel {
 		int ftotal=AllJjimDAO.fjjimcount(id);
 		int cgtotal=AllJjimDAO.cgjjimcount(id);
 		int rtotal=AllJjimDAO.rjjimcount(id);
-		
+		CommonsModel.footerPrint(request);
 		request.setAttribute("title", "전체");
 		request.setAttribute("ftotal", ftotal);
 		request.setAttribute("cgtotal", cgtotal);
@@ -176,7 +176,7 @@ public class MyPageModel {
 		int type = Integer.parseInt(jtype);
 		System.out.println(cno);
 		System.out.println(type);
-		
+		CommonsModel.footerPrint(request);
 		Map map = new HashMap();
 		map.put("cno", cno);
 		map.put("id", id);
@@ -234,6 +234,7 @@ public class MyPageModel {
 	@RequestMapping("mypage/mypage_reserve_cancel.do")
 	public String mypage_reserve_cancel(HttpServletRequest request,HttpServletResponse response)
 	  {
+		CommonsModel.footerPrint(request); 
 		  String rno=request.getParameter("rno");
 		  // 데이터베이스 연동 => 삭제 
 		  ReserveDAO.reserveCancel(Integer.parseInt(rno));

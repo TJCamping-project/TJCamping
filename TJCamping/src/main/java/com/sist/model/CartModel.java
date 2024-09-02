@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import org.json.simple.JSONObject;
 
 import com.sist.vo.*;
+import com.sist.commons.CommonsModel;
 import com.sist.controller.RequestMapping;
 import com.sist.dao.*;
 
@@ -57,6 +58,7 @@ public class CartModel {
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("id");
 		List<CartVO> list = CartDAO.cartListData(id);
+		CommonsModel.footerPrint(request);
 		request.setAttribute("cartList", list);
 		//
 		request.setAttribute("count", list.size());
