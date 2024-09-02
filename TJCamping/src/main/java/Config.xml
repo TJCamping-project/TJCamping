@@ -20,6 +20,7 @@
 	<typeAlias type="com.sist.vo.ReserveVO" alias="ReserveVO"/>
 	<typeAlias type="com.sist.vo.RecipeVO" alias="RecipeVO"/>
 	<typeAlias type="com.sist.vo.CartVO" alias="CartVO"/>
+	<typeAlias type="com.sist.vo.ServiceVO" alias="ServiceVO"/>
 	<typeAlias type="com.sist.vo.FoodReserveVO" alias="FoodReserveVO"/>
 	
 	</typeAliases>
@@ -53,6 +54,7 @@
 		<mapper resource="com/sist/mapper/recipe-mapper.xml"/>
 		<mapper resource="com/sist/mapper/commons-mapper.xml"/>
 		<mapper resource="com/sist/mapper/cart-mapper.xml"/>
+		<mapper resource="com/sist/mapper/servicecenter-mapper.xml"/>
 		<mapper resource="com/sist/mapper/food-reserve-mapper.xml"/>
 	</mappers>
 </configuration>

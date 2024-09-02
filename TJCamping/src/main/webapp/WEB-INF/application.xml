@@ -17,6 +17,7 @@
    <bean id="recipe" class="com.sist.model.RecipeModel"/>
    <bean id="chat" class="com.sist.model.ChatModel"/>
    <bean id="cart" class="com.sist.model.CartModel"/>
+   <bean id="servicecenter" class="com.sist.model.ServiceCenterModel"/>
    <bean id="foodreserve" class="com.sist.model.FoodReserveModel"/>
     <!-- <bean id="commons" class="com.sist.commons.CommonsModel"/>  -->
 </beans> 
