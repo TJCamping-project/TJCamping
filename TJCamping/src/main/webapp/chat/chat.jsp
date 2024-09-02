@@ -36,7 +36,7 @@ let websocket;
 //서버연결 
 function connection(){
 	// 소켓연결 
-	websocket=new WebSocket("ws://##/web/chat/chat-ws")
+	websocket=new WebSocket("ws://13.124.128.141/TJCamping/chat/chat-ws")
 	websocket.onopen=onOpen
 	websocket.onclose=onClose
 	websocket.onmessage=onMessage

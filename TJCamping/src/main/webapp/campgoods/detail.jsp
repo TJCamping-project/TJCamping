@@ -24,7 +24,7 @@ function requestPay(json,name,price) {
         buyer_addr: json.address,
         buyer_postcode: json.post
     }, function (rsp) { // callback
-    	location.href='http://localhost/TJCamping/mypage/mypage_main.do' 
+    	location.href='http://13.124.128.141/TJCamping/mypage/mypage_main.do' 
     });
 }
 
