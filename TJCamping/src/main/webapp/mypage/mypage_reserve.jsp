@@ -31,7 +31,7 @@ let sel=0;
 	        buyer_addr: "asc",
 	        buyer_postcode: "123-456"
 	    }, function (rsp) { // callback
-	    	location.href='http://localhost/TJCamping/mypage/mypage_main.do'
+	    	location.href='http://13.124.128.141/TJCamping/mypage/mypage_main.do'
 	        
 	    });
 	}
